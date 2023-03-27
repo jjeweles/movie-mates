@@ -7,8 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class BluesTwosMovieReviewsApplication {
 
     public static void main(String[] args) {
-        // testing git rebase
+
         SpringApplication.run(BluesTwosMovieReviewsApplication.class, args);
+
+        System.out.println("Welcome to Blues Clues Movie Reviews!");
+
     }
 
 }
