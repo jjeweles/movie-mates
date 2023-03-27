@@ -10,8 +10,6 @@ public class BluesTwosMovieReviewsApplication {
 
         SpringApplication.run(BluesTwosMovieReviewsApplication.class, args);
 
-        System.out.println("Welcome to Blues Clues Movie Reviews!");
-
     }
 
 }
