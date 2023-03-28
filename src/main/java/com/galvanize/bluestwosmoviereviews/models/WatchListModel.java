@@ -36,13 +36,4 @@ public class WatchListModel {
         this.user_id = user_id;
     }
 
-    @Override
-    public String toString() {
-        return "WatchListModel{" +
-                "user_id=" + list_id +
-                ", tmdb_id=" + tmdb_id +
-                ", list_id=" + user_id +
-                '}';
-    }
-
 }
