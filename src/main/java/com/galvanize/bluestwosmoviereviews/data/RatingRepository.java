@@ -1,6 +1,6 @@
 package com.galvanize.bluestwosmoviereviews.data;
 
-public class RatingRepository {
+public interface RatingRepository {
 
     String hi = "hi";
 
