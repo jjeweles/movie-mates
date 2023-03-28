@@ -30,13 +30,40 @@ class UserServiceTest {
 
     @Test
     void getUserByIdShouldReturnUserOrReturnNullIfNoUser() {
-        userModel = new UserModel(1, "test", "test",
-                "test", "test", null, null,null, null);
+        userModel = new UserModel(1, "test", "test", "test", "test");
         when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
         UserModel user = userService.getUserByID(1);
         assertThat(user).isNotNull();
         assertThat(user.getUser_id()).isEqualTo(1);
 
+    }
+
+    @Test
+    void addUserShouldReturnUser() {
+        userModel = new UserModel(1, "test", "test", "test", "test");
+        when (userRepository.save(any(UserModel.class))).thenReturn(userModel);
+        UserModel user = userService.addUser(userModel);
+        assertThat(user).isNotNull();
+        assertThat(user.getUser_id()).isEqualTo(1);
+    }
+
+    @Test
+    void updateUserShouldReturnUser() {
+        userModel = new UserModel(1, "test", "test", "test", "test");
+        when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
+        when (userRepository.save(any(UserModel.class))).thenReturn(userModel);
+        UserModel user = userService.updateUser(1, userModel);
+        assertThat(user).isNotNull();
+        assertThat(user.getUser_id()).isEqualTo(1);
+    }
+
+    @Test
+    void deleteUserShouldReturnUser() {
+        userModel = new UserModel(1, "test", "test", "test", "test");
+        when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
+        UserModel user = userService.deleteUser(1);
+        assertThat(user).isNotNull();
+        assertThat(user.getUser_id()).isEqualTo(1);
     }
 
 }

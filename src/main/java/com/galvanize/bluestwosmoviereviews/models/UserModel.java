@@ -10,10 +10,17 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     Integer user_id;
+    @Column(unique = true, name = "username")
     String username;
+    @Column(name = "password")
     String password;
+    @Column(name = "email")
     String email;
+    @Column(name = "name")
     String name;
+
+    public UserModel() {
+    }
 
     public UserModel(Integer user_id, String username, String password, String email, String name) {
         this.user_id = user_id;
@@ -25,10 +32,6 @@ public class UserModel {
 
     public Integer getUser_id() {
         return user_id;
-    }
-
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
     }
 
     public String getUsername() {

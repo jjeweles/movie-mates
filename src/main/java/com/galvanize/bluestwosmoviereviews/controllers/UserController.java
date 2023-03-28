@@ -3,10 +3,7 @@ package com.galvanize.bluestwosmoviereviews.controllers;
 import com.galvanize.bluestwosmoviereviews.models.UserModel;
 import com.galvanize.bluestwosmoviereviews.services.UserService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/v1/")
@@ -23,6 +20,25 @@ public class UserController {
         UserModel user = userService.getUserByID(id);
 
         return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);
+    }
+
+    @PostMapping("users/add")
+    public UserModel addUser(@RequestBody UserModel user) {
+        return userService.addUser(user);
+    }
+
+    @PutMapping("users/{id}")
+    public ResponseEntity<UserModel> updateUser(@PathVariable Integer id, @RequestBody UserModel user) {
+        UserModel updatedUser = userService.updateUser(id, user);
+
+        return updatedUser == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(updatedUser);
+    }
+
+    @DeleteMapping("users/{id}")
+    public ResponseEntity<UserModel> deleteUser(@PathVariable Integer id) {
+        UserModel deletedUser = userService.deleteUser(id);
+
+        return deletedUser == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletedUser);
     }
 
 }
