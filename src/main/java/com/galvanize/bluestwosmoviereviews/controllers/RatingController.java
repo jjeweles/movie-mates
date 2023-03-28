@@ -21,7 +21,7 @@ public class RatingController {
     public ResponseEntity<List<RatingModel>> getAllRatings() {
         List<RatingModel> ratings = ratingService.getAllRatings();
 
-        return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok().build();
+        return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);
     }
 }
 
