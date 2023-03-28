@@ -1,27 +1,23 @@
 package com.galvanize.bluestwosmoviereviews.services;
 
-import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
 import com.galvanize.bluestwosmoviereviews.models.RatingModel;
-import com.galvanize.bluestwosmoviereviews.models.UserModel;
+import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class RatingService {
 
-    RatingRepository ratingRepository;
+    private final RatingRepository ratingRepository;
 
+    @Autowired
     public RatingService(RatingRepository ratingRepository) {
         this.ratingRepository = ratingRepository;
     }
 
-//    public RatingModel getRating(Integer tdmb_id) {
-//        List<RatingModel> ratings;
-//        return ratings;
-//    }
-//
-//
-//    public UserModel getUserByID(Integer id) {
-//        return userRepository.findById(id).orElse(null);
-//    }
-
+    public List<RatingModel> getAllRatings() {
+        return ratingRepository.findAll();
+    }
 }
