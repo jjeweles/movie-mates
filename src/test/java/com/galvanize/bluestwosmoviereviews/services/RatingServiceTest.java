@@ -1,7 +1,64 @@
 package com.galvanize.bluestwosmoviereviews.services;
 
-import static org.junit.jupiter.api.Assertions.*;
+import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
+import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 
-class RatingServiceTest {
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+public class RatingServiceTest {
+
+    @Mock
+    RatingRepository ratingRepository;
+
+    RatingService ratingService;
+
+    @BeforeEach
+    void setup() {
+        ratingService = new RatingService(ratingRepository);
+    }
+
+    @Test
+    public void testGetAllRatings() {
+        List<RatingModel> ratings = new ArrayList<>();
+        ratings.add(new RatingModel(1, 1234, 5, null, true, 1));
+        ratings.add(new RatingModel(2, 5678, 4, null, false, 2));
+
+        when(ratingRepository.findAll()).thenReturn(ratings);
+
+        List<RatingModel> result = ratingService.getAllRatings();
+
+        assertEquals(2, result.size());
+        assertEquals(ratings, result);
+    }
+
+    @Test void testUpdateRating() {
+        RatingModel rating1 = new RatingModel(1, 123, 5, null, true, 1);
+        RatingModel rating2 = new RatingModel(1, 123, 3, null, false, 1);
+
+        when(ratingRepository.findById(anyInt()))
+                .thenReturn(Optional.of(rating1));
+        when(ratingRepository.save(any(RatingModel.class))).thenReturn(rating1);
+
+        RatingModel rate = ratingService.updateRating(1, rating2);
+        assertThat(rate).isNotNull();
+        assertThat(rate.getStarRating()).isEqualTo(3);
+        assertFalse(rate.isThumbsUpOrDown());
+    }
 }

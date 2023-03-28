@@ -1,7 +1,9 @@
 package com.galvanize.bluestwosmoviereviews.data;
 
-public interface RatingRepository {
+import com.galvanize.bluestwosmoviereviews.models.RatingModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-    String hi = "hi";
-
+@Repository
+public abstract class RatingRepository implements JpaRepository<RatingModel, Integer> {
 }
