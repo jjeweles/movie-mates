@@ -2,9 +2,9 @@ package com.galvanize.bluestwosmoviereviews.controllers;
 
 import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import com.galvanize.bluestwosmoviereviews.services.RatingService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -22,5 +22,13 @@ public class RatingController {
         List<RatingModel> ratings = ratingService.getAllRatings();
 
         return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);
+    }
+
+    @PatchMapping("/api/v1/rating/update/{ratingId}")
+    public ResponseEntity<RatingModel> updateRating(@PathVariable Integer ratingId,
+                                                    @RequestBody RatingModel ratingModel) {
+
+        RatingModel updateRating = ratingService.updateRating(ratingId, ratingModel);
+        return new ResponseEntity<>(updateRating, HttpStatus.OK);
     }
 }
