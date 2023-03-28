@@ -2,41 +2,41 @@ package com.galvanize.bluestwosmoviereviews.models;
 
 public class HistoryModel {
 
-    Integer history_id;
-    Integer tmdb_id;
-    Integer user_id;
+    Integer historyId;
+    Integer tmdbId;
+    Integer userId;
 
     public HistoryModel(){
     }
 
     public HistoryModel(Integer history_id, Integer tmdb_id, Integer user_id) {
-        this.history_id = history_id;
-        this.tmdb_id = tmdb_id;
-        this.user_id = user_id;
+        this.historyId = history_id;
+        this.tmdbId = tmdb_id;
+        this.userId = user_id;
     }
 
-    public int getHistory_id() {
-        return history_id;
+    public int getHistoryId() {
+        return historyId;
     }
 
-    public void setHistory_id(Integer history_id) {
-        this.history_id = history_id;
+    public void setHistoryId(Integer historyId) {
+        this.historyId = historyId;
     }
 
-    public int getTmdb_id() {
-        return tmdb_id;
+    public int getTmdbId() {
+        return tmdbId;
     }
 
-    public void setTmdb_id(Integer tmdb_id) {
-        this.tmdb_id = tmdb_id;
+    public void setTmdbId(Integer tmdbId) {
+        this.tmdbId = tmdbId;
     }
 
-    public int getUser_id() {
-        return user_id;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUser_id(Integer user_id) {
-        this.user_id = user_id;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
 }
