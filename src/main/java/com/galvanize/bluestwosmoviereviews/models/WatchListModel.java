@@ -3,7 +3,7 @@ package com.galvanize.bluestwosmoviereviews.models;
 public class WatchListModel {
 
     Integer list_id;
-    Integer imdb_id;
+    Integer tmdb_id;
     Integer user_id;
 
     public Integer getList_id() {
@@ -14,12 +14,12 @@ public class WatchListModel {
         this.list_id = list_id;
     }
 
-    public Integer getImdb_id() {
-        return imdb_id;
+    public Integer getTmdb_id() {
+        return tmdb_id;
     }
 
-    public void setImdb_id(Integer imdb_id) {
-        this.imdb_id = imdb_id;
+    public void setTmdb_id(Integer tmdb_id) {
+        this.tmdb_id = tmdb_id;
     }
 
     public Integer getUser_id() {
@@ -32,7 +32,7 @@ public class WatchListModel {
 
     public WatchListModel(Integer list_id, Integer imdb_id, Integer user_id){
         this.list_id = list_id;
-        this.imdb_id = imdb_id;
+        this.tmdb_id = imdb_id;
         this.user_id = user_id;
     }
 
@@ -40,7 +40,7 @@ public class WatchListModel {
     public String toString() {
         return "WatchListModel{" +
                 "user_id=" + list_id +
-                ", imdb_id=" + imdb_id +
+                ", tmdb_id=" + tmdb_id +
                 ", list_id=" + user_id +
                 '}';
     }
