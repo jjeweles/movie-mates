@@ -31,6 +31,7 @@ public class UserService {
             userToUpdate.setUsername(user.getUsername());
         }
 
+        assert userToUpdate != null;
         return userRepository.save(userToUpdate);
     }
 

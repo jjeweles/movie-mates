@@ -28,10 +28,8 @@ public class UserController {
     }
 
     @PutMapping("users/{id}")
-    public ResponseEntity<UserModel> updateUser(@PathVariable Integer id, @RequestBody UserModel user) {
-        UserModel updatedUser = userService.updateUser(id, user);
-
-        return updatedUser == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(updatedUser);
+    public UserModel updateUser(@PathVariable Integer id, @RequestBody UserModel user) {
+        return userService.updateUser(id, user);
     }
 
     @DeleteMapping("users/{id}")
