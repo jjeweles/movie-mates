@@ -1,7 +1,13 @@
 package com.galvanize.bluestwosmoviereviews.data;
 
-public class UserRepository {
+import com.galvanize.bluestwosmoviereviews.models.UserModel;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-    String hi = "hi";
+import java.util.Optional;
+
+@Repository
+public interface UserRepository extends JpaRepository<UserModel, Integer> {
+    Optional<UserModel> findById(Integer id);
 
 }
