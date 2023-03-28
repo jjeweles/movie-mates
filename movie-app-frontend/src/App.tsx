@@ -8,12 +8,12 @@ function App() {
 
     return (
         <Router>
-            <div className="bg-stone-800 max-w-screen-2xl h-screen px-6">
+            <div className="bg-stone-800 max-w-screen-2xl min-h-screen px-6">
                 <Header/>
                 <Routes>
                     <Route path="/" element={<Home />}/>
                     <Route path="/movies" element={<GetMovies/>} />
-                    <Route path="*" element={<h1>404: Not Found</h1>} />
+                    <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />
             </div>
