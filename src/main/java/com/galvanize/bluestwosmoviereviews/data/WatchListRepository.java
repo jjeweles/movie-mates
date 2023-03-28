@@ -1,6 +1,6 @@
 package com.galvanize.bluestwosmoviereviews.data;
 
-public class WatchListRepository {
+public interface WatchListRepository {
 
     String hi = "hi";
 
