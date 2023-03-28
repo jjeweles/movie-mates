@@ -24,4 +24,3 @@ public class RatingController {
         return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);
     }
 }
-

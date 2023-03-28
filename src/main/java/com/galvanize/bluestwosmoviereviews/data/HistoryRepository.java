@@ -1,6 +1,6 @@
 package com.galvanize.bluestwosmoviereviews.data;
 
-public class HistoryRepository {
+public interface HistoryRepository {
 
     String hi = "hi";
 
