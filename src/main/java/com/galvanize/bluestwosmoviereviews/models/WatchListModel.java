@@ -9,8 +9,7 @@ public class WatchListModel {
     public WatchListModel() {
     }
 
-    public WatchListModel(Integer listId, Integer tmdbId, Integer userId) {
-        this.listId = listId;
+    public WatchListModel(Integer tmdbId, Integer userId) {
         this.tmdbId = tmdbId;
         this.userId = userId;
     }

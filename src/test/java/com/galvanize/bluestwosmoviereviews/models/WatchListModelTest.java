@@ -9,8 +9,7 @@ class WatchListModelTest {
     @Test
     void returns123UsingConstructors() {
 
-        WatchListModel history = new WatchListModel(1, 2, 3);
-        assertEquals(1, history.getListId());
+        WatchListModel history = new WatchListModel( 2, 3);
         assertEquals(2, history.getTmdbId());
         assertEquals(3, history.getUserId());
     }
