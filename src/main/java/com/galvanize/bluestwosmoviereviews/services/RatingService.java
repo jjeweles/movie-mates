@@ -1,9 +1,8 @@
 package com.galvanize.bluestwosmoviereviews.services;
 
-import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
+import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,9 +29,21 @@ public class RatingService {
             existingRating.get().setStarRating(rating.getStarRating());
             existingRating.get().setComments(rating.getComments());
             existingRating.get().setThumbsUpOrDown(rating.isThumbsUpOrDown());
-            existingRating.get().setUserID(rating.getUserID());
+            existingRating.get().setUserId(rating.getUserId());
             return ratingRepository.save(existingRating.get());
         }
         return null;
+    }
+
+    public List<RatingModel> getAllRatingsByUserId(Integer userId) {
+        return ratingRepository.findByUserId(userId);
+    }
+
+    public void deleteById(Integer ratingId) {
+        ratingRepository.deleteById(ratingId);
+    }
+
+    public RatingModel addNewRating(RatingModel ratingModel) {
+        return ratingRepository.save(ratingModel);
     }
 }
