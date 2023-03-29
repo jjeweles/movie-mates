@@ -3,6 +3,7 @@ package com.galvanize.bluestwosmoviereviews.services;
 import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.Optional;
 @Service
 public class RatingService {
 
-    private final RatingRepository ratingRepository;
+    private RatingRepository ratingRepository;
 
     @Autowired
     public RatingService(RatingRepository ratingRepository) {

@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.Objects;
 
 @Entity
-@Table(name = "User Rating")
+@Table(name = "User_Rating")
 public class RatingModel {
 
     @Id
