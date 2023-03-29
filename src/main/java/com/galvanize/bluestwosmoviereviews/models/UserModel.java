@@ -1,7 +1,6 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
 import javax.persistence.*;
-import java.util.HashMap;
 import java.util.Objects;
 
 @Entity

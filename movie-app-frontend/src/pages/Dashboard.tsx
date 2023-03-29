@@ -43,9 +43,9 @@ function Dashboard() {
                                 <div className="flex flex-col items-center">
                                     <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
                                         <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>
-                                        <div className="absolute top-36 left-50 rounded-bl-lg rounded-tr-lg p-2">
-                                            <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>
-                                        </div>
+                                        {/*<div className="absolute top-36 left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
+                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
+                                        {/*</div>*/}
                                     </div>
                                     <div className="text-center flex flex-col">
                                         <div className="">
@@ -66,9 +66,9 @@ function Dashboard() {
                                 <div className="flex flex-col items-center">
                                     <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
                                         <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>
-                                        <div className="absolute bottom-[182px] left-50 rounded-bl-lg rounded-tr-lg p-2">
-                                            <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>
-                                        </div>
+                                        {/*<div className="absolute bottom-[182px] left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
+                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
+                                        {/*</div>*/}
                                     </div>
                                     <div className="text-center flex flex-col">
                                         <div className="">
@@ -89,9 +89,9 @@ function Dashboard() {
                                 <div className="flex flex-col items-center">
                                     <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
                                         <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>
-                                        <div className="absolute -bottom-[184px] left-50 rounded-bl-lg rounded-tr-lg p-2">
-                                            <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>
-                                        </div>
+                                        {/*<div className="absolute -bottom-[184px] left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
+                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
+                                        {/*</div>*/}
                                     </div>
                                     <div className="text-center flex flex-col">
                                         <div className="">

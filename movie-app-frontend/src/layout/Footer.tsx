@@ -27,8 +27,8 @@ function Footer() {
                 <nav className="-mx-5 my-3 flex flex-wrap justify-center" aria-label="Footer">
                     <div className="px-5 py-2 text-sm">
                         <p className="text-stone-400">
-                            Backend Made With <a href="https://spring.io/" className="text-stone-300 hover:text-white">Spring</a><br/>
-                            Frontend Made With <a href="https://reactjs.org/" className="text-stone-300 hover:text-white">React</a>
+                            Built With <a href="https://spring.io/" className="text-stone-300 hover:text-white">Spring</a> &{" "}
+                            <a href="https://reactjs.org/" className="text-stone-300 hover:text-white">React</a>
                         </p>
                     </div>
                 </nav>
