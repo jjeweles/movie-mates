@@ -45,24 +45,24 @@ function NowPlaying() {
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {movies.results.map((movie: any) => (
-                                <div className="bg-stone-900 rounded-lg shadow-lg p-4">
+                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4">
                                     <div className="flex flex-col items-center">
-                                        <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
-                                            <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt="" className="rounded-lg"/>
-                                            <div className="absolute bottom-50 left-50 bg-gray-900 bg-opacity-50 rounded-bl-lg rounded-tr-lg px-2 py-1">
-                                                <p className="text-white text-sm font-bold bg-blue-400 rounded-full p-1 text-black">{movie.vote_average}</p>
-                                            </div>
+                                        <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
+                                            <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt="" className="rounded-lg static"/>
+                                            {/*<div className="absolute bottom-50 left-50 bg-gray-900 bg-opacity-50 rounded-bl-lg rounded-tr-lg px-2 py-1">*/}
+                                            {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">{movie.vote_average}</p>*/}
+                                            {/*</div>*/}
                                         </div>
                                         <div className="text-center flex flex-col mt-6">
                                             <div className="">
-                                                <h1 className="text-lg font-medium text-white">{movie.title}</h1>
+                                                <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
                                                 <p className="text-sm text-gray-400">{movie.release_date}</p>
                                             </div>
                                             <div className="">
-                                                <Link to="/movies/1">
+                                                <Link to="#">
                                                     <button className="bg-stone-900 text-white text-sm rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Watch List</button>
                                                 </Link>
-                                                <Link to="/movies/1">
+                                                <Link to="#">
                                                     <button className="bg-stone-900 text-white text-sm rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Favorite</button>
                                                 </Link>
                                             </div>

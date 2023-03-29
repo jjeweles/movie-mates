@@ -5,6 +5,7 @@ import Popular from "./pages/Popular";
 import Header from "./layout/Header";
 import TopRated from "./pages/TopRated";
 import NowPlaying from "./pages/NowPlaying";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                     <Route path="/popular" element={<Popular/>} />
                     <Route path="/nowplaying" element={<NowPlaying/>} />
                     <Route path="/toprated" element={<TopRated/>} />
+                    <Route path="/dashboard/:username" element={<Dashboard/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />
