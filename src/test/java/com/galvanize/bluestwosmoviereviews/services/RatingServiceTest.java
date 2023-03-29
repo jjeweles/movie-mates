@@ -2,7 +2,6 @@ package com.galvanize.bluestwosmoviereviews.services;
 
 import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
 import com.galvanize.bluestwosmoviereviews.models.RatingModel;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,8 +13,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
@@ -47,7 +45,8 @@ public class RatingServiceTest {
         assertEquals(ratings, result);
     }
 
-    @Test void testUpdateRating() {
+    @Test
+    public void testUpdateRating() {
         RatingModel rating1 = new RatingModel(1, 123, 5, null, true, 1);
         RatingModel rating2 = new RatingModel(1, 123, 3, null, false, 1);
 
@@ -60,4 +59,33 @@ public class RatingServiceTest {
         assertThat(rate.getStarRating()).isEqualTo(3);
         assertFalse(rate.isThumbsUpOrDown());
     }
+
+    @Test
+    public void testGetAllRatingsByUserId() {
+        int userId = 123;
+
+        List<RatingModel> ratings = new ArrayList<>();
+        ratings.add(new RatingModel(1, 1234, 5, null, true, userId));
+        ratings.add(new RatingModel(2, 5678, 4, null, false, userId));
+
+        when(ratingRepository.findByUserId(userId)).thenReturn(ratings);
+
+        List<RatingModel> result = ratingService.getAllRatingsByUserId(userId);
+
+        assertEquals(result, ratings);
+    }
+
+    @Test
+    public void testAddRating() {
+
+        RatingModel rating1 = new RatingModel(232, 123, 5, null, true, 1);
+
+        when(ratingRepository.save(any(RatingModel.class))).thenReturn(rating1);
+
+        RatingModel rating = ratingService.addNewRating(rating1);
+
+        assertThat(rating).isNotNull();
+        assertThat(rating.getRatingId()).isEqualTo(232);
+    }
+
 }

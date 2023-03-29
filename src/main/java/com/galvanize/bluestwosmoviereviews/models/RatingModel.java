@@ -24,18 +24,15 @@ public class RatingModel {
     private boolean thumbsUpOrDown;
 
     @Column(name = "user_id")
-    private int userID;
+    private int userId;
 
-    public RatingModel() {
-    }
-
-    public RatingModel(Integer ratingId, Integer tmdbId, Integer starRating, HashMap<Integer, String> comments, boolean thumbsUpOrDown, int userID) {
+    public RatingModel(Integer ratingId, Integer tmdbId, Integer starRating, HashMap<Integer, String> comments, boolean thumbsUpOrDown, int userId) {
         this.ratingId = ratingId;
         this.tmdbId = tmdbId;
         this.starRating = starRating;
         this.comments = comments;
         this.thumbsUpOrDown = thumbsUpOrDown;
-        this.userID = userID;
+        this.userId = userId;
     }
 
     public Integer getRatingId() {
@@ -78,12 +75,12 @@ public class RatingModel {
         this.thumbsUpOrDown = thumbsUpOrDown;
     }
 
-    public int getUserID() {
-        return userID;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setUserID(int userID) {
-        this.userID = userID;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
     @Override
@@ -91,12 +88,12 @@ public class RatingModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         com.galvanize.bluestwosmoviereviews.models.RatingModel that = (com.galvanize.bluestwosmoviereviews.models.RatingModel) o;
-        return thumbsUpOrDown == that.thumbsUpOrDown && userID == that.userID && Objects.equals(ratingId, that.ratingId) && Objects.equals(tmdbId, that.tmdbId) && Objects.equals(starRating, that.starRating) && Objects.equals(comments, that.comments);
+        return thumbsUpOrDown == that.thumbsUpOrDown && userId == that.userId && Objects.equals(ratingId, that.ratingId) && Objects.equals(tmdbId, that.tmdbId) && Objects.equals(starRating, that.starRating) && Objects.equals(comments, that.comments);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ratingId, tmdbId, starRating, comments, thumbsUpOrDown, userID);
+        return Objects.hash(ratingId, tmdbId, starRating, comments, thumbsUpOrDown, userId);
     }
 
     @Override
