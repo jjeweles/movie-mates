@@ -26,7 +26,9 @@ function Header() {
                             <div className="hidden sm:block sm:ml-6">
                                 <div className="flex space-x-4">
                                     <Link to="/" className="bg-stone-900 text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
-                                    <Link to="/movies" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">All Movies</Link>
+                                    <Link to="/popular" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Popular</Link>
+                                    <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Now Playing</Link>
+                                    <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Top Rated</Link>
                                     <Link to="/user/{username}" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Movies</Link>
                                 </div>
                             </div>

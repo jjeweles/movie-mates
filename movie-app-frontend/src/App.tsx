@@ -1,8 +1,10 @@
 import Home from "./pages/Home";
 import Footer from "./layout/Footer";
 import {Route, BrowserRouter as Router, Routes} from "react-router-dom";
-import GetMovies from "./pages/GetMovies";
+import Popular from "./pages/Popular";
 import Header from "./layout/Header";
+import TopRated from "./pages/TopRated";
+import NowPlaying from "./pages/NowPlaying";
 
 function App() {
 
@@ -12,7 +14,9 @@ function App() {
                 <Header/>
                 <Routes>
                     <Route path="/" element={<Home />}/>
-                    <Route path="/movies" element={<GetMovies/>} />
+                    <Route path="/popular" element={<Popular/>} />
+                    <Route path="/nowplaying" element={<NowPlaying/>} />
+                    <Route path="/toprated" element={<TopRated/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />

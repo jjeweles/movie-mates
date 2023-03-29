@@ -10,15 +10,13 @@ function Home() {
                 </div>
                 <div className="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
                     <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-6xl">Blues 2s Movie Reviews</h1>
-                    <p className="mt-6 max-w-3xl text-xl text-stone-300">
-                        <ul className="text-blue-200">
+                        <ul className="mt-6 max-w-3xl text-xl text-blue-200">
                             <li>Spring Boot and React App to rate and review your favorite movies.</li>
                             <li>Browse the list of movies in the database and find your next movie.</li>
                             <li>Store your favorite movies in your watchlist.</li>
                             <li>Save your favorite movies to your favorites list.</li>
                             <li>See what other users have to say about the movies you love.</li>
                         </ul>
-                    </p>
                 </div>
             </div>
         </div>
