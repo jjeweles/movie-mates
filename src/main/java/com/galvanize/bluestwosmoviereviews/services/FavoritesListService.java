@@ -2,12 +2,10 @@ package com.galvanize.bluestwosmoviereviews.services;
 
 import com.galvanize.bluestwosmoviereviews.data.FavoritesListRepository;
 import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
-import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class FavoritesListService {
@@ -20,23 +18,18 @@ public class FavoritesListService {
     public List<FavoritesListModel> getFavoritesListByID(Integer userID) {
             return favoritesRepository.findByUserID(userID);
     }
-    public void deleteByTmbdId(Integer tmbdId) {
-        favoritesRepository.deleteById(tmbdId);
+public FavoritesListModel deleteByTmbdId(Integer tmdbId) {
+    FavoritesListModel tmbdIdToDelete = favoritesRepository.findById(tmdbId).orElse(null);
+
+    if (tmbdIdToDelete != null) {
+        favoritesRepository.delete(tmbdIdToDelete);
     }
+
+    return tmbdIdToDelete;
+}
 
     public FavoritesListModel addToFavorites(FavoritesListModel favoritesListModel) {
         return favoritesRepository.save(favoritesListModel);
     }
 
-
-//    public List<FavoritesListModel> deleteFavorite(int userID, int tmdbId)
-//    {
-//        List<FavoritesListModel> tmdbIDToDelete = favoritesRepository.findById(userID);
-//        if(tmdbIDToDelete != null)
-//        {
-//            favoritesRepository.;
-//        }
-//
-//        return tmdbIDToDelete;
-//    }
 }
