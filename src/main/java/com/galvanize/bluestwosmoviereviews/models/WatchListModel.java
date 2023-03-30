@@ -9,6 +9,7 @@ public class WatchListModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "watchlistID")
     Integer watchlistID;
 
     @Column(name = "userID")
@@ -35,10 +36,6 @@ public class WatchListModel {
 
     public Integer getWatchlistID() {
         return watchlistID;
-    }
-
-    public void setWatchlistID(Integer id) {
-        this.watchlistID = id;
     }
 
     @Override
