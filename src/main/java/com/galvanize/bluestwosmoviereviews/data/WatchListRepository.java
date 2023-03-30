@@ -10,9 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface WatchListRepository extends JpaRepository<WatchListModel, Integer> {
-    List<WatchListModel> findAllByUserId(Integer userId);
-
-    WatchListModel findById(WatchListModel tmdbId);
-
-    void delete(Integer tmdbId);
+    List<WatchListModel> findAllById(Integer id);
+    void deleteByTmdbId(Integer tmdbId);
+    WatchListModel findByTmdbId(Integer tmdbId);
 }

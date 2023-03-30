@@ -18,8 +18,8 @@ public class WatchListService {
         this.watchListRepository = watchListRepository;
     }
 
-    public List<WatchListModel> getWatchList(Integer userId){
-        return watchListRepository.findAllByUserId(userId);
+    public List<WatchListModel> getWatchList(Integer id){
+        return watchListRepository.findAllById(id);
     }
 
     public WatchListModel addToWatchList(WatchListModel tmdbId) {
@@ -27,9 +27,9 @@ public class WatchListService {
     }
 
     public WatchListModel deleteFromWatchList(Integer tmdbId){
-        WatchListModel movieToDelete = watchListRepository.findById(tmdbId).orElse(null);
+        WatchListModel movieToDelete = watchListRepository.findByTmdbId(tmdbId);
         if (movieToDelete != null){
-            watchListRepository.delete(tmdbId);
+            watchListRepository.deleteByTmdbId(tmdbId);
         }
         return movieToDelete;
     }
