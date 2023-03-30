@@ -39,8 +39,14 @@ public class RatingService {
         return ratingRepository.findByUserId(userId);
     }
 
-    public void deleteById(Integer ratingId) {
-        ratingRepository.deleteById(ratingId);
+    public RatingModel deleteById(Integer ratingId) {
+        RatingModel ratingToDelete = ratingRepository.findByRatingId(ratingId);
+
+        if (ratingId != null) {
+            ratingRepository.deleteById(ratingId);
+        }
+
+        return ratingToDelete;
     }
 
     public RatingModel addNewRating(RatingModel ratingModel) {
