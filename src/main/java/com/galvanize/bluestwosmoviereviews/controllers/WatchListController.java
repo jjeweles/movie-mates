@@ -10,9 +10,9 @@ public class WatchListController {
 
     WatchListService watchListService;
 
-    @PostMapping("api/v1/watchlist/save")
-    public WatchListModel saveMovie(@RequestBody WatchListModel movie) {
-        return watchListService.addToWatchList(movie);
-    }
+//    @PostMapping("api/v1/watchlist/save")
+//    public WatchListModel saveMovie(@RequestBody WatchListModel movie) {
+//        return watchListService.addToWatchList(movie);
+//    }
 
 }

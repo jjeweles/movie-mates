@@ -1,11 +1,19 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import java.util.Objects;
 
+@Entity
 public class FavoritesListModel {
+    @Id
     int favListId;
     int  tmdbId;
     int userId;
+
+    public FavoritesListModel() {
+    }
 
     public FavoritesListModel(int favListID, int tmdbId, int userID)
     {

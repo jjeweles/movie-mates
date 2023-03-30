@@ -8,8 +8,8 @@ public class WatchListService {
 
     WatchListRepository watchListRepository;
 
-    public WatchListModel addToWatchList(WatchListModel movie) {
-        return watchListRepository.save(movie);
-    }
+//    public WatchListModel addToWatchList(WatchListModel movie) {
+//        return watchListRepository.save(movie);
+//    }
 
 }
