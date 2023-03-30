@@ -3,12 +3,6 @@ import {Link} from "react-router-dom";
 
 function Header() {
 
-    const handleSubmit = (e: any) => {
-        e.preventDefault();
-        console.log(e);
-        window.location.href = "/search?vin=" + e.target[0].value;
-    }
-
     return (
         <div className="mb-8">
             <nav className="bg-stone-800">
@@ -30,7 +24,7 @@ function Header() {
                                     <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Now Playing</Link>
                                     <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Top Rated</Link>
                                     <Link to="/dashboard/1" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Movies</Link>
-                                    <Link to="/login" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</Link>
+                                    <Link to="/login" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login/Register</Link>
                                 </div>
                             </div>
                         </div>
