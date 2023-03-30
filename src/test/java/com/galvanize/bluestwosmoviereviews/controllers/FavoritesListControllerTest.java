@@ -1,6 +1,8 @@
 package com.galvanize.bluestwosmoviereviews.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
+import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import com.galvanize.bluestwosmoviereviews.services.FavoritesListService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -15,7 +17,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import java.util.List;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -33,8 +39,8 @@ class FavoritesListControllerTest {
     @BeforeEach
     void setUp()
     {
-        list1 = new FavoritesListModel(1,1122,3);
-        list2 = new FavoritesListModel(2,1133,3);
+        list1 = new FavoritesListModel(1122,3);
+        list2 = new FavoritesListModel(1133,3);
         favorites.add(list1);
         favorites.add(list2);
     }
@@ -49,6 +55,24 @@ class FavoritesListControllerTest {
                 .andExpect((jsonPath("$.tmbdId").value(list2.getTmdbId())));
 
     }
+    @Test
+    void testAddTmdbIdToFavList() throws Exception {
+        when(favoritesListService.addToFavorites(any(FavoritesListModel.class))).thenReturn(list1);
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/rating/save")
+                        .contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(list1)))
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.tmdbId").value(1122));
+    }
+
+    @Test
+    void deleteRating() throws Exception {
+        when(favoritesListService.deleteByTmbdId(anyInt())).thenReturn(list1);
+
+        mockMvc.perform(delete("/api/v1/favList/delete/" + list1.getTmdbId()))
+                .andExpect(status().isAccepted());
+        verify(favoritesListService).deleteByTmbdId(1122);
+    }
 
 }
