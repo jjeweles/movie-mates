@@ -18,8 +18,8 @@ public class WatchListService {
         this.watchListRepository = watchListRepository;
     }
 
-    public List<WatchListModel> getWatchList(Integer id){
-        return watchListRepository.findByUserID(id);
+    public List<WatchListModel> getWatchList(Integer userID){
+        return watchListRepository.findByUserID(userID);
     }
 
     public WatchListModel addToWatchList(WatchListModel tmdbId) {

@@ -13,5 +13,5 @@ public interface WatchListRepository extends JpaRepository<WatchListModel, Integ
     void deleteByTmdbId(Integer tmdbId);
     WatchListModel findByTmdbId(Integer tmdbId);
 
-    List<WatchListModel> findByUserID(Integer id);
+    List<WatchListModel> findByUserID(Integer userID);
 }
