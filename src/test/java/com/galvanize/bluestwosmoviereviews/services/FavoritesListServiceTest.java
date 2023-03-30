@@ -22,8 +22,6 @@ public class FavoritesListServiceTest {
 
     @Mock
     FavoritesListRepository favoritesListRepository;
-
-    FavoritesListModel favoritesListModel;
     @BeforeEach
     void setUp()
     {
