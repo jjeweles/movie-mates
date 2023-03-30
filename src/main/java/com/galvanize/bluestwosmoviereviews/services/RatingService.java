@@ -1,9 +1,8 @@
 package com.galvanize.bluestwosmoviereviews.services;
 
-import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
+import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -28,11 +27,28 @@ public class RatingService {
         if (existingRating.isPresent()) {
             existingRating.get().setTmdbId(rating.getTmdbId());
             existingRating.get().setStarRating(rating.getStarRating());
-            existingRating.get().setComments(rating.getComments());
             existingRating.get().setThumbsUpOrDown(rating.isThumbsUpOrDown());
             existingRating.get().setUserID(rating.getUserID());
             return ratingRepository.save(existingRating.get());
         }
         return null;
+    }
+
+    public List<RatingModel> getAllRatingsByUserId(Integer userId) {
+        return ratingRepository.findByUserID(userId);
+    }
+
+    public RatingModel deleteById(Integer ratingId) {
+        RatingModel ratingToDelete = ratingRepository.findByRatingId(ratingId);
+
+        if (ratingId != null) {
+            ratingRepository.deleteById(ratingId);
+        }
+
+        return ratingToDelete;
+    }
+
+    public RatingModel addNewRating(RatingModel ratingModel) {
+        return ratingRepository.save(ratingModel);
     }
 }
