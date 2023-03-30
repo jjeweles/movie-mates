@@ -2,9 +2,11 @@ package com.galvanize.bluestwosmoviereviews.controllers;
 
 import com.galvanize.bluestwosmoviereviews.models.UserModel;
 import com.galvanize.bluestwosmoviereviews.services.UserService;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/")
 public class UserController {
@@ -24,6 +26,7 @@ public class UserController {
 
     @PostMapping("users/add")
     public UserModel addUser(@RequestBody UserModel user) {
+        System.out.println("user = " + user);
         return userService.addUser(user);
     }
 

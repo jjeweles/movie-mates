@@ -1,7 +1,10 @@
 import React from 'react';
-import {Link} from "react-router-dom";
+import {useParams} from "react-router-dom";
 
 function Dashboard() {
+
+    const { id } = useParams<{ id: string }>();
+
     const user = {
         username: 'john doe',
         name: 'John Doe',
@@ -18,11 +21,11 @@ function Dashboard() {
         { id: 2, title: 'Movie 2' },
         // ... more movies
     ];
-    const history = [
-        { id: 1, title: 'Movie 1' },
-        { id: 2, title: 'Movie 2' },
-        // ... more movies
-    ];
+    // const history = [
+    //     { id: 1, title: 'Movie 1' },
+    //     { id: 2, title: 'Movie 2' },
+    //     // ... more movies
+    // ];
 
     return (
         <div className="flex gap-10">
@@ -39,7 +42,7 @@ function Dashboard() {
                     <h2 className="text-2xl font-bold mb-4">Watchlist</h2>
                     <div className="flex gap-4">
                         {watchlist.map(movie => (
-                            <div className="bg-stone-900 rounded-lg shadow-lg p-3">
+                            <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.title}>
                                 <div className="flex flex-col items-center">
                                     <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
                                         <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>
@@ -62,7 +65,7 @@ function Dashboard() {
                     <h2 className="text-2xl font-bold mb-4">Favorites</h2>
                     <div className="flex gap-4">
                         {favlist.map(movie => (
-                            <div className="bg-stone-900 rounded-lg shadow-lg p-3">
+                            <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.title}>
                                 <div className="flex flex-col items-center">
                                     <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
                                         <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>
