@@ -70,7 +70,7 @@ class FavoritesListControllerTest {
     void deleteRating() throws Exception {
         when(favoritesListService.deleteByTmbdId(anyInt())).thenReturn(list1);
 
-        mockMvc.perform(delete("/api/v1/favList/1122" + list1.getTmdbId()))
+        mockMvc.perform(delete("/api/v1/favList/delete/1122" + list1.getTmdbId()))
                 .andExpect(status().isAccepted());
         verify(favoritesListService).deleteByTmbdId(1122);
     }
