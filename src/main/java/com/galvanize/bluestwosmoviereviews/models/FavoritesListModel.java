@@ -1,5 +1,7 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
+import java.util.Objects;
+
 public class FavoritesListModel {
     int favListId;
     int  tmdbId;
@@ -33,5 +35,18 @@ public class FavoritesListModel {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(favListId, tmdbId, userId);
+    }
+
+    @Override
+    public String toString() {
+        return "FavoriteListModel{" +
+                "favListId=" + favListId +
+                ", tmdbId=" + tmdbId +
+                ", userId=" + userId +
+                '}';
     }
 }
