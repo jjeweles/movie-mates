@@ -16,8 +16,8 @@ public class FavoritesListService {
         this.favoritesRepository = favoritesRepository;
     }
 
-    public List<FavoritesListModel> getFavoritesListByID(Integer userId) {
-            return favoritesRepository.findByUserId(userId);
+    public List<FavoritesListModel> getFavoritesListByID(Integer userID) {
+            return favoritesRepository.findByUserID(userID);
     }
 
 //    public Optional<FavoritesListModel> addToFavorites(int tmdb) {

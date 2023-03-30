@@ -62,13 +62,13 @@ class RatingControllerTest {
                 .andExpect(jsonPath("$[0].starRating").value(rating1.getStarRating()))
                 .andExpect(jsonPath("$[0].comments").value(rating1.getComments()))
                 .andExpect(jsonPath("$[0].thumbsUpOrDown").value(rating1.isThumbsUpOrDown()))
-                .andExpect(jsonPath("$[0].userId").value(rating1.getUserId()))
+                .andExpect(jsonPath("$[0].userId").value(rating1.getUserID()))
                 .andExpect(jsonPath("$[1].ratingId").value(rating2.getRatingId()))
                 .andExpect(jsonPath("$[1].tmdbId").value(rating2.getTmdbId()))
                 .andExpect(jsonPath("$[1].starRating").value(rating2.getStarRating()))
                 .andExpect(jsonPath("$[1].comments").value(rating2.getComments()))
                 .andExpect(jsonPath("$[1].thumbsUpOrDown").value(rating2.isThumbsUpOrDown()))
-                .andExpect(jsonPath("$[1].userId").value(rating2.getUserId()));
+                .andExpect(jsonPath("$[1].userId").value(rating2.getUserID()));
     }
 
     @Test
@@ -84,7 +84,7 @@ class RatingControllerTest {
                 .andExpect(jsonPath("starRating").value(rating1.getStarRating()))
                 .andExpect(jsonPath("comments").value(rating1.getComments()))
                 .andExpect(jsonPath("thumbsUpOrDown").value(rating1.isThumbsUpOrDown()))
-                .andExpect(jsonPath("userId").value(rating1.getUserId()));
+                .andExpect(jsonPath("userId").value(rating1.getUserID()));
     }
 
     @Test

@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface RatingRepository extends JpaRepository<RatingModel, Integer> {
-    List<RatingModel> findByUserId(Integer userId);
+    List<RatingModel> findByUserID(Integer userId);
 
     RatingModel findByRatingId(Integer ratingId);
 }

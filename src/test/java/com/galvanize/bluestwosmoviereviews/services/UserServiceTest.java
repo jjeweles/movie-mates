@@ -34,7 +34,7 @@ class UserServiceTest {
         when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
         UserModel user = userService.getUserByID(1);
         assertThat(user).isNotNull();
-        assertThat(user.getUser_id()).isEqualTo(1);
+        assertThat(user.getUserID()).isEqualTo(1);
 
     }
 
@@ -44,7 +44,7 @@ class UserServiceTest {
         when (userRepository.save(any(UserModel.class))).thenReturn(userModel);
         UserModel user = userService.addUser(userModel);
         assertThat(user).isNotNull();
-        assertThat(user.getUser_id()).isEqualTo(1);
+        assertThat(user.getUserID()).isEqualTo(1);
     }
 
     @Test
@@ -54,7 +54,7 @@ class UserServiceTest {
         when (userRepository.save(any(UserModel.class))).thenReturn(userModel);
         UserModel user = userService.updateUser(1, userModel);
         assertThat(user).isNotNull();
-        assertThat(user.getUser_id()).isEqualTo(1);
+        assertThat(user.getUserID()).isEqualTo(1);
     }
 
     @Test
@@ -63,7 +63,7 @@ class UserServiceTest {
         when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
         UserModel user = userService.deleteUser(1);
         assertThat(user).isNotNull();
-        assertThat(user.getUser_id()).isEqualTo(1);
+        assertThat(user.getUserID()).isEqualTo(1);
     }
 
 }

@@ -14,7 +14,7 @@ class FavoritesListModelTest {
     void returns1_For_favId()
     {
         FavoritesListModel favoritesListModel = new FavoritesListModel(1, 2, 3);
-        assertEquals(favoritesListModel.favListId, 1);
+        assertEquals(favoritesListModel.favoritesID, 1);
     }
     @Test
     void returns2_For_tmdbId()
@@ -26,6 +26,6 @@ class FavoritesListModelTest {
     void returns3_For_tmdbId()
     {
         FavoritesListModel favoritesListModel = new FavoritesListModel(1, 2, 3);
-        assertEquals(favoritesListModel.userId, 3);
+        assertEquals(favoritesListModel.userID, 3);
     }
 }

@@ -4,11 +4,12 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table (name = "users")
 public class UserModel {
 
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    Integer user_id;
+    Integer userID;
     @Column(unique = true, name = "username")
     String username;
     @Column(name = "password")
@@ -21,16 +22,15 @@ public class UserModel {
     public UserModel() {
     }
 
-    public UserModel(Integer user_id, String username, String password, String email, String name) {
-        this.user_id = user_id;
+    public UserModel(String username, String password, String email, String name) {
         this.username = username;
         this.password = password;
         this.email = email;
         this.name = name;
     }
 
-    public Integer getUser_id() {
-        return user_id;
+    public Integer getUserID() {
+        return userID;
     }
 
     public String getUsername() {
@@ -67,13 +67,13 @@ public class UserModel {
 
     @Override
     public int hashCode() {
-        return Objects.hash(user_id, username, password, email, name);
+        return Objects.hash(userID, username, password, email, name);
     }
 
     @Override
     public String toString() {
         return "UserModel{" +
-                "user_id=" + user_id +
+                "user_id=" + userID +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +

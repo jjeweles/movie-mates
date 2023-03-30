@@ -27,16 +27,15 @@ public class RatingService {
         if (existingRating.isPresent()) {
             existingRating.get().setTmdbId(rating.getTmdbId());
             existingRating.get().setStarRating(rating.getStarRating());
-            existingRating.get().setComments(rating.getComments());
             existingRating.get().setThumbsUpOrDown(rating.isThumbsUpOrDown());
-            existingRating.get().setUserId(rating.getUserId());
+            existingRating.get().setUserID(rating.getUserID());
             return ratingRepository.save(existingRating.get());
         }
         return null;
     }
 
     public List<RatingModel> getAllRatingsByUserId(Integer userId) {
-        return ratingRepository.findByUserId(userId);
+        return ratingRepository.findByUserID(userId);
     }
 
     public RatingModel deleteById(Integer ratingId) {

@@ -1,32 +1,32 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
+@Table(name = "favorites")
 public class FavoritesListModel {
-    @Id
-    int favListId;
+    @Id @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    int favoritesID;
+    @Column(name = "tmdb_id")
     int  tmdbId;
-    int userId;
+    @Column(name = "userID")
+    int userID;
 
     public FavoritesListModel() {
     }
 
-    public FavoritesListModel(int favListID, int tmdbId, int userID)
+    public FavoritesListModel(int tmdbId, int userID)
     {
-        this.favListId = favListID;
         this.tmdbId = tmdbId;
-        this.userId = userID;
+        this.userID = userID;
     }
-    public int getFavListId() {
-        return favListId;
+    public int getFavoritesID() {
+        return favoritesID;
     }
 
-    public void setFavListId(int favListId) {
-        this.favListId = favListId;
+    public void setFavoritesID(int favListId) {
+        this.favoritesID = favListId;
     }
 
     public int getTmdbId() {
@@ -37,24 +37,24 @@ public class FavoritesListModel {
         this.tmdbId = tmdbId;
     }
 
-    public int getUserId() {
-        return userId;
+    public int getUserID() {
+        return userID;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserID(int userID) {
+        this.userID = userID;
     }
     @Override
     public int hashCode() {
-        return Objects.hash(favListId, tmdbId, userId);
+        return Objects.hash(favoritesID, tmdbId, userID);
     }
 
     @Override
     public String toString() {
         return "FavoriteListModel{" +
-                "favListId=" + favListId +
+                "favListId=" + favoritesID +
                 ", tmdbId=" + tmdbId +
-                ", userId=" + userId +
+                ", userID=" + userID +
                 '}';
     }
 }
