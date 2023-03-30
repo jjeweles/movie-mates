@@ -11,20 +11,18 @@ public class WatchListModel {
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     Integer id;
 
+    @Column(name = "userID")
+    Integer userID;
+
     @Column(unique = true, name = "tmdbId")
     Integer tmdbId;
 
     public WatchListModel() {
     }
 
-    public WatchListModel(Integer tmdbId) {
+    public WatchListModel(Integer userID, Integer tmdbId) {
         this.tmdbId = tmdbId;
-    }
-
-
-    public WatchListModel(Integer userId, Integer tmdbId) {
-        this.tmdbId = tmdbId;
-        this.id = userId;
+        this.id = userID;
     }
 
     public Integer getTmdbId() {
@@ -44,16 +42,24 @@ public class WatchListModel {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WatchListModel that = (WatchListModel) o;
+        return Objects.equals(id, that.id) && Objects.equals(userID, that.userID) && Objects.equals(tmdbId, that.tmdbId);
+    }
+
+    @Override
     public int hashCode() {
-        return Objects.hash(id, tmdbId);
+        return Objects.hash(id, userID, tmdbId);
     }
 
     @Override
     public String toString() {
         return "WatchListModel{" +
-                "userId=" + id +
+                "id=" + id +
+                ", userId=" + userID +
                 ", tmdbId=" + tmdbId +
                 '}';
     }
-
 }

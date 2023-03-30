@@ -19,7 +19,7 @@ public class WatchListService {
     }
 
     public List<WatchListModel> getWatchList(Integer id){
-        return watchListRepository.findAllById(id);
+        return watchListRepository.findByUserID(id);
     }
 
     public WatchListModel addToWatchList(WatchListModel tmdbId) {

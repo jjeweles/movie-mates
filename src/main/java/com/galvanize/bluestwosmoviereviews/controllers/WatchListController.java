@@ -17,9 +17,9 @@ public class WatchListController {
         this.watchListService = watchListService;
     }
 
-    @GetMapping("api/v1/watchlist/{userId}")
-    public ResponseEntity<List<WatchListModel>> getWatchListById(@PathVariable Integer userId){
-        List<WatchListModel> watchList = watchListService.getWatchList(userId);
+    @GetMapping("api/v1/watchlist/{userID}")
+    public ResponseEntity<List<WatchListModel>> getWatchListById(@PathVariable Integer userID){
+        List<WatchListModel> watchList = watchListService.getWatchList(userID);
 
         return watchList == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(watchList);
     }
