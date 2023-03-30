@@ -46,9 +46,10 @@ public class RatingController {
         return new ResponseEntity<>(newRating, HttpStatus.CREATED);
     }
 
+    @DeleteMapping("/api/v1/rating/delete/{ratingId}")
+    public ResponseEntity<RatingModel> deleteRating(@PathVariable Integer ratingId) {
 
-
-
-
-
+        RatingModel deleteRating = ratingService.deleteById(ratingId);
+        return deleteRating == null ? ResponseEntity.noContent().build() : ResponseEntity.accepted().build();
+    }
 }

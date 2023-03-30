@@ -46,7 +46,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testUpdateRating() {
+    public void testUpdateRatingReturnsRatingOrNull() {
         RatingModel rating1 = new RatingModel(1, 123, 5, null, true, 1);
         RatingModel rating2 = new RatingModel(1, 123, 3, null, false, 1);
 
@@ -61,7 +61,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testGetAllRatingsByUserId() {
+    public void testGetAllRatingsByUserIdReturnsAllRatings() {
         int userId = 123;
 
         List<RatingModel> ratings = new ArrayList<>();
@@ -76,7 +76,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testAddRating() {
+    public void testAddRatingReturnsRating() {
 
         RatingModel rating1 = new RatingModel(232, 123, 5, null, true, 1);
 
@@ -88,4 +88,14 @@ public class RatingServiceTest {
         assertThat(rating.getRatingId()).isEqualTo(232);
     }
 
+    @Test
+    public void deleteRatingReturnsRating() {
+        RatingModel rating1 = new RatingModel(232, 123, 5, null, true, 1);
+
+        when(ratingRepository.findByRatingId(anyInt())).thenReturn(rating1);
+
+        RatingModel rating = ratingService.deleteById(232);
+        assertThat(rating).isNotNull();
+        assertThat(rating.getRatingId()).isEqualTo(232);
+    }
 }
