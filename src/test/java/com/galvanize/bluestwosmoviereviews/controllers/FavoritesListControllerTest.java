@@ -60,7 +60,7 @@ class FavoritesListControllerTest {
         when(favoritesListService.addToFavorites(any(FavoritesListModel.class))).thenReturn(list1);
 
         ObjectMapper objectMapper = new ObjectMapper();
-        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/rating/save")
+        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/favList/save")
                         .contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(list1)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.tmdbId").value(1122));
@@ -70,7 +70,7 @@ class FavoritesListControllerTest {
     void deleteRating() throws Exception {
         when(favoritesListService.deleteByTmbdId(anyInt())).thenReturn(list1);
 
-        mockMvc.perform(delete("/api/v1/favList/delete/" + list1.getTmdbId()))
+        mockMvc.perform(delete("/api/v1/favList/1122" + list1.getTmdbId()))
                 .andExpect(status().isAccepted());
         verify(favoritesListService).deleteByTmbdId(1122);
     }
