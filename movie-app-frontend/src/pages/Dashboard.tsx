@@ -81,29 +81,29 @@ function Dashboard() {
                         ))}
                     </div>
                 </div>
-                <div className="mb-6">
-                    <h2 className="text-2xl font-bold mb-4">History</h2>
-                    <div className="flex gap-4">
-                        {history.map(movie => (
-                            <div className="bg-stone-900 rounded-lg shadow-lg p-3">
-                                <div className="flex flex-col items-center">
-                                    <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
-                                        <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>
-                                        {/*<div className="absolute -bottom-[184px] left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
-                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
-                                        {/*</div>*/}
-                                    </div>
-                                    <div className="text-center flex flex-col">
-                                        <div className="">
-                                            <h1 className="text-lg font-medium text-white">{movie.title}</h1>
-                                            <p className="text-sm text-gray-400">Release Date</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
+                {/*<div className="mb-6">*/}
+                {/*    <h2 className="text-2xl font-bold mb-4">History</h2>*/}
+                {/*    <div className="flex gap-4">*/}
+                {/*        {history.map(movie => (*/}
+                {/*            <div className="bg-stone-900 rounded-lg shadow-lg p-3">*/}
+                {/*                <div className="flex flex-col items-center">*/}
+                {/*                    <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">*/}
+                {/*                        <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>*/}
+                {/*                        /!*<div className="absolute -bottom-[184px] left-50 rounded-bl-lg rounded-tr-lg p-2">*!/*/}
+                {/*                        /!*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*!/*/}
+                {/*                        /!*</div>*!/*/}
+                {/*                    </div>*/}
+                {/*                    <div className="text-center flex flex-col">*/}
+                {/*                        <div className="">*/}
+                {/*                            <h1 className="text-lg font-medium text-white">{movie.title}</h1>*/}
+                {/*                            <p className="text-sm text-gray-400">Release Date</p>*/}
+                {/*                        </div>*/}
+                {/*                    </div>*/}
+                {/*                </div>*/}
+                {/*            </div>*/}
+                {/*        ))}*/}
+                {/*    </div>*/}
+                {/*</div>*/}
             </div>
         </div>
     );

@@ -7,6 +7,7 @@ import TopRated from "./pages/TopRated";
 import NowPlaying from "./pages/NowPlaying";
 import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
+import Recommend from "./pages/Recommend";
 
 function App() {
 
@@ -21,6 +22,7 @@ function App() {
                     <Route path="/toprated" element={<TopRated/>} />
                     <Route path="/dashboard/:username" element={<Dashboard/>} />
                     <Route path="/login" element={<Login/>} />
+                    <Route path="/recommend/:id" element={<Recommend/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />

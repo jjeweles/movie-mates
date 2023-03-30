@@ -1,15 +1,16 @@
 import React, {useEffect, useState} from 'react';
-import {Link} from "react-router-dom";
 import axios from "axios";
+import {Link, useParams} from "react-router-dom";
 
-function TopRated() {
+function Recommend() {
 
     const [movies, setMovies] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     const [status, setStatus] = useState();
+    let { id } = useParams();
     useEffect(() => {
         const fetchMovies = async () => {
-            const result = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=52107296ca5b59d71cb74cfb9ed7f144');
+            const result = await axios.get('https://api.themoviedb.org/3/movie/' + id + '/recommendations?api_key=52107296ca5b59d71cb74cfb9ed7f144');
 
             if (result.status !== 200) {
                 window.location.href = '/';
@@ -31,8 +32,12 @@ function TopRated() {
         return <div>Error</div>;
     }
 
+    console.log(movies);
+
+
     return (
         <div className="bg-stone-800 max-w-screen-xl px-6">
+            <div className="text-white">Recommendations</div>
             <div className="flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -72,8 +77,7 @@ function TopRated() {
                 </div>
             </div>
         </div>
-
     );
 }
 
-export default TopRated;
+export default Recommend;

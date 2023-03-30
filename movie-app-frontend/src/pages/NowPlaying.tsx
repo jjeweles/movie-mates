@@ -56,14 +56,17 @@ function NowPlaying() {
                                         <div className="text-center flex flex-col mt-6">
                                             <div className="">
                                                 <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
-                                                <p className="text-sm text-gray-400">{movie.release_date}</p>
+                                                <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
                                             </div>
-                                            <div className="">
+                                            <div className="text-xs">
                                                 <Link to="#">
-                                                    <button className="bg-stone-900 text-white text-sm rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Watch List</button>
+                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Watch List</button>
                                                 </Link>
                                                 <Link to="#">
-                                                    <button className="bg-stone-900 text-white text-sm rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Favorite</button>
+                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Favorite</button>
+                                                </Link>
+                                                <Link to={'/recommend/' + movie.id}>
+                                                    <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">More Like This</button>
                                                 </Link>
                                             </div>
 
