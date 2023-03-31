@@ -3,6 +3,13 @@ import {Link} from "react-router-dom";
 
 function Header() {
 
+    const userID = localStorage.getItem("user_id");
+
+    const handleLogout = () => {
+        localStorage.clear();
+        window.location.href = "/";
+    }
+
     return (
         <div className="mb-8">
             <nav className="bg-stone-800">
@@ -23,8 +30,15 @@ function Header() {
                                     <Link to="/popular" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Popular</Link>
                                     <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Now Playing</Link>
                                     <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Top Rated</Link>
-                                    <Link to="/dashboard/1" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">My Movies</Link>
-                                    <Link to="/login" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login/Register</Link>
+                                    {userID && userID !== "undefined" ?
+                                        <Link to={`/dashboard/${userID}`} className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
+                                        : null}
+                                    {userID == null || userID === "undefined" ?
+                                        <Link to="/login" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login/Register</Link>
+                                        : null}
+                                    {userID && userID !== "undefined" ?
+                                    <button className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" onClick={handleLogout}>Logout</button>
+                                    : null}
                                 </div>
                             </div>
                         </div>

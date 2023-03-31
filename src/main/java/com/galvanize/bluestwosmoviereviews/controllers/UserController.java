@@ -24,6 +24,13 @@ public class UserController {
         return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);
     }
 
+    @GetMapping("users/get/{username}")
+    public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {
+        UserModel user = userService.getUserByUsername(username);
+
+        return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);
+    }
+
     @PostMapping("users/add")
     public UserModel addUser(@RequestBody UserModel user) {
         System.out.println("user = " + user);

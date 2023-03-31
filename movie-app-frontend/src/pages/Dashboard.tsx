@@ -1,14 +1,32 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
 
 function Dashboard() {
-
+    const [loading, setLoading] = useState(true);
     const { id } = useParams<{ id: string }>();
+    const userID = localStorage.getItem("user_id");
+
+    useEffect(() => {
+        const fetchUser = async () => {
+            try {
+                const response = await fetch(`http://localhost:8080/api/v1/users/${userID}`);
+                const data = await response.json();
+                localStorage.setItem('username', data.username);
+                localStorage.setItem('name', data.name);
+                localStorage.setItem('email', data.email);
+            } catch (error) {
+                console.log(error);
+            } finally {
+                setLoading(false);
+            }
+        }
+        fetchUser().then(() => null);
+    }, [id]);
 
     const user = {
-        username: 'john doe',
-        name: 'John Doe',
-        email: 'john@doe.com'
+        username: localStorage.getItem('username'),
+        name: localStorage.getItem('name'),
+        email: localStorage.getItem('email')
     }
 
     const watchlist = [
@@ -26,6 +44,10 @@ function Dashboard() {
     //     { id: 2, title: 'Movie 2' },
     //     // ... more movies
     // ];
+
+    if (loading) {
+        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+    }
 
     return (
         <div className="flex gap-10">
