@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 function Dashboard() {
     const [loading, setLoading] = useState(true);
@@ -69,11 +69,11 @@ function Dashboard() {
     return (
         <div className="flex gap-10">
             <div className="w-64 h-fit p-6 text-stone-400 bg-stone-900/75 rounded-md grid gap-3">
-                <h2 className="text-xl font-bold mb-4">User Information</h2>
-                <div className="grid gap-3">
-                    <p><strong>Username:</strong> {user.username}</p>
-                    <p><strong>Name:</strong> {user.name}</p>
-                    <p><strong>Email:</strong> {user.email}</p>
+                <h2 className="text-md font-bold mb-4">User Information</h2>
+                <div className="grid gap-3 text-sm">
+                    <p><strong>Username:</strong><br/> {user.username}</p>
+                    <p><strong>Name:</strong><br/> {user.name}</p>
+                    <p><strong>Email:</strong><br/> {user.email}</p>
                 </div>
             </div>
             <div className="flex flex-col gap-4 text-stone-400">
@@ -81,23 +81,25 @@ function Dashboard() {
                     <h2 className="text-2xl font-bold mb-4">Watchlist</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         {watchList.map(movie => (
-                            <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.title}>
-                                <div className="flex flex-col items-center">
-                                    <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
-                                        <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
-                                        {/*<div className="absolute top-36 left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
-                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
-                                        {/*</div>*/}
-                                    </div>
-                                    <div className="text-center flex flex-col mt-6">
-                                        <div className="">
-                                            <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
+                            <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
+                                <Link to={`/movie/${movie.id}`}>
+                                    <div className="flex flex-col items-center">
+                                        <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
+                                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
+                                            {/*<div className="absolute top-36 left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
+                                            {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
+                                            {/*</div>*/}
                                         </div>
-                                        <div className="text-xs">
-                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700" value={movie.id} onClick={handleWatchlistRemove}>Remove</button>
+                                        <div className="text-center flex flex-col mt-6">
+                                            <div className="">
+                                                <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
+                                            </div>
+                                            <div className="text-xs">
+                                                <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700" value={movie.id} onClick={handleWatchlistRemove}>Remove</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>
@@ -106,21 +108,25 @@ function Dashboard() {
                     <h2 className="text-2xl font-bold mb-4">Favorites</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         {favList.map(movie => (
-                            <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.title}>
-                                <div className="flex flex-col items-center">
-                                    <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
-                                        <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
-                                        {/*<div className="absolute bottom-[182px] left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
-                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
-                                        {/*</div>*/}
-                                    </div>
-                                    <div className="text-center flex flex-col">
-                                        <div className="">
-                                            <h1 className="text-lg font-medium text-white">{movie.title}</h1>
-                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700">Remove</button>
+                            <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.id}>
+                                <Link to={`/movie/${movie.id}`}>
+                                    <div className="flex flex-col items-center">
+                                        <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
+                                            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
+                                            {/*<div className="absolute bottom-[182px] left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
+                                            {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
+                                            {/*</div>*/}
+                                        </div>
+                                        <div className="text-center flex flex-col mt-6">
+                                            <div className="">
+                                                <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
+                                            </div>
+                                            <div className="text-xs">
+                                                <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700" value={movie.id}>Remove</button>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Link>
                             </div>
                         ))}
                     </div>

@@ -9,12 +9,13 @@ import Dashboard from "./pages/Dashboard";
 import Login from "./pages/Login";
 import Recommend from "./pages/Recommend";
 import Register from "./pages/Register";
+import Movie from "./pages/Movie";
 
 function App() {
 
     return (
         <Router>
-            <div className="bg-stone-800 max-w-screen-2xl min-h-screen px-6">
+            <div className="bg-stone-800 max-w-screen min-h-screen px-6">
                 <Header/>
                 <Routes>
                     <Route path="/" element={<Home />}/>
@@ -25,6 +26,7 @@ function App() {
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/recommend/:id" element={<Recommend/>} />
+                    <Route path="/movie/:id" element={<Movie/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />
