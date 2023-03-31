@@ -33,10 +33,17 @@ public class RatingController {
     }
 
     @GetMapping("rating/getRatingsForMovie/{tmdbId}")
-    public ResponseEntity<List<RatingModel>> getAverageMovieRatingByIdmbId(@PathVariable Integer tmdbId) {
+    public ResponseEntity<List<RatingModel>> getMovieRatingByIdmbId(@PathVariable Integer tmdbId) {
 
         List<RatingModel> listOfRatingsForMovie = ratingService.getAllRatingsByTmdbId(tmdbId);
         return listOfRatingsForMovie == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(listOfRatingsForMovie);
+    }
+
+    @GetMapping("rating/getMovieAvgMovieRating/{tmdbId}")
+    public ResponseEntity<Double> getAvgMovieRating(@PathVariable Integer tmdbId) {
+
+        Double averageRating = ratingService.getAverageMovieRating(tmdbId);
+        return averageRating == 0 ? ResponseEntity.noContent().build()  : ResponseEntity.ok(averageRating);
     }
 
     @PutMapping("rating/update/{ratingId}")
