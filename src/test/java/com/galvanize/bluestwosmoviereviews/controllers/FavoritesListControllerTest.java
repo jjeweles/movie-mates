@@ -69,13 +69,13 @@ class FavoritesListControllerTest {
 
     @Test
     void deleteRating() throws Exception {
-        when(favoritesListService.deleteByTmbdId(anyInt())).thenReturn(list1);
+        FavoritesListModel favoritesListModel = new FavoritesListModel(1122, 3);
 
         mockMvc.perform(delete("/api/v1/favList/delete" + list1)
                 .contentType(MediaType.APPLICATION_JSON)
                         .content("{\"userId\":\"3\",\"tmdbId\":\"1122\"}"))
                 .andExpect(status().isAccepted());
-        verify(favoritesListService).deleteByTmbdId(1122);
+        verify(favoritesListService).deleteByTmbdId(favoritesListModel);
     }
 
 }
