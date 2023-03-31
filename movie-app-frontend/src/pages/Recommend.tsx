@@ -25,6 +25,28 @@ function Recommend() {
         fetchMovies().then(r => console.log(r));
     }, []);
 
+    const handleWatchList =  (e: any) => {
+        const data = {
+            tmdbID: e.target.value,
+            userID: localStorage.getItem('user_id')
+        }
+        axios.post('http://localhost:8080/api/v1/watchlist/add', data)
+            .then(res => {
+                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            })
+    }
+
+    const handleFavList = (e: any) => {
+        const data = {
+            tmdbID: e.target.value,
+            userID: localStorage.getItem('user_id')
+        }
+        axios.post('http://localhost:8080/api/v1/favList/save', data)
+            .then(res => {
+                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            })
+    }
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -57,15 +79,8 @@ function Recommend() {
                                                 <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
                                             </div>
                                             <div className="text-xs">
-                                                <Link to="#">
-                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Watch List</button>
-                                                </Link>
-                                                <Link to="#">
-                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Favorite</button>
-                                                </Link>
-                                                <Link to={'/recommend/' + movie.id}>
-                                                    <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">More Like This</button>
-                                                </Link>
+                                                <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
+                                                <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
                                             </div>
 
                                         </div>
