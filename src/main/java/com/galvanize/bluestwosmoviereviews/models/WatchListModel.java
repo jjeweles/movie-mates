@@ -15,7 +15,7 @@ public class WatchListModel {
     @Column(name = "userID")
     Integer userID;
 
-    @Column(name = "tmdb_id")
+    @Column(name = "tmdbID")
     Integer tmdbID;
 
     public WatchListModel() {
