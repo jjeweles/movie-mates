@@ -18,8 +18,8 @@ public class RatingModel {
     @Column(name = "star_rating")
     private Integer starRating;
 
-    @Column(name = "thumbs_up_or_down")
-    private boolean thumbsUpOrDown;
+//    @Column(name = "thumbs_up_or_down")
+//    private boolean thumbsUpOrDown;
 
     @Column(name = "userID")
     private int userID;
@@ -28,7 +28,7 @@ public class RatingModel {
         this.ratingId = ratingId;
         this.tmdbId = tmdbId;
         this.starRating = starRating;
-        this.thumbsUpOrDown = thumbsUpOrDown;
+//        this.thumbsUpOrDown = thumbsUpOrDown;
         this.userID = userID;
     }
 
@@ -60,13 +60,13 @@ public class RatingModel {
         this.starRating = starRating;
     }
 
-    public boolean isThumbsUpOrDown() {
-        return thumbsUpOrDown;
-    }
+//    public boolean isThumbsUpOrDown() {
+//        return thumbsUpOrDown;
+//    }
 
-    public void setThumbsUpOrDown(boolean thumbsUpOrDown) {
-        this.thumbsUpOrDown = thumbsUpOrDown;
-    }
+//    public void setThumbsUpOrDown(boolean thumbsUpOrDown) {
+//        this.thumbsUpOrDown = thumbsUpOrDown;
+//    }
 
     public int getUserID() {
         return userID;
@@ -81,12 +81,14 @@ public class RatingModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         RatingModel that = (RatingModel) o;
-        return thumbsUpOrDown == that.thumbsUpOrDown && userID == that.userID && Objects.equals(ratingId, that.ratingId) && Objects.equals(tmdbId, that.tmdbId) && Objects.equals(starRating, that.starRating);
+        return userID == that.userID && Objects.equals(ratingId, that.ratingId) && Objects.equals(tmdbId, that.tmdbId) && Objects.equals(starRating, that.starRating);
+        // removed: "thumbsUpOrDown == that.thumbsUpOrDown &&" just before userID in return until thumsUpOrDown working
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ratingId, tmdbId, starRating, thumbsUpOrDown, userID);
+        return Objects.hash(ratingId, tmdbId, starRating, userID);
+        // removed thumsUpOrDown until working
     }
 
     @Override
@@ -95,7 +97,7 @@ public class RatingModel {
                 "ratingId=" + ratingId +
                 ", tmdbId=" + tmdbId +
                 ", starRating=" + starRating +
-                ", thumbsUpOrDown=" + thumbsUpOrDown +
+//                ", thumbsUpOrDown=" + thumbsUpOrDown +
                 '}';
     }
 }

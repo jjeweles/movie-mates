@@ -27,7 +27,7 @@ public class RatingService {
         if (existingRating.isPresent()) {
             existingRating.get().setTmdbId(rating.getTmdbId());
             existingRating.get().setStarRating(rating.getStarRating());
-            existingRating.get().setThumbsUpOrDown(rating.isThumbsUpOrDown());
+//            existingRating.get().setThumbsUpOrDown(rating.isThumbsUpOrDown());
             existingRating.get().setUserID(rating.getUserID());
             return ratingRepository.save(existingRating.get());
         }
