@@ -37,7 +37,7 @@ function Popular() {
 
     const handleFavList = (e: any) => {
         const data = {
-            tmdbID: e.target.value,
+            tmdbId: e.target.value,
             userID: localStorage.getItem('user_id')
         }
         axios.post('http://localhost:8080/api/v1/favList/save', data)
@@ -61,13 +61,14 @@ function Popular() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {movies.results.map((movie: any) => (
                                     <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
-                                        <Link to={`/movie/${movie.id}`}>
                                             <div className="flex flex-col items-center">
                                                 <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
-                                                    <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt="" className="rounded-lg static"/>
-                                                    {/*<div className="absolute bottom-50 left-50 bg-gray-900 bg-opacity-50 rounded-bl-lg rounded-tr-lg px-2 py-1">*/}
-                                                    {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">{movie.vote_average}</p>*/}
-                                                    {/*</div>*/}
+                                                    <Link to={`/movie/${movie.id}`}>
+                                                        <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt="" className="rounded-lg static"/>
+                                                        {/*<div className="absolute bottom-50 left-50 bg-gray-900 bg-opacity-50 rounded-bl-lg rounded-tr-lg px-2 py-1">*/}
+                                                        {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">{movie.vote_average}</p>*/}
+                                                        {/*</div>*/}
+                                                    </Link>
                                                 </div>
                                                 <div className="text-center flex flex-col mt-6">
                                                     <div className="">
@@ -81,7 +82,6 @@ function Popular() {
                                                     </div>
                                                 </div>
                                             </div>
-                                        </Link>
                                     </div>
                             ))}
                         </div>

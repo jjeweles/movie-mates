@@ -52,7 +52,6 @@ public class FavoritesListModel {
     @Override
     public String toString() {
         return "FavoriteListModel{" +
-                "favListId=" + favoritesID +
                 ", tmdbId=" + tmdbId +
                 ", userID=" + userID +
                 '}';

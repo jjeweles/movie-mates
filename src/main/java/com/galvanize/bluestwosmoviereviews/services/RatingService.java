@@ -51,4 +51,19 @@ public class RatingService {
     public RatingModel addNewRating(RatingModel ratingModel) {
         return ratingRepository.save(ratingModel);
     }
+
+    public List<RatingModel> getAllRatingsByTmdbId(Integer tmdbId) {
+        return ratingRepository.findByTmdbId(tmdbId);
+    }
+
+    public Double getAverageMovieRating(Integer tmdbId) {
+        List<RatingModel> listOfRatings = ratingRepository.findByTmdbId(tmdbId);
+        double averageRating = 0;
+
+        for (RatingModel movieRating : listOfRatings) {
+            averageRating += movieRating.getStarRating();
+        }
+        averageRating = averageRating / listOfRatings.size();
+        return Double.parseDouble(String.format("%.1f", averageRating));
+    }
 }
