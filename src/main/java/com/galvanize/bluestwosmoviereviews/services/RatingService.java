@@ -41,8 +41,8 @@ public class RatingService {
     public RatingModel deleteById(Integer ratingId) {
         RatingModel ratingToDelete = ratingRepository.findByRatingId(ratingId);
 
-        if (ratingId != null) {
-            ratingRepository.deleteById(ratingId);
+        if (ratingToDelete != null) {
+            ratingRepository.delete(ratingToDelete);
         }
 
         return ratingToDelete;

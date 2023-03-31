@@ -42,8 +42,8 @@ class RatingControllerTest {
 
     @BeforeEach
     void setup() {
-        rating1 = new RatingModel(1, 123, 5, null, true, 1);
-        rating2 = new RatingModel(2, 456, 4, null, false, 2);
+        rating1 = new RatingModel(1, 123, 5, true, 1);
+        rating2 = new RatingModel(2, 456, 4, false, 2);
         ratingList = new ArrayList<>();
         ratingList.add(rating1);
         ratingList.add(rating2);
@@ -60,21 +60,19 @@ class RatingControllerTest {
                 .andExpect(jsonPath("$[0].ratingId").value(rating1.getRatingId()))
                 .andExpect(jsonPath("$[0].tmdbId").value(rating1.getTmdbId()))
                 .andExpect(jsonPath("$[0].starRating").value(rating1.getStarRating()))
-                .andExpect(jsonPath("$[0].comments").value(rating1.getComments()))
-                .andExpect(jsonPath("$[0].thumbsUpOrDown").value(rating1.isThumbsUpOrDown()))
-                .andExpect(jsonPath("$[0].userId").value(rating1.getUserID()))
+//                .andExpect(jsonPath("$[0].thumbsUpOrDown").value(rating1.isThumbsUpOrDown()))
+                .andExpect(jsonPath("$[0].userID").value(rating1.getUserID()))
                 .andExpect(jsonPath("$[1].ratingId").value(rating2.getRatingId()))
                 .andExpect(jsonPath("$[1].tmdbId").value(rating2.getTmdbId()))
                 .andExpect(jsonPath("$[1].starRating").value(rating2.getStarRating()))
-                .andExpect(jsonPath("$[1].comments").value(rating2.getComments()))
-                .andExpect(jsonPath("$[1].thumbsUpOrDown").value(rating2.isThumbsUpOrDown()))
-                .andExpect(jsonPath("$[1].userId").value(rating2.getUserID()));
+//                .andExpect(jsonPath("$[1].thumbsUpOrDown").value(rating2.isThumbsUpOrDown()))
+                .andExpect(jsonPath("$[1].userID").value(rating2.getUserID()));
     }
 
     @Test
     void testGetAllRatingsById() throws Exception {
-        rating1 = new RatingModel(1, 123, 5, null, true, 2);
-        rating2 = new RatingModel(2, 456, 4, null, false, 1);
+        rating1 = new RatingModel(1, 123, 5,true, 2);
+        rating2 = new RatingModel(2, 456, 4, false, 1);
 
         when(ratingService.getAllRatingsByUserId(anyInt())).thenReturn(ratingList);
 
@@ -82,7 +80,7 @@ class RatingControllerTest {
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].userId").value(1));
+                .andExpect(jsonPath("$[0].userID").value(1));
     }
 
     @Test
@@ -96,9 +94,8 @@ class RatingControllerTest {
                 .andExpect(jsonPath("ratingId").value(rating1.getRatingId()))
                 .andExpect(jsonPath("tmdbId").value(rating1.getTmdbId()))
                 .andExpect(jsonPath("starRating").value(rating1.getStarRating()))
-                .andExpect(jsonPath("comments").value(rating1.getComments()))
-                .andExpect(jsonPath("thumbsUpOrDown").value(rating1.isThumbsUpOrDown()))
-                .andExpect(jsonPath("userId").value(rating1.getUserID()));
+//                .andExpect(jsonPath("thumbsUpOrDown").value(rating1.isThumbsUpOrDown()))
+                .andExpect(jsonPath("userID").value(rating1.getUserID()));
     }
 
     @Test

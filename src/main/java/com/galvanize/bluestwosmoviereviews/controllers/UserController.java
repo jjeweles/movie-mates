@@ -33,7 +33,6 @@ public class UserController {
 
     @PostMapping("users/add")
     public UserModel addUser(@RequestBody UserModel user) {
-        System.out.println("user = " + user);
         return userService.addUser(user);
     }
 
