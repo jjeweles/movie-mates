@@ -76,6 +76,21 @@ public class RatingServiceTest {
     }
 
     @Test
+    public void testGetAllRatingsByTmdbIdReturnsAllRatings() {
+        int tmdbId = 4;
+
+        List<RatingModel> ratings = new ArrayList<>();
+        ratings.add(new RatingModel(1, tmdbId, 5, true, 1));
+        ratings.add(new RatingModel(2, tmdbId, 4, false, 1));
+
+        when(ratingRepository.findByTmdbId(tmdbId)).thenReturn(ratings);
+
+        List<RatingModel> result = ratingService.getAllRatingsByTmdbId(tmdbId);
+
+        assertEquals(result, ratings);
+    }
+
+    @Test
     public void testAddRatingReturnsRating() {
 
         RatingModel rating1 = new RatingModel(232, 123, 5, true, 1);

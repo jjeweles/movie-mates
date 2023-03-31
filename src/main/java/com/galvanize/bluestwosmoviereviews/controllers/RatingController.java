@@ -20,16 +20,23 @@ public class RatingController {
 
     @GetMapping("rating/get")
     public ResponseEntity<List<RatingModel>> getAllRatings() {
-        List<RatingModel> ratings = ratingService.getAllRatings();
 
+        List<RatingModel> ratings = ratingService.getAllRatings();
         return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);
     }
 
     @GetMapping("rating/getUserRatings/{userId}")
     public ResponseEntity<List<RatingModel>> getAllRatingsByUserId(@PathVariable Integer userId) {
-        List<RatingModel> ratings = ratingService.getAllRatingsByUserId(userId);
 
+        List<RatingModel> ratings = ratingService.getAllRatingsByUserId(userId);
         return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);
+    }
+
+    @GetMapping("rating/getRatingsForMovie/{tmdbId}")
+    public ResponseEntity<List<RatingModel>> getAverageMovieRatingByIdmbId(@PathVariable Integer tmdbId) {
+
+        List<RatingModel> listOfRatingsForMovie = ratingService.getAllRatingsByTmdbId(tmdbId);
+        return listOfRatingsForMovie == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(listOfRatingsForMovie);
     }
 
     @PutMapping("rating/update/{ratingId}")
