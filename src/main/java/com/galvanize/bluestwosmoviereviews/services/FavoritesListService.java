@@ -23,15 +23,16 @@ public class FavoritesListService {
         FavoritesListModel favoritesListModel = new FavoritesListModel(userId, tmdbId);
         return favoritesRepository.save(favoritesListModel);
     }
-    public void deleteByTmbdId(FavoritesListModel favoritesListModel) {
-    favoritesRepository.delete(favoritesListModel);
-
-    //.findById(userId).orElse(null)
-
-}
+    public void deleteByTmbdId(Integer userId, Integer tmdbId) {
+        FavoritesListModel modelToDelete = favoritesRepository.findByUserIDAndTmdbId(userId, tmdbId);
+        favoritesRepository.delete(modelToDelete);
+    }
 
     public FavoritesListModel addToFavorites(FavoritesListModel favoritesListModel) {
         return favoritesRepository.save(favoritesListModel);
     }
 
+    public FavoritesListModel addNewFavorite(FavoritesListModel favoritesListModel) {
+        return favoritesRepository.save(favoritesListModel);
+    }
 }

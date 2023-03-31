@@ -28,21 +28,20 @@ public class FavoritesListController {
 
         return favorites == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(favorites);
     }
-    @PostMapping("/favList/save/{userId}/{tmdbId}")
-    public ResponseEntity<FavoritesListModel> addTmdbIdToFavesList(@PathVariable Integer userId,
-                                                                   @PathVariable Integer tmdbId)
+    @PostMapping("/favList/save/")
+    public ResponseEntity<FavoritesListModel> addTmdbIdToFavesList(@RequestBody FavoritesListModel favoritesListModel)
     {
-        FavoritesListModel newFavorite = new FavoritesListModel(userId, tmdbId);
+        FavoritesListModel newFavorite = favoritesListService.addNewFavorite(favoritesListModel);
         return new ResponseEntity<>(newFavorite, HttpStatus.CREATED);
     }
     
     @DeleteMapping("/favList/delete/{userId}/{tmdbId}")
-    public ResponseEntity deleteTmdbIdFromFavList(@PathVariable Integer userId, @PathVariable Integer tmdbId) {
-       FavoritesListModel favorites = favoritesListService.getFavs(userId, tmdbId);
+    public ResponseEntity<FavoritesListModel> deleteTmdbIdFromFavList(@PathVariable Integer userId, @PathVariable Integer tmdbId) {
+//       FavoritesListModel favorites = favoritesListService.getFavs(userId, tmdbId);
 
-        favoritesListService.deleteByTmbdId(favorites);
+        favoritesListService.deleteByTmbdId(userId, tmdbId);
 
-        return ResponseEntity.noContent().build();
+        return ResponseEntity.accepted().build();
     }
 
 }
