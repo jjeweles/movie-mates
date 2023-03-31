@@ -25,10 +25,10 @@ public class WatchListService {
         return watchListRepository.save(watchListModel);
     }
 
-    public WatchListModel deleteFromWatchList(Integer tmdbId){
-        WatchListModel movieToDelete = watchListRepository.findByTmdbID(tmdbId);
+    public WatchListModel deleteFromWatchList(Integer userID, Integer tmdbId){
+        WatchListModel movieToDelete = watchListRepository.findByUserIDAndTmdbID(userID, tmdbId);
         if (movieToDelete != null){
-            watchListRepository.deleteByTmdbID(tmdbId);
+            watchListRepository.delete(movieToDelete);
         }
         return movieToDelete;
     }

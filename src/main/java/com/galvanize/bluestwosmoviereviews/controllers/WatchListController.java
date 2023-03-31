@@ -29,11 +29,10 @@ public class WatchListController {
         return watchListService.addToWatchList(watchListModel);
     }
 
-    @DeleteMapping("api/v1/watchlist/{tmdbId}")
-    public ResponseEntity<WatchListModel> deleteMovie(@PathVariable Integer tmdbId){
-        WatchListModel deletedMovie = watchListService.deleteFromWatchList(tmdbId);
+    @DeleteMapping("api/v1/watchlist/{userID}/{tmdbID}")
+    public ResponseEntity<WatchListModel> deleteMovie(@PathVariable Integer userID,@PathVariable Integer tmdbID){
+        WatchListModel deletedMovie = watchListService.deleteFromWatchList(userID, tmdbID);
 
         return deletedMovie == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletedMovie);
     }
-
 }
