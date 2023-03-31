@@ -33,11 +33,11 @@ public class FavoritesListController {
         FavoritesListModel newFavorite = favoritesListService.addToFavorites(favListModel);
         return new ResponseEntity<>(newFavorite, HttpStatus.CREATED);
     }
-    @DeleteMapping("/favList/delete/{tmdbId}")
-    public ResponseEntity<FavoritesListModel> deleteTmdbIdFromFavList(@PathVariable Integer tmdbId) {
-        List<FavoritesListModel> favorites = favoritesListService.getFavoritesListByID(tmdbId);
+    @DeleteMapping("/favList/delete")
+    public ResponseEntity deleteTmdbIdFromFavList(@RequestBody FavoritesListModel favoritesListModel) {
+        List<FavoritesListModel> favorites = favoritesListService.getFavoritesListByID(favoritesListModel.getUserID());
 
-        favoritesListService.deleteByTmbdId(tmdbId);
+        favoritesListService.deleteByTmbdId(favoritesListModel.getTmdbId());
 
         return ResponseEntity.noContent().build();
     }
