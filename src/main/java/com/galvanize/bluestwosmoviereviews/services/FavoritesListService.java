@@ -19,9 +19,13 @@ public class FavoritesListService {
     public List<FavoritesListModel> getFavoritesListByID(Integer userID) {
             return favoritesRepository.findByUserID(userID);
     }
-public ResponseEntity deleteByTmbdId(FavoritesListModel favoritesListModel) {
+    public FavoritesListModel getFavs(Integer userId, Integer tmdbId) {
+        FavoritesListModel favoritesListModel = new FavoritesListModel(userId, tmdbId);
+        return favoritesRepository.save(favoritesListModel);
+    }
+    public void deleteByTmbdId(FavoritesListModel favoritesListModel) {
     favoritesRepository.delete(favoritesListModel);
-    return ResponseEntity.ok().build();
+
     //.findById(userId).orElse(null)
 
 }
