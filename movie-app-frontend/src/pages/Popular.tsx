@@ -21,8 +21,30 @@ function Popular() {
             setStatus(result.status)
 
         }
-        fetchMovies().then(r => console.log(r));
+        fetchMovies().then(null);
     }, []);
+
+    const handleWatchList =  (e: any) => {
+        const data = {
+            tmdbID: e.target.value,
+            userID: localStorage.getItem('user_id')
+        }
+        axios.post('http://localhost:8080/api/v1/watchlist/add', data)
+            .then(res => {
+                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            })
+    }
+
+    const handleFavList = (e: any) => {
+        const data = {
+            tmdbID: e.target.value,
+            userID: localStorage.getItem('user_id')
+        }
+        axios.post('http://localhost:8080/api/v1/favList/save', data)
+            .then(res => {
+                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            })
+    }
 
     if (loading) {
         return <div>Loading...</div>;
@@ -38,7 +60,7 @@ function Popular() {
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {movies.results.map((movie: any) => (
-                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4">
+                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
                                     <div className="flex flex-col items-center">
                                         <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
                                             <img src={"https://image.tmdb.org/t/p/w500" + movie.poster_path} alt="" className="rounded-lg static"/>
@@ -52,15 +74,9 @@ function Popular() {
                                                 <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
                                             </div>
                                             <div className="text-xs">
-                                                <Link to="#">
-                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Watch List</button>
-                                                </Link>
-                                                <Link to="#">
-                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">Favorite</button>
-                                                </Link>
-                                                <Link to={'/recommend/' + movie.id}>
+                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
+                                                    <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
                                                     <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">More Like This</button>
-                                                </Link>
                                             </div>
 
                                         </div>

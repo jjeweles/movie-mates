@@ -45,6 +45,10 @@ function Dashboard() {
         setLoading(false);
     }, []);
 
+    const handleWatchlistRemove = (e: any) => {
+        console.log(e.target.value);
+    }
+
     const user = {
         username: localStorage.getItem('username'),
         name: localStorage.getItem('name'),
@@ -77,18 +81,20 @@ function Dashboard() {
                     <h2 className="text-2xl font-bold mb-4">Watchlist</h2>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                         {watchList.map(movie => (
-                            <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.title}>
+                            <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.title}>
                                 <div className="flex flex-col items-center">
-                                    <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">
+                                    <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
                                         <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
                                         {/*<div className="absolute top-36 left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
                                         {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
                                         {/*</div>*/}
                                     </div>
-                                    <div className="text-center flex flex-col">
+                                    <div className="text-center flex flex-col mt-6">
                                         <div className="">
-                                            <h1 className="text-lg font-medium text-white">{movie.title}</h1>
-                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700">Remove</button>
+                                            <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
+                                        </div>
+                                        <div className="text-xs">
+                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700" value={movie.id} onClick={handleWatchlistRemove}>Remove</button>
                                         </div>
                                     </div>
                                 </div>
