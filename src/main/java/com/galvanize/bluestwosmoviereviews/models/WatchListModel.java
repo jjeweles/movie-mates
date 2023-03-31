@@ -15,23 +15,23 @@ public class WatchListModel {
     @Column(name = "userID")
     Integer userID;
 
-    @Column(unique = true, name = "tmdbId")
-    Integer tmdbId;
+    @Column(unique = true, name = "tmdb_id")
+    Integer tmdbID;
 
     public WatchListModel() {
     }
 
-    public WatchListModel(Integer userID, Integer tmdbId) {
-        this.tmdbId = tmdbId;
+    public WatchListModel(Integer userID, Integer tmdbID) {
+        this.tmdbID = tmdbID;
         this.userID = userID;
     }
 
-    public Integer getTmdbId() {
-        return tmdbId;
+    public Integer getTmdbID() {
+        return tmdbID;
     }
 
-    public void setTmdbId(Integer tmdbId) {
-        this.tmdbId = tmdbId;
+    public void setTmdbID(Integer tmdbId) {
+        this.tmdbID = tmdbId;
     }
 
     public Integer getWatchlistID() {
@@ -43,12 +43,12 @@ public class WatchListModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         WatchListModel that = (WatchListModel) o;
-        return Objects.equals(watchlistID, that.watchlistID) && Objects.equals(userID, that.userID) && Objects.equals(tmdbId, that.tmdbId);
+        return Objects.equals(watchlistID, that.watchlistID) && Objects.equals(userID, that.userID) && Objects.equals(tmdbID, that.tmdbID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(watchlistID, userID, tmdbId);
+        return Objects.hash(watchlistID, userID, tmdbID);
     }
 
     @Override
@@ -56,7 +56,7 @@ public class WatchListModel {
         return "WatchListModel{" +
                 "id=" + watchlistID +
                 ", userId=" + userID +
-                ", tmdbId=" + tmdbId +
+                ", tmdbID=" + tmdbID +
                 '}';
     }
 }

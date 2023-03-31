@@ -6,7 +6,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 public class WatchListController {
@@ -24,9 +23,9 @@ public class WatchListController {
         return watchList == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(watchList);
     }
 
-    @PostMapping("api/v1/watchlist/{tmdbId}")
-    public WatchListModel addMovie(@RequestBody WatchListModel tmdbId) {
-        return watchListService.addToWatchList(tmdbId);
+    @PostMapping("api/v1/watchlist/add")
+    public WatchListModel addMovie(@RequestBody WatchListModel watchListModel) {
+        return watchListService.addToWatchList(watchListModel);
     }
 
     @DeleteMapping("api/v1/watchlist/{tmdbId}")

@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class WatchListService {
@@ -22,14 +21,14 @@ public class WatchListService {
         return watchListRepository.findByUserID(userID);
     }
 
-    public WatchListModel addToWatchList(WatchListModel tmdbId) {
-        return watchListRepository.save(tmdbId);
+    public WatchListModel addToWatchList(WatchListModel watchListModel) {
+        return watchListRepository.save(watchListModel);
     }
 
     public WatchListModel deleteFromWatchList(Integer tmdbId){
-        WatchListModel movieToDelete = watchListRepository.findByTmdbId(tmdbId);
+        WatchListModel movieToDelete = watchListRepository.findByTmdbID(tmdbId);
         if (movieToDelete != null){
-            watchListRepository.deleteByTmdbId(tmdbId);
+            watchListRepository.deleteByTmdbID(tmdbId);
         }
         return movieToDelete;
     }

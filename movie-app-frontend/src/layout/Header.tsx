@@ -34,7 +34,12 @@ function Header() {
                                         <Link to={`/dashboard/${userID}`} className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
                                         : null}
                                     {userID == null || userID === "undefined" ?
-                                        <Link to="/login" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login/Register</Link>
+                                        <>
+                                            <Link to="/login"
+                                                className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Login</Link>
+                                            <Link to="/register"
+                                            className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Register</Link>
+                                        </>
                                         : null}
                                     {userID && userID !== "undefined" ?
                                     <button className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium" onClick={handleLogout}>Logout</button>
