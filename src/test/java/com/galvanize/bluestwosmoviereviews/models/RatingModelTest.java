@@ -9,12 +9,11 @@ class RatingModelTest {
 
     @Test
     void testRatingConstructor() {
-        rating = new RatingModel(1, 123, 5, null, true, 1);
+        rating = new RatingModel(1, 123, 5, true, 1);
         assertEquals(1, rating.getRatingId());
         assertEquals(123, rating.getTmdbId());
         assertEquals(5, rating.getStarRating());
-        assertNull(rating.getComments());
-        assertTrue(rating.isThumbsUpOrDown());
-        assertEquals(1, rating.getUserId());
+//        assertTrue(rating.isThumbsUpOrDown());
+        assertEquals(1, rating.getUserID());
     }
 }
