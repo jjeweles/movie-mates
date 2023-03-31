@@ -18,6 +18,7 @@ function Register() {
             },
             body: JSON.stringify(data)
         })
+        window.location.href = '/login';
     }
 
     return (
