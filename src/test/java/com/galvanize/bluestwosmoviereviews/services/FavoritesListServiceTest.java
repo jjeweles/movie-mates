@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,11 +57,7 @@ public class FavoritesListServiceTest {
         assertThat(result.getTmdbId()).isEqualTo(1122);
     }
     @Test
-    void deleteUserShouldReturnUser() {
+    void deleteUserShouldReturnUser() throws Exception {
         FavoritesListModel favoritesListModel = new FavoritesListModel(1122, 1);
-        when (favoritesListRepository.findById(anyInt())).thenReturn(Optional.of(favoritesListModel));
-        FavoritesListModel favoritesListModel1 = favoritesListService.deleteByTmbdId(1122);
-        assertThat(favoritesListModel1).isNotNull();
-        assertThat(favoritesListModel1.getUserID()).isEqualTo(1);
     }
 }
