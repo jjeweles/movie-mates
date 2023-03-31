@@ -51,4 +51,8 @@ public class RatingService {
     public RatingModel addNewRating(RatingModel ratingModel) {
         return ratingRepository.save(ratingModel);
     }
+
+    public List<RatingModel> getAllRatingsByTmdbId(Integer tmdbId) {
+        return ratingRepository.findByTmdbId(tmdbId);
+    }
 }
