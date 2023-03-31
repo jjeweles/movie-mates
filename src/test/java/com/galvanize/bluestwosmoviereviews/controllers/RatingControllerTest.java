@@ -84,6 +84,20 @@ class RatingControllerTest {
     }
 
     @Test
+    void testGetAllRatingsByTmdbId() throws Exception {
+        rating1 = new RatingModel(1, 123, 5,true, 2);
+        rating2 = new RatingModel(2, 456, 4, false, 1);
+
+        when(ratingService.getAllRatingsByTmdbId(anyInt())).thenReturn(ratingList);
+
+        mockMvc.perform(get("/api/v1/rating/getRatingsForMovie/456")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].tmdbId").value(123));
+    }
+
+    @Test
     void testUpdateRatingById() throws Exception {
         when(ratingService.updateRating(anyInt(), any(RatingModel.class))).thenReturn(rating1);
 
