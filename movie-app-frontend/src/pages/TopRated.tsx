@@ -6,7 +6,6 @@ function TopRated() {
 
     const [movies, setMovies] = useState<any>(null);
     const [loading, setLoading] = useState(true);
-    const [status, setStatus] = useState();
     useEffect(() => {
         const fetchMovies = async () => {
             const result = await axios.get('https://api.themoviedb.org/3/movie/top_rated?api_key=52107296ca5b59d71cb74cfb9ed7f144');
@@ -17,8 +16,6 @@ function TopRated() {
 
             setMovies(result.data);
             setLoading(false);
-            // @ts-ignore
-            setStatus(result.status)
 
         }
         fetchMovies().then(null);
@@ -48,9 +45,6 @@ function TopRated() {
 
     if (loading) {
         return <div>Loading...</div>;
-    }
-    if (status !== 200) {
-        return <div>Error</div>;
     }
 
     return (
