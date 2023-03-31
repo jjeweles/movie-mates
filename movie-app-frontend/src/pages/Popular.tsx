@@ -40,7 +40,7 @@ function Popular() {
             tmdbId: e.target.value,
             userID: localStorage.getItem('user_id')
         }
-        axios.post('http://localhost:8080/api/v1/favList/save', data)
+        axios.post('http://localhost:8080/api/v1/favList/save/', data)
             .then(res => {
                 window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
             })
