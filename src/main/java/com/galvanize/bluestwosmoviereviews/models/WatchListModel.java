@@ -15,7 +15,7 @@ public class WatchListModel {
     @Column(name = "userID")
     Integer userID;
 
-    @Column(unique = true, name = "tmdb_id")
+    @Column(name = "tmdb_id")
     Integer tmdbID;
 
     public WatchListModel() {
@@ -38,6 +38,14 @@ public class WatchListModel {
         return watchlistID;
     }
 
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -55,8 +63,8 @@ public class WatchListModel {
     public String toString() {
         return "WatchListModel{" +
                 "id=" + watchlistID +
-                ", userId=" + userID +
-                ", tmdbID=" + tmdbID +
+                ", userID=" + userID +
+                ", tmdb_id=" + tmdbID +
                 '}';
     }
 }
