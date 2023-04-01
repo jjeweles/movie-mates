@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
-import axios from "axios";
+import {handleRecommendation, handleFavList, handleWatchList} from "../utils/utils";
 
 function Search() {
 
@@ -19,33 +19,6 @@ function Search() {
 
         fetchQuery().then(() => null);
     }, []);
-
-    const handleWatchList =  (e: any) => {
-        const data = {
-            tmdbID: e.target.value,
-            userID: localStorage.getItem('user_id')
-        }
-        axios.post('http://localhost:8080/api/v1/watchlist/add', data)
-            .then(res => {
-                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
-            })
-    }
-
-    const handleFavList = (e: any) => {
-        const data = {
-            tmdbId: e.target.value,
-            userID: localStorage.getItem('user_id')
-        }
-        axios.post('http://localhost:8080/api/v1/favList/save/', data)
-            .then(res => {
-                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
-            })
-    }
-
-    const handleRecommendation = (e: any) => {
-        const query = e.target.value;
-        window.location.href = `/recommend/${query}`;
-    }
 
     if (loading) {
         return <div className="text-center text-white text-5xl">Loading...</div>

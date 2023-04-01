@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
+import {handleRecommendation, handleWatchList, handleFavList} from "../utils/utils";
 
 function Recommend() {
 
@@ -9,6 +10,7 @@ function Recommend() {
     const [loading, setLoading] = useState(true);
     const [status, setStatus] = useState();
     let { id } = useParams();
+
     useEffect(() => {
         const fetchMovies = async () => {
             const result = await axios.get('https://api.themoviedb.org/3/movie/' + id + '/recommendations?api_key=52107296ca5b59d71cb74cfb9ed7f144');
@@ -34,33 +36,6 @@ function Recommend() {
         fetchMovies().then(() => null);
         fetchSingleMovie().then(() => null);
     }, []);
-
-    const handleWatchList =  (e: any) => {
-        const data = {
-            tmdbID: e.target.value,
-            userID: localStorage.getItem('user_id')
-        }
-        axios.post('http://localhost:8080/api/v1/watchlist/add', data)
-            .then(res => {
-                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
-            })
-    }
-
-    const handleFavList = (e: any) => {
-        const data = {
-            tmdbId: e.target.value,
-            userID: localStorage.getItem('user_id')
-        }
-        axios.post('http://localhost:8080/api/v1/favList/save/', data)
-            .then(res => {
-                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
-            })
-    }
-
-    const handleRecommendation = (e: any) => {
-        const query = e.target.value;
-        window.location.href = `/recommend/${query}`;
-    }
 
     if (loading) {
         return <div className="text-white text-5xl text-center">Loading...</div>;

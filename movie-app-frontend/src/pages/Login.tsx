@@ -6,7 +6,6 @@ function Login() {
         e.preventDefault();
         const response = await fetch('http://localhost:8080/api/v1/users/get/' + e.target[0].value)
         const data = await response.json();
-        console.log(data.userID);
 
         localStorage.setItem("user_id", data.userID);
         window.location.href = 'dashboard/' + data.userID;

@@ -17,6 +17,11 @@ public class UserController {
         this.userService = userService;
     }
 
+    @GetMapping("users")
+    public Iterable<UserModel> getAllUsers() {
+        return userService.getAllUsers();
+    }
+
     @GetMapping("users/{id}")
     public ResponseEntity<UserModel> getUserByID(@PathVariable Integer id) {
         UserModel user = userService.getUserByID(id);

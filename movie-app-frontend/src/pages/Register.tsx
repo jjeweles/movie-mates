@@ -1,9 +1,34 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 
 function Register() {
 
+    const [users, setUsers] = useState<any[]>([]);
+
+    useEffect(() => {
+
+        const getUsers = async () => {
+            const response = await fetch('http://localhost:8080/api/v1/users');
+            const data = await response.json();
+            setUsers(data)
+        }
+
+        getUsers().then(() => null);
+    }, []);
+
+    console.log(users);
+
     const handleRegister = async (e: any) => {
         e.preventDefault();
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].username === e.target[2].value) {
+                alert('Username already exists');
+                return;
+            }
+            if (users[i].email === e.target[1].value) {
+                alert('Email already exists');
+                return;
+            }
+        }
         const data = {
             name: e.target[0].value,
             email: e.target[1].value,
@@ -20,6 +45,7 @@ function Register() {
         })
         window.location.href = '/login';
     }
+
 
     return (
         <div className="flex gap-10 items-center justify-center">

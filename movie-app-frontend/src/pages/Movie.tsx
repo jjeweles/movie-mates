@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import axios from "axios";
+import {handleWatchList, handleFavList} from "../utils/utils";
 
 function Movie() {
     const {id} = useParams<{ id: string }>();
@@ -8,7 +8,6 @@ function Movie() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-
         const fetchMovieData = async () => {
             const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=52107296ca5b59d71cb74cfb9ed7f144`)
             const movieData = await movieResponse.json();
@@ -18,28 +17,6 @@ function Movie() {
         fetchMovieData()
             .then(() => setLoading(false));
     }, []);
-
-    const handleWatchList = (e: any) => {
-        const data = {
-            tmdbId: e.target.value,
-            userID: localStorage.getItem('user_id')
-        }
-        axios.post('http://localhost:8080/api/v1/watchlist/add', data)
-            .then(res => {
-                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
-            })
-    }
-
-    const handleFavList = (e: any) => {
-        const data = {
-            tmdbId: e.target.value,
-            userID: localStorage.getItem('user_id')
-        }
-        axios.post('http://localhost:8080/api/v1/favList/save/', data)
-            .then(res => {
-                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
-            })
-    }
 
     const backgroundImg = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
 
@@ -82,7 +59,7 @@ function Movie() {
                             </span>
                         ))}
                     </div>
-                    <div className="flex-grow">
+                    <div className="flex-grow my-4">
                         <p className="text-base md:text-xl lg:text-base text-gray-100 leading-snug truncate-overflow">
                             {movie.overview}
                         </p>
