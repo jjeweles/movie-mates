@@ -6,6 +6,7 @@ function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [favList, setFavList] = useState<any[]>([]);
     const [watchList, setWatchList] = useState<any[]>([]);
+    const [ratings, setRatings] = useState<any[]>([]);
     const { id } = useParams<{ id: string }>();
     const userID = localStorage.getItem("user_id");
 
@@ -102,12 +103,10 @@ function Dashboard() {
                         {watchList.map(movie => (
                             <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
                                 <div className="flex flex-col items-center">
-                                    <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
+                                    <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4 relative">
                                         <Link to={`/movie/${movie.id}`}>
                                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
-                                            {/*<div className="absolute top-36 left-50 rounded-bl-lg rounded-tr-lg p-2">*/}
-                                            {/*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*/}
-                                            {/*</div>*/}
+                                            <p className="absolute -top-1 -left-2 text-sm font-bold bg-blue-400 rounded-full w-max p-1 text-black">8.1</p>
                                         </Link>
                                     </div>
                                     <div className="text-center flex flex-col mt-6">

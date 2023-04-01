@@ -43,6 +43,11 @@ function TopRated() {
             })
     }
 
+    const handleRecommendation = (e: any) => {
+        const query = e.target.value;
+        window.location.href = `/recommend/${query}`;
+    }
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -54,7 +59,7 @@ function TopRated() {
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {movies.results.map((movie: any) => (
-                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4">
+                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
                                     <div className="flex flex-col items-center">
                                         <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
                                             <Link to={`/movie/${movie.id}`}>
@@ -72,7 +77,7 @@ function TopRated() {
                                             <div className="text-xs">
                                                 <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
                                                 <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
-                                                <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">More Like This</button>
+                                                <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
                                             </div>
 
                                         </div>

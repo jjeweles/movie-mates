@@ -49,7 +49,7 @@ function Movie() {
         // page to display movie details
         <div className="flex flex-col items-center">
             <div
-                className="w-full md:w-full lg:w-1/2 max-w-4xl rounded-2xl border border-black overflow-hidden shadow-lg m-4 flex justify-between">
+                className="w-full md:w-full lg:w-3/4 max-w-4xl rounded-2xl border border-black overflow-hidden shadow-lg m-4 flex justify-between">
                 <div className="md:flex-shrink-0">
                     <img className="md:w-56 h-full rounded-b-lg " src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}  alt={movie.title}/>
                 </div>

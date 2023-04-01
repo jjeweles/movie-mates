@@ -10,6 +10,7 @@ import Login from "./pages/Login";
 import Recommend from "./pages/Recommend";
 import Register from "./pages/Register";
 import Movie from "./pages/Movie";
+import Search from "./pages/Search";
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
                     <Route path="/register" element={<Register/>} />
                     <Route path="/recommend/:id" element={<Recommend/>} />
                     <Route path="/movie/:id" element={<Movie/>} />
+                    <Route path="/search/:query" element={<Search/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />

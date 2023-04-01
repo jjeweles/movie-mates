@@ -43,6 +43,11 @@ function Popular() {
             })
     }
 
+    const handleRecommendation = (e: any) => {
+        const query = e.target.value;
+        window.location.href = `/recommend/${query}`;
+    }
+
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -72,7 +77,7 @@ function Popular() {
                                                     <div className="text-xs">
                                                             <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
                                                             <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
-                                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700">More Like This</button>
+                                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
                                                     </div>
                                                 </div>
                                             </div>
