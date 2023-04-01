@@ -33,6 +33,10 @@ public class UserModel {
         return userID;
     }
 
+    public void setUserID(Integer userID) {
+        this.userID = userID;
+    }
+
     public String getUsername() {
         return username;
     }

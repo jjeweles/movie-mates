@@ -15,8 +15,7 @@ class UserModelTest {
 
     @Test
     void testConstructor() {
-        user = new UserModel(1, "test", "test", "test", "test");
-        assertEquals(1, user.getUserID());
+        user = new UserModel("test", "test", "test", "test");
         assertEquals("test", user.getUsername());
         assertEquals("test", user.getPassword());
         assertEquals("test", user.getEmail());
