@@ -87,7 +87,7 @@ function Dashboard() {
 
     // @ts-ignore
     return (
-        <div className="flex gap-10">
+        <div className="flex flex-col sm:flex-row gap-10">
             <div className="w-64 h-fit p-6 text-stone-400 bg-stone-900/75 rounded-md grid gap-3">
                 <h2 className="text-md font-bold mb-4">User Information</h2>
                 <div className="grid gap-3 text-sm">
