@@ -38,7 +38,7 @@ function Recommend() {
     }, []);
 
     if (loading) {
-        return <div className="text-white text-5xl text-center">Loading...</div>;
+        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
     }
 
     return (

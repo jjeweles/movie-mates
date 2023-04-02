@@ -21,7 +21,7 @@ function Search() {
     }, []);
 
     if (loading) {
-        return <div className="text-center text-white text-5xl">Loading...</div>
+        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
     }
 
     return (

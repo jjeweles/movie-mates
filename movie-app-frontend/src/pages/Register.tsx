@@ -15,7 +15,6 @@ function Register() {
         getUsers().then(() => null);
     }, []);
 
-    console.log(users);
 
     const handleRegister = async (e: any) => {
         e.preventDefault();
