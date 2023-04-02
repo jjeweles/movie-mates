@@ -54,7 +54,7 @@ function Movie() {
         <div className="relative flex flex-col items-center">
             <div className="relative w-full max-w-4xl rounded-2xl border border-black overflow-hidden shadow-lg m-4 flex flex-col md:flex-row justify-between">
                 <div
-                    className="absolute rounded-xl inset-0 bg-cover bg-center bg-no-repeat bg-gray-100"
+                    className="absolute rounded-xl inset-0 bg-cover bg-center bg-no-repeat bg-gray-100 z-0"
                     style={{
                         backgroundImage: `url(${backgroundImg})`,
                         filter: 'grayscale(100%)',
@@ -68,7 +68,7 @@ function Movie() {
                         alt={movie.title}
                     />
                 </div>
-                <div className="flex flex-col flex-grow px-8 py-4 z-50">
+                <div className="static flex flex-col flex-grow px-8 py-4 z-10">
                     <h3 className="font-bold text-2xl md:text-4xl lg:text-2xl text-gray-200 movie--title">
                         {movie.title}
                     </h3>
@@ -90,7 +90,7 @@ function Movie() {
                             {movie.overview}
                         </p>
                     </div>
-                    <div className="button-container flex justify-between mb-2 mt-2 flex-wrap">
+                    <div className="button-container flex justify-between mb-2 mt-2 flex-col sm:flex-row sm:flex-wrap gap-1">
                         <button
                             className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 text-white"
                             onClick={handleShowVideo}
@@ -98,7 +98,7 @@ function Movie() {
                             {showVideo ? 'Close Trailer' : 'Watch Trailer'}
                         </button>
                         <button
-                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 text-white mb-2 md:mb-0"
+                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 text-white"
                             value={movie.id}
                             onClick={handleFavList}
                         >
