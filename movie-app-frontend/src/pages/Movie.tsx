@@ -4,6 +4,7 @@ import {handleWatchList, handleFavList} from "../utils/utils";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {ToastContainer} from "react-toastify";
+import Spinner from "../components/Spinner";
 
 function Movie() {
     const {id} = useParams<{ id: string }>();
@@ -46,7 +47,7 @@ function Movie() {
     const backgroundImg = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
 
     if (loading) {
-        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+        return <Spinner/>;
     }
 
     return (

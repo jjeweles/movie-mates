@@ -3,6 +3,7 @@ import {Link} from "react-router-dom";
 import axios from "axios";
 import {handleWatchList, handleFavList, handleRecommendation} from "../utils/utils";
 import {ToastContainer} from "react-toastify";
+import Spinner from "../components/Spinner";
 
 function TopRated() {
 
@@ -27,7 +28,7 @@ function TopRated() {
     }, []);
 
     if (loading) {
-        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+        return <Spinner/>;
     }
 
     return (

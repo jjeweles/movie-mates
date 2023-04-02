@@ -8,7 +8,7 @@ function Home() {
         const query = e.target.query.value;
         const timer = setTimeout(() => {
             window.location.href = `/search/${query}`;
-        }, 3000);
+        }, 2500);
         toast.info("Searching for movies");
     }
 

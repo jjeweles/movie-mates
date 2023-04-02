@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import {handleRecommendation, handleFavList, handleWatchList} from "../utils/utils";
 import {ToastContainer} from "react-toastify";
+import Spinner from "../components/Spinner";
 
 function Search() {
 
@@ -25,7 +26,7 @@ function Search() {
     }, []);
 
     if (loading) {
-        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+        return <Spinner/>;
     }
 
     return (

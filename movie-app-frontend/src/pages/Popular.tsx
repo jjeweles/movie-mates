@@ -6,6 +6,7 @@ import {ToastContainer} from "react-toastify";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css';
+import Spinner from "../components/Spinner";
 
 function Popular() {
 
@@ -30,7 +31,7 @@ function Popular() {
     }, []);
 
     if (loading) {
-        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+        return <Spinner/>;
     }
 
     return (

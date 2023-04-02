@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import Spinner from "../components/Spinner";
 
 function Dashboard() {
     const [loading, setLoading] = useState(true);
@@ -44,7 +45,10 @@ function Dashboard() {
         fetchUserData().then(() => null);
         fetchFavData().then(() => null);
         fetchWatchListData().then(() => null);
-        setLoading(false);
+
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, []);
 
     const handleWatchlistRemove = (e: any) => {
@@ -82,7 +86,7 @@ function Dashboard() {
     // ];
 
     if (loading) {
-        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+        return <Spinner/>
     }
 
     // @ts-ignore

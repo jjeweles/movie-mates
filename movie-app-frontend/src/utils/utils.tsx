@@ -34,6 +34,6 @@ export const handleRecommendation = (e: any) => {
     const query = e.target.value;
     const timer = setTimeout(() => {
         window.location.href = `/recommend/${query}`;
-    }, 3000);
+    }, 2500);
     toast.info("Generating Recommendations");
 }

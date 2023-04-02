@@ -3,6 +3,7 @@ import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import {handleRecommendation, handleWatchList, handleFavList} from "../utils/utils";
 import {ToastContainer} from "react-toastify";
+import Spinner from "../components/Spinner";
 
 function Recommend() {
 
@@ -42,7 +43,7 @@ function Recommend() {
     }, []);
 
     if (loading) {
-        return <div className="flex flex-col text-center text-white text-5xl">Loading...</div>;
+        return <Spinner/>;
     }
 
     return (
