@@ -5,10 +5,16 @@ import com.galvanize.bluestwosmoviereviews.models.WatchListModel;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
 import java.util.List;
 
 @Service
 public class WatchListService {
+
+    @PersistenceContext
+    EntityManager entityManager;
 
     private WatchListRepository watchListRepository;
 
@@ -33,4 +39,9 @@ public class WatchListService {
         return movieToDelete;
     }
 
+    @Transactional
+    public void deleteAll(Integer userID) {
+        String query = "DELETE FROM watchlist WHERE userID = " + userID + "";
+        entityManager.createNativeQuery(query).executeUpdate();
+    }
 }

@@ -43,4 +43,13 @@ public class FavoritesListController {
         return ResponseEntity.accepted().build();
     }
 
+    /* ###### For testing purposes only ###### */
+    @DeleteMapping("/favList/deleteAll/{userId}")
+    public ResponseEntity<FavoritesListModel> deleteAllFavList(@PathVariable Integer userId) {
+
+        favoritesListService.deleteAll(userId);
+
+        return ResponseEntity.accepted().build();
+    }
+
 }

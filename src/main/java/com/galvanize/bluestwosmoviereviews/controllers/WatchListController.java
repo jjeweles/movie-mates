@@ -35,4 +35,13 @@ public class WatchListController {
 
         return deletedMovie == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletedMovie);
     }
+
+    /* ###### For testing purposes only ###### */
+    @DeleteMapping("api/v1/watchlist/deleteAll/{userID}")
+    public ResponseEntity<WatchListModel> deleteAllWatchList(@PathVariable Integer userID) {
+
+        watchListService.deleteAll(userID);
+
+        return ResponseEntity.accepted().build();
+    }
 }
