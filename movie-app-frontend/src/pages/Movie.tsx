@@ -12,6 +12,7 @@ function Movie() {
     const [trailer, setTrailer] = useState<any>([]);
     const [showVideo, setShowVideo] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [providers, setProviders] = useState<any>([]);
 
     useEffect(() => {
         const fetchMovieData = async () => {
@@ -31,13 +32,22 @@ function Movie() {
             }
         }
 
+        const fetchProviders = async () => {
+            const providerResponse = await fetch(`https://api.themoviedb.org/3/movie/${id}/watch/providers?api_key=52107296ca5b59d71cb74cfb9ed7f144&language=en-us`)
+            const providerData = await providerResponse.json();
+            setProviders(providerData.results.US);
+        }
+
         fetchMovieData()
             .then(() => fetchTrailer())
+            .then(() => fetchProviders())
 
         const timer = setTimeout(() => {
             setLoading(false);
         }, 1000);
     }, []);
+
+    console.log(providers);
 
     const handleShowVideo = () => {
         setShowVideo(!showVideo);
@@ -85,6 +95,27 @@ function Movie() {
                             </span>
                         ))}
                     </div>
+                    {providers && providers.flatrate && providers.flatrate.length > 0 && (
+                        <div className="flex flex-row flex-wrap gap-3">
+                            <p className="flex gap-3 items-center text-xs font-bold italic text-gray-100 leading-snug truncate-overflow">
+                                Watch on: {providers?.flatrate?.map((provider: any) => (
+                                // if providers is undefined, then it will not render the map function
+                                // if providers > 1 last provider should be preceded by 'and' and not have a comma
+                                <span className={provider.logo_path ? 'text-gray-100' : 'text-gray-500'} key={provider.provider_id}>
+                                    {provider.logo_path ? (
+                                        <img
+                                            className="w-7 h-7 rounded-md"
+                                            src={`https://image.tmdb.org/t/p/w500/${provider.logo_path}`}
+                                            alt={provider.provider_name}
+                                        />
+                                    ) : (
+                                        <span>{provider.provider_name}</span>
+                                    )}
+                                </span>
+                            ))}
+                            </p>
+                        </div>
+                    )}
                     <div className="flex-grow my-4">
                         <p className="text-base md:text-xl lg:text-base text-gray-100 leading-snug truncate-overflow">
                             {movie.overview}
@@ -130,17 +161,17 @@ function Movie() {
                         className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50"
                         onClick={handleShowVideo}>
                         <div
-                            className="relative bg-white rounded-lg w-11/12 md:w-2/3 lg:w-1/2 xl:w-2/5 2xl:w-1/3 overflow-hidden shadow-lg"
+                            className="relative bg-white rounded-lg w-11/12 md:w-2/3 lg:w-2/3 h-2/3 overflow-hidden shadow-lg"
                             onClick={(e) => e.stopPropagation()}>
                             <button
                                 className="absolute top-2 right-2 text-gray-500 hover:text-gray-700 focus:outline-none"
                                 onClick={handleShowVideo}>
                                 <FontAwesomeIcon icon={faXmark} size="2x"/>
                             </button>
-                            <div className="w-full pt-72 overflow-hidden relative">
+                            <div className="w-full h-full pt-72 overflow-hidden relative">
                                 <iframe
                                     className="absolute top-0 left-0 w-full h-full"
-                                    src={trailerURL}
+                                    src={`${trailerURL}?autoplay=1`}
                                     title="YouTube video player"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                                     allowFullScreen

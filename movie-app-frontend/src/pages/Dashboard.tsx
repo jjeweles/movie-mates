@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
 import Spinner from "../components/Spinner";
+import {toast, ToastContainer} from "react-toastify";
 
 function Dashboard() {
     const [loading, setLoading] = useState(true);
@@ -58,8 +59,11 @@ function Dashboard() {
         }
         axios.delete(`http://localhost:8080/api/v1/watchlist/${data.userID}/${data.tmdbID}`)
             .then(res => {
-                window.location.reload();
+                const timer = setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
             })
+        toast.success("Removing from watchlist...")
     }
 
     const handleFavlistRemove = (e: any) => {
@@ -69,8 +73,11 @@ function Dashboard() {
         }
         axios.delete(`http://localhost:8080/api/v1/favList/delete/${data.userID}/${data.tmdbID}`)
             .then(res => {
-                window.location.reload();
+                const timer = setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
             })
+        toast.success("Removing from favorites...")
     }
 
     const user = {
@@ -103,17 +110,18 @@ function Dashboard() {
             <div className="flex flex-col gap-4 text-stone-400">
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold mb-4">Watchlist</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1">
                         {watchList.map(movie => (
-                            <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
+                            <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.id}>
                                 <div className="flex flex-col items-center">
-                                    <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4 relative">
+                                    <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4 relative">
                                         <Link to={`/movie/${movie.id}`}>
                                             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
                                             <p className="absolute -top-1 -left-2 text-sm font-bold bg-blue-400 rounded-full w-max p-1 text-black">8.1</p>
+                                            {/*<p className="absolute -bottom-1 -right-2 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black">8.1</p>*/}
                                         </Link>
                                     </div>
-                                    <div className="text-center flex flex-col mt-6">
+                                    <div className="text-center flex flex-col">
                                         <div className="">
                                             <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
                                         </div>
@@ -131,7 +139,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold mb-4">Favorites</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-12">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-2">
                         {favList.map(movie => (
                             <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.id}>
                                 <div className="flex flex-col items-center">
@@ -142,7 +150,7 @@ function Dashboard() {
                                             {/*<p className="absolute -bottom-1 -right-2 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black">8.1</p>*/}
                                         </Link>
                                     </div>
-                                    <div className="text-center flex flex-col mt-6">
+                                    <div className="text-center flex flex-col">
                                         <div className="">
                                             <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
                                         </div>
@@ -151,6 +159,17 @@ function Dashboard() {
                                                     value={movie.id} onClick={handleFavlistRemove}>
                                                 Remove
                                             </button>
+                                            <ToastContainer
+                                                position="top-center"
+                                                autoClose={3000}
+                                                hideProgressBar={false}
+                                                newestOnTop={false}
+                                                closeOnClick
+                                                rtl={false}
+                                                pauseOnFocusLoss={false}
+                                                draggable
+                                                theme="dark"
+                                            />
                                         </div>
                                     </div>
                                 </div>
