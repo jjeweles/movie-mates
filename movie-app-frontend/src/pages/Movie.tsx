@@ -3,6 +3,7 @@ import {useParams} from "react-router-dom";
 import {handleWatchList, handleFavList} from "../utils/utils";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {ToastContainer} from "react-toastify";
 
 function Movie() {
     const {id} = useParams<{ id: string }>();
@@ -31,7 +32,10 @@ function Movie() {
 
         fetchMovieData()
             .then(() => fetchTrailer())
-            .then(() => setLoading(false));
+
+        const timer = setTimeout(() => {
+            setLoading(false);
+        }, 1000);
     }, []);
 
     const handleShowVideo = () => {
@@ -106,6 +110,18 @@ function Movie() {
                         >
                             Add to Watch List
                         </button>
+                        <ToastContainer
+                            position="top-center"
+                            autoClose={3000}
+                            hideProgressBar={false}
+                            newestOnTop={false}
+                            closeOnClick
+                            rtl={false}
+                            pauseOnFocusLoss={false}
+                            draggable
+                            pauseOnHover
+                            theme="dark"
+                        />
                     </div>
                 </div>
                 {showVideo && (

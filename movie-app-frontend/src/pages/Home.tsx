@@ -1,11 +1,15 @@
 import React from 'react';
+import {toast, ToastContainer} from "react-toastify";
 
 function Home() {
 
     const handleSearch = (e: any) => {
         e.preventDefault();
         const query = e.target.query.value;
-        window.location.href = `/search/${query}`;
+        const timer = setTimeout(() => {
+            window.location.href = `/search/${query}`;
+        }, 3000);
+        toast.info("Searching for movies");
     }
 
     return (
@@ -33,6 +37,18 @@ function Home() {
                                         <path d="M10 4a6 6 0 100 12 6 6 0 000-12zm0 2a4 4 0 110 8 4 4 0 010-8zm6 8l4 4-1.414 1.414L14.586 15h-.008l-.293-.293v-.006l1.414-1.414z" />
                                     </svg>
                                 </button>
+                                <ToastContainer
+                                    position="top-center"
+                                    autoClose={3000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss={false}
+                                    draggable
+                                    pauseOnHover
+                                    theme="dark"
+                                />
                             </form>
                         </div>
                     </div>

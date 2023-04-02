@@ -1,4 +1,5 @@
 import React from 'react';
+import {toast, ToastContainer} from "react-toastify";
 
 function Login() {
 
@@ -8,7 +9,10 @@ function Login() {
         const data = await response.json();
 
         localStorage.setItem("user_id", data.userID);
-        window.location.href = 'dashboard/' + data.userID;
+        const timer = setTimeout(() => {
+            window.location.href = 'dashboard/' + data.userID;
+        }, 3000);
+        toast.success("Success! Redirecting to Dashboard");
     }
 
     return (
@@ -21,6 +25,18 @@ function Login() {
                     <label htmlFor="password" className="mb-2">Password</label>
                     <input type="password" className="mb-4 p-2 border border-gray-300 rounded-lg text-black" />
                     <button className="bg-blue-400/75 text-white p-2 rounded-lg">Login</button>
+                    <ToastContainer
+                        position="top-center"
+                        autoClose={3000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss={false}
+                        draggable
+                        pauseOnHover
+                        theme="dark"
+                    />
                 </form>
             </div>
         </div>

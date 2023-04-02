@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import axios from "axios";
 import {Link, useParams} from "react-router-dom";
 import {handleRecommendation, handleWatchList, handleFavList} from "../utils/utils";
+import {ToastContainer} from "react-toastify";
 
 function Recommend() {
 
@@ -29,7 +30,10 @@ function Recommend() {
             const result = await fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=52107296ca5b59d71cb74cfb9ed7f144`);
             const data = await result.json();
             setSingleMovie(data);
-            setLoading(false);
+
+            const timer = setTimeout(() => {
+                setLoading(false);
+            }, 1000);
 
         }
 
@@ -68,6 +72,18 @@ function Recommend() {
                                                 <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
                                                 <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
                                                 <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
+                                                <ToastContainer
+                                                    position="top-center"
+                                                    autoClose={3000}
+                                                    hideProgressBar={false}
+                                                    newestOnTop={false}
+                                                    closeOnClick
+                                                    rtl={false}
+                                                    pauseOnFocusLoss={false}
+                                                    draggable
+                                                    pauseOnHover
+                                                    theme="dark"
+                                                />
                                             </div>
 
                                         </div>

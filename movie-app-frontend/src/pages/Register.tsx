@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from 'react';
+import {toast, ToastContainer} from "react-toastify";
 
 function Register() {
 
@@ -20,11 +21,11 @@ function Register() {
         e.preventDefault();
         for (let i = 0; i < users.length; i++) {
             if (users[i].username === e.target[2].value) {
-                alert('Username already exists');
+                toast.error('Username already exists')
                 return;
             }
             if (users[i].email === e.target[1].value) {
-                alert('Email already exists');
+                toast.error('Email already exists')
                 return;
             }
         }
@@ -61,6 +62,16 @@ function Register() {
                     <label htmlFor="password" className="mb-2">Password</label>
                     <input type="password" id="password" className="mb-4 p-2 border border-gray-300 rounded-lg text-black" />
                     <button className="bg-blue-400/75 text-white p-2 rounded-lg" type="submit">Register</button>
+                    <ToastContainer
+                        position="top-right"
+                        autoClose={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        theme="dark"
+                    />
                 </form>
             </div>
 

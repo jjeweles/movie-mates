@@ -37,7 +37,6 @@ public class FavoritesListController {
     
     @DeleteMapping("/favList/delete/{userId}/{tmdbId}")
     public ResponseEntity<FavoritesListModel> deleteTmdbIdFromFavList(@PathVariable Integer userId, @PathVariable Integer tmdbId) {
-//       FavoritesListModel favorites = favoritesListService.getFavs(userId, tmdbId);
 
         favoritesListService.deleteByTmbdId(userId, tmdbId);
 

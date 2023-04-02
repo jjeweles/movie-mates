@@ -1,4 +1,5 @@
 import axios from "axios";
+import {toast} from "react-toastify";
 
 export const handleWatchList =  (e: any) => {
     const data = {
@@ -7,8 +8,12 @@ export const handleWatchList =  (e: any) => {
     }
     axios.post('http://localhost:8080/api/v1/watchlist/add', data)
         .then(res => {
-            window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            // code to pause for 3 seconds and then redirect to dashboard
+            const timer = setTimeout(() => {
+                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            }, 3000);
         })
+    toast.success("Adding to Watchlist");
 }
 
 export const handleFavList = (e: any) => {
@@ -18,11 +23,17 @@ export const handleFavList = (e: any) => {
     }
     axios.post('http://localhost:8080/api/v1/favList/save/', data)
         .then(res => {
-            window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            const timer = setTimeout(() => {
+                window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
+            }, 3000);
         })
+    toast.success("Adding to Favorites");
 }
 
 export const handleRecommendation = (e: any) => {
     const query = e.target.value;
-    window.location.href = `/recommend/${query}`;
+    const timer = setTimeout(() => {
+        window.location.href = `/recommend/${query}`;
+    }, 3000);
+    toast.info("Generating Recommendations");
 }

@@ -2,12 +2,17 @@ import React, {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import axios from "axios";
 import {handleWatchList, handleFavList, handleRecommendation} from "../utils/utils";
+import {ToastContainer} from "react-toastify";
+import Skeleton from "react-loading-skeleton";
+import 'react-loading-skeleton/dist/skeleton.css'
+import 'react-toastify/dist/ReactToastify.css';
 
 function Popular() {
 
     const [movies, setMovies] = useState<any>(null);
     const [loading, setLoading] = useState(true);
     useEffect(() => {
+
         const fetchMovies = async () => {
             const result = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=52107296ca5b59d71cb74cfb9ed7f144');
 
@@ -16,7 +21,9 @@ function Popular() {
             }
 
             setMovies(result.data);
-            setLoading(false);
+            const timer = setTimeout(() => {
+                setLoading(false);
+            }, 1000);
 
         }
         fetchMovies().then(null);
@@ -33,7 +40,7 @@ function Popular() {
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {movies.results.map((movie: any) => (
-                                    <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
+                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
                                             <div className="flex flex-col items-center">
                                                 <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
                                                     <Link to={`/movie/${movie.id}`}>
@@ -49,9 +56,21 @@ function Popular() {
                                                         <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
                                                     </div>
                                                     <div className="text-xs">
-                                                            <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
-                                                            <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
-                                                            <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
+                                                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
+                                                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
+                                                        <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
+                                                        <ToastContainer
+                                                            position="top-center"
+                                                            autoClose={3000}
+                                                            hideProgressBar={false}
+                                                            newestOnTop={false}
+                                                            closeOnClick
+                                                            rtl={false}
+                                                            pauseOnFocusLoss={false}
+                                                            draggable
+                                                            pauseOnHover
+                                                            theme="dark"
+                                                        />
                                                     </div>
                                                 </div>
                                             </div>
