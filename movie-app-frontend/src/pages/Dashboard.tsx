@@ -91,8 +91,8 @@ function Dashboard() {
 
     // @ts-ignore
     return (
-        <div className="flex flex-col sm:flex-row gap-10">
-            <div className="w-64 h-fit p-6 text-stone-400 bg-stone-900/75 rounded-md grid gap-3">
+        <div className="flex flex-col text-center items-center sm:items-stretch sm:text-left sm:flex-row gap-10">
+            <div className="text-center sm:text-left w-64 h-fit p-6 text-stone-400 bg-stone-900/75 rounded-md grid gap-3">
                 <h2 className="text-md font-bold mb-4">User Information</h2>
                 <div className="grid gap-3 text-sm">
                     <p><strong>Username:</strong><br/> {user.username}</p>
@@ -103,7 +103,7 @@ function Dashboard() {
             <div className="flex flex-col gap-4 text-stone-400">
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold mb-4">Watchlist</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-12">
                         {watchList.map(movie => (
                             <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
                                 <div className="flex flex-col items-center">
@@ -131,7 +131,7 @@ function Dashboard() {
                 </div>
                 <div className="mb-6">
                     <h2 className="text-2xl font-bold mb-4">Favorites</h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-12">
                         {favList.map(movie => (
                             <div className="bg-stone-900 rounded-lg shadow-lg p-3" key={movie.id}>
                                 <div className="flex flex-col items-center">

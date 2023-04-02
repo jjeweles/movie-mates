@@ -5,8 +5,16 @@ function Login() {
 
     const handleLogin = async (e: any) => {
         e.preventDefault();
-        const response = await fetch('http://localhost:8080/api/v1/users/get/' + e.target[0].value)
+        const formData = {
+            username: e.target[0].value,
+            password: e.target[1].value
+        }
+        const response = await fetch('http://localhost:8080/api/v1/users/get/' + formData.username)
         const data = await response.json();
+
+        if (data.password !== formData.password) {
+            return toast.error("Incorrect Password");
+        }
 
         localStorage.setItem("user_id", data.userID);
         const timer = setTimeout(() => {

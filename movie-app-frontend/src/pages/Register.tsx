@@ -25,7 +25,7 @@ function Register() {
                 return;
             }
             if (users[i].email === e.target[1].value) {
-                toast.error('Email already exists')
+                toast.error('Email already in use')
                 return;
             }
         }
