@@ -23,10 +23,10 @@ function Header() {
     return (
         <div className="mb-8">
             <nav className="bg-stone-900">
-                <div className="max-w-7xl mx-auto px-2 sm:px-6 lg:px-8">
+                <div className="min-w-screen mx-auto">
                     <div className="relative flex items-center justify-between h-16">
                         <div className="flex-1 flex items-center justify-between">
-                            <div className="bg-stone-900 text-white px-3 py-2 rounded-md flex-shrink-0 flex items-center">
+                            <div className="bg-stone-900 text-white py-2 rounded-md flex-shrink-0 flex items-center">
                                 {/* Auto SVG Logo */}
                                 <Link to="/" className="text-2xl font-medium">
                                     <svg className="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
@@ -58,7 +58,7 @@ function Header() {
                                 </div>
                             </div>
                             {/*  Mobile Navigation  */}
-                            <div className="fixed top-0 right-0 z-10 mr-2 sm:hidden flex flex-col">
+                            <div className="fixed top-0 right-0 z-10 sm:hidden flex flex-col">
                                 <button type="button" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                                         className="fixed top-0 right-0  mt-2 mr-2 w-fit bg-stone-800 inline-flex items-center justify-center p-2 rounded-md text-stone-400 hover:text-white hover:bg-stone-700 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-0" aria-controls="mobile-menu" aria-expanded="false">
                                     <span className="sr-only">Open main menu</span>
