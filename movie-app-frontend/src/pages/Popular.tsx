@@ -6,8 +6,6 @@ import {ToastContainer} from "react-toastify";
 import 'react-loading-skeleton/dist/skeleton.css'
 import 'react-toastify/dist/ReactToastify.css';
 import Spinner from "../components/Spinner";
-import {faBookmark, faHeart} from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function Popular() {
 

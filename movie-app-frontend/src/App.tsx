@@ -12,6 +12,7 @@ import Register from "./pages/Register";
 import Movie from "./pages/Movie";
 import Search from "./pages/Search";
 import './styles.css'
+import MovieCard from "./components/MovieCard";
 
 function App() {
 
@@ -30,6 +31,7 @@ function App() {
                     <Route path="/recommend/:id" element={<Recommend/>} />
                     <Route path="/movie/:id" element={<Movie/>} />
                     <Route path="/search/:query" element={<Search/>} />
+                    <Route path="/moviecard" element={<MovieCard/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />
