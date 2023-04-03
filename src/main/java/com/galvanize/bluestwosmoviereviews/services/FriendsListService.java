@@ -1,17 +1,17 @@
 package com.galvanize.bluestwosmoviereviews.services;
 
 import com.galvanize.bluestwosmoviereviews.data.FriendsListRepository;
-import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
 import com.galvanize.bluestwosmoviereviews.models.FriendsListModel;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class FriendsListService {
     private final FriendsListRepository friendsListRepository;
 
-    @Autowired
-    FriendsListService(FriendsListRepository friendsListRepository)
+
+    public FriendsListService(FriendsListRepository friendsListRepository)
     {
         this.friendsListRepository = friendsListRepository;
     }
@@ -20,7 +20,7 @@ public class FriendsListService {
     }
 
     public FriendsListModel getFriendByFriendId(Integer userId, Integer friendId) {
-        return friendsListRepository.findByUserId(userId, friendId);
+        return friendsListRepository.findByUserIdAndFriendId(userId, friendId);
     }
 
     public FriendsListModel addFriend(FriendsListModel friendsListModel)

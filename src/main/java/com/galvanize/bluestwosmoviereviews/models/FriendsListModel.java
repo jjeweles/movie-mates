@@ -1,8 +1,15 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "friends")
 public class FriendsListModel {
 
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     Integer userId;
+    @Column(name = "friend_Id")
     Integer friendId;
 
     public FriendsListModel() {

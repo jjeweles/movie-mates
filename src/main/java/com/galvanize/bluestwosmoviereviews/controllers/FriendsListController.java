@@ -1,21 +1,23 @@
 package com.galvanize.bluestwosmoviereviews.controllers;
 
-import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
 import com.galvanize.bluestwosmoviereviews.models.FriendsListModel;
 import com.galvanize.bluestwosmoviereviews.services.FriendsListService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/api/v1/")
 public class FriendsListController {
 
-    FriendsListService friendsListService;
+    private final FriendsListService friendsListService;
 
-    public FriendsListController(FriendsListService friendsListService)
+    @Autowired
+    FriendsListController(FriendsListService friendsListService)
     {
         this.friendsListService = friendsListService;
     }
@@ -42,7 +44,7 @@ public class FriendsListController {
     }
 
     @DeleteMapping("/friendsList/delete/{friendId}")
-    public ResponseEntity<FavoritesListModel> deleteFriend(@PathVariable Integer friendId)
+    public ResponseEntity<FriendsListModel> deleteFriend(@PathVariable Integer friendId)
     {
         friendsListService.deleteByFriendID(friendId);
         return ResponseEntity.accepted().build();
