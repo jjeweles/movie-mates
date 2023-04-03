@@ -25,7 +25,7 @@ function Login() {
 
     return (
         <div className="flex gap-10 items-center justify-center">
-            <div className="bg-stone-900 rounded-lg shadow-lg p-8 text-white">
+            <div className="bg-stone-900 rounded-lg p-8 text-white">
                 <h1 className="text-2xl font-bold mb-4">Login</h1>
                 <form className="flex flex-col" onSubmit={handleLogin}>
                     <label htmlFor="username" className="mb-2">Username</label>

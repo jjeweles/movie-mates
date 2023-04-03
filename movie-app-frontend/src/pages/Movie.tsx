@@ -88,7 +88,7 @@ function Movie() {
                     <div className="flex flex-row flex-wrap gap-3">
                         {movie.genres.map((genre: any) => (
                             <span
-                                className="text-stone-200 text-xs lg:text-md lg:mb-4 bg-stone-900 p-2 rounded-full"
+                                className="text-stone-200 text-xs lg:text-md lg:mb-4 bg-white/30 p-2 rounded-full"
                                 key={genre.name}
                             >
                                 {genre.name}
@@ -123,20 +123,20 @@ function Movie() {
                     </div>
                     <div className="button-container flex justify-between mb-2 mt-2 flex-col sm:flex-row sm:flex-wrap gap-1">
                         <button
-                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 text-white"
+                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 border text-white"
                             onClick={handleShowVideo}
                         >
                             {showVideo ? 'Close Trailer' : 'Watch Trailer'}
                         </button>
                         <button
-                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 text-white"
+                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 border text-white"
                             value={movie.id}
                             onClick={handleFavList}
                         >
                             Add to Favorites
                         </button>
                         <button
-                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 text-white"
+                            className="text-sm md:text-lg lg:text-sm font-bold py-2 px-4 rounded bg-stone-900 border text-white"
                             value={movie.id}
                             onClick={handleWatchList}
                         >

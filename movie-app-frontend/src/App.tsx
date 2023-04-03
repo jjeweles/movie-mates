@@ -11,12 +11,13 @@ import Recommend from "./pages/Recommend";
 import Register from "./pages/Register";
 import Movie from "./pages/Movie";
 import Search from "./pages/Search";
+import './styles.css'
 
 function App() {
 
     return (
         <Router>
-            <div className="bg-stone-800 max-w-screen min-h-screen px-6">
+            <div className="bg-stone-900 max-w-screen min-h-screen px-6 font-lato">
                 <Header/>
                 <Routes>
                     <Route path="/" element={<Home />}/>

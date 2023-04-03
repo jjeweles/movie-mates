@@ -31,14 +31,14 @@ function Search() {
 
     return (
 
-        <div className="bg-stone-800 max-w-screen-xl px-6">
+        <div className="bg-stone-900 max-w-screen-xl px-6">
             <div className="flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
                             {/* @ts-ignore */}
                             {movies.results.map((movie: any) => (
-                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg shadow-lg p-4" key={movie.id}>
+                                <div className="flex flex-col justify-center bg-stone-900 rounded-lg p-4" key={movie.id}>
                                     <div className="flex flex-col items-center">
                                         <div className="w-36 h-48 rounded-lg bg-gray-400 mb-4">
                                             <Link to={`/movie/${movie.id}`}>
