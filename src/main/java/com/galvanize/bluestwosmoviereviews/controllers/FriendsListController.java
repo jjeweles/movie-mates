@@ -3,11 +3,9 @@ package com.galvanize.bluestwosmoviereviews.controllers;
 import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
 import com.galvanize.bluestwosmoviereviews.models.FriendsListModel;
 import com.galvanize.bluestwosmoviereviews.services.FriendsListService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -36,5 +34,18 @@ public class FriendsListController {
         return friend == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(friend);
     }
 
+    @PostMapping("/friendsList/add")
+    public ResponseEntity<FriendsListModel> addFriend(@RequestBody FriendsListModel newFriend)
+    {
+        FriendsListModel friends = friendsListService.addFriend(newFriend);
+        return new ResponseEntity<>(friends, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/friendsList/delete/{friendId}")
+    public ResponseEntity<FavoritesListModel> deleteFriend(@PathVariable Integer friendId)
+    {
+        friendsListService.deleteByFriendID(friendId);
+        return ResponseEntity.accepted().build();
+    }
 
 }

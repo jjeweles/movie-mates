@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface FriendsListRepository extends JpaRepository<FavoritesListModel, Integer> {
+public interface FriendsListRepository extends JpaRepository<FriendsListModel, Integer> {
     List<FriendsListModel> findByUserId(Integer userId);
     FriendsListModel findByUserId(Integer userId, Integer friendId);
 }

@@ -5,6 +5,19 @@ public class FriendsListModel {
     Integer userId;
     Integer friendId;
 
+    public FriendsListModel() {
+    }
+
+    public FriendsListModel(FriendsListModel newFriend)
+    {
+        this.userId = newFriend.getUserId();
+        this.friendId = newFriend.getFriendId();
+    }
+    public FriendsListModel(Integer userId, Integer friendId)
+    {
+        this.userId = userId;
+        this.friendId = friendId;
+    }
     public Integer getUserId() {
         return userId;
     }
