@@ -1,7 +1,6 @@
 package com.galvanize.bluestwosmoviereviews.controllers;
 
 import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
-import com.galvanize.bluestwosmoviereviews.models.RatingModel;
 import com.galvanize.bluestwosmoviereviews.services.FavoritesListService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
