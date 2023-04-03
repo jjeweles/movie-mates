@@ -200,29 +200,29 @@ function Dashboard() {
                                         <div className="w-32 h-48 rounded-lg bg-gray-400 relative">
                                             <Link to={`/movie/${movie.id}`}>
                                                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
-                                                {/*<p className="absolute -top-1 -left-2 text-sm font-bold bg-blue-400 rounded-full w-max p-1 text-black">8.1</p>*/}
+                                                {/*<p className="absolute -bottom-1 -left-2 text-sm font-bold bg-blue-400 rounded-full w-max p-1 text-black">8.1</p>*/}
                                             </Link>
-                                                <button
-                                                    onClick={handleFavlistRemove}
-                                                    className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
-                                                    <svg
-                                                        data-value={movie.id}
-                                                        xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                                                        <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
-                                                    </svg>
-                                                </button>
-                                                <ToastContainer
-                                                    position="top-center"
-                                                    autoClose={3000}
-                                                    hideProgressBar={false}
-                                                    newestOnTop={false}
-                                                    closeOnClick
-                                                    rtl={false}
-                                                    pauseOnFocusLoss={false}
-                                                    draggable
-                                                    theme="dark"
-                                                />
-                                            </div>
+                                            <button
+                                                onClick={handleFavlistRemove}
+                                                className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
+                                                <svg
+                                                    data-value={movie.id}
+                                                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                    <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+                                                </svg>
+                                            </button>
+                                            <ToastContainer
+                                                position="top-center"
+                                                autoClose={3000}
+                                                hideProgressBar={false}
+                                                newestOnTop={false}
+                                                closeOnClick
+                                                rtl={false}
+                                                pauseOnFocusLoss={false}
+                                                draggable
+                                                theme="dark"
+                                            />
+                                        </div>
                                         {/*<div className="text-center flex flex-col">*/}
                                         {/*    /!*<div className="">*!/*/}
                                         {/*    /!*    <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>*!/*/}

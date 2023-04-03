@@ -79,12 +79,9 @@ function Movie() {
                     />
                 </div>
                 <div className="static flex flex-col flex-grow px-8 py-4 z-10">
-                    <h3 className="font-bold text-2xl md:text-4xl lg:text-2xl text-gray-200 movie--title">
-                        {movie.title}
+                    <h3 className="font-bold text-2xl md:text-4xl lg:text-2xl text-gray-200 movie--title mb-2">
+                        {movie.title} <span className="text-sm text-gray-400">({movie.release_date.split('-')[0]})</span>
                     </h3>
-                    <span className="movie--year text-stone-200 text-lg lg:text-sm lg:mb-4">
-                        {movie.release_date}
-                    </span>
                     <div className="flex flex-row flex-wrap gap-3">
                         {movie.genres.map((genre: any) => (
                             <span

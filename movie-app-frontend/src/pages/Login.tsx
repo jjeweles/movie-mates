@@ -11,7 +11,6 @@ function Login() {
         }
         const response = await fetch('http://localhost:8080/api/v1/users/get/' + formData.username)
         const data = await response.json();
-
         if (data.password !== formData.password) {
             return toast.error("Incorrect Password");
         }

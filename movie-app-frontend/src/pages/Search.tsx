@@ -50,8 +50,8 @@ function Search() {
                                         </div>
                                         <div className="text-center flex flex-col mt-6">
                                             <div className="">
-                                                <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>
-                                                <p className="text-xs text-gray-400">Released: {movie.release_date}</p>
+                                                <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}{' '}
+                                                    <span className="text-xs text-gray-400">({movie.release_date.split('-')[0]})</span></h1>
                                             </div>
                                             <div className="text-xs">
                                                 <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-4 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
