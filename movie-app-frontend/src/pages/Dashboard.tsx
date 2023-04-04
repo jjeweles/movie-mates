@@ -103,7 +103,7 @@ function Dashboard() {
         <Fragment>
             <style>
                 {`.bg-gradient-to-r {
-                    background-image: linear-gradient(to right, #1F2937 0%, #27364A 100%);
+                    background-image: linear-gradient(to bottom, #562200 0%, #B04701 100%);
                 }
                     .bevel {
                     box-shadow:

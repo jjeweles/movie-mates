@@ -48,7 +48,7 @@ function Recommend() {
 
     return (
         <div className="bg-stone-900 max-w-screen-xl px-6">
-            <div className="text-stone-400 text-center text-2xl mb-3 bg-stone-900 w-full p-2 rounded-full">Movies similiar to <span className="text-blue-200 italic font-bold">{singleMovie.title}</span></div>
+            <div className="text-stone-400 text-center text-2xl mb-3 bg-stone-900 w-full p-2 rounded-full">Movies similiar to <span className="text-[#FFBC93FF] italic font-bold">{singleMovie.title}</span></div>
             <div className="flex flex-col">
                 <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                     <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">

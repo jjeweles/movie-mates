@@ -31,7 +31,7 @@ function Login() {
                     <input type="text" className="mb-4 p-2 border border-gray-300 rounded-lg text-black" />
                     <label htmlFor="password" className="mb-2">Password</label>
                     <input type="password" className="mb-4 p-2 border border-gray-300 rounded-lg text-black" />
-                    <button className="bg-blue-400/75 text-white p-2 rounded-lg">Login</button>
+                    <button className="bg-orange-400/75 text-white p-2 rounded-lg">Login</button>
                     <ToastContainer
                         position="top-center"
                         autoClose={3000}

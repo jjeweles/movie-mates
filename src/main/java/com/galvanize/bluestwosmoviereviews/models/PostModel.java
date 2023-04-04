@@ -1,5 +1,10 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
+import javax.persistence.*;
+import java.util.Objects;
+
+@Entity
+@Table(name = "posts")
 public class PostModel {
 
     @Id

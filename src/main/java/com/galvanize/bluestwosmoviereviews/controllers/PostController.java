@@ -3,7 +3,6 @@ package com.galvanize.bluestwosmoviereviews.controllers;
 
 import com.galvanize.bluestwosmoviereviews.models.PostModel;
 import com.galvanize.bluestwosmoviereviews.services.PostService;
-import org.springframework.boot.autoconfigure.graphql.GraphQlProperties;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

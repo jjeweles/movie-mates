@@ -41,6 +41,7 @@ function Header() {
                                     <Link to="/popular" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Popular</Link>
                                     <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Now Playing</Link>
                                     <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Top Rated</Link>
+                                    <Link to="/community" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Community</Link>
                                     {userID && userID !== "undefined" ?
                                         <Link to={`/dashboard/${userID}`} className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
                                         : null}
@@ -81,6 +82,7 @@ function Header() {
                                         <Link to="/popular" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Popular</Link>
                                         <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Now Playing</Link>
                                         <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Top Rated</Link>
+                                        <Link to="/community" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Community</Link>
                                         {userID && userID !== "undefined" ?
                                             <Link to={`/dashboard/${userID}`} className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Dashboard</Link>
                                             : null}

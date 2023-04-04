@@ -13,6 +13,8 @@ import Movie from "./pages/Movie";
 import Search from "./pages/Search";
 import './styles.css'
 import MovieCard from "./components/MovieCard";
+import Community from "./pages/Community";
+import Post from "./pages/Post";
 
 function App() {
 
@@ -32,6 +34,8 @@ function App() {
                     <Route path="/movie/:id" element={<Movie/>} />
                     <Route path="/search/:query" element={<Search/>} />
                     <Route path="/moviecard" element={<MovieCard/>} />
+                    <Route path="/community" element={<Community/>} />
+                    <Route path="/community/:id" element={<Post/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />
