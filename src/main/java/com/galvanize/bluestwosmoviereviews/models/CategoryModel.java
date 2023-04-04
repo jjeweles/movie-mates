@@ -1,11 +1,5 @@
 package com.galvanize.bluestwosmoviereviews.models;
 
-import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.Objects;
-
-@Entity
-@Table (name = "categories")
 public class CategoryModel {
 
     @Id

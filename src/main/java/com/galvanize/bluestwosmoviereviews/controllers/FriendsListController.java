@@ -43,10 +43,11 @@ public class FriendsListController {
         return new ResponseEntity<>(friends, HttpStatus.CREATED);
     }
 
-    @DeleteMapping("/friendsList/delete/{friendId}")
-    public ResponseEntity<FriendsListModel> deleteFriend(@PathVariable Integer friendId)
+    @DeleteMapping("/friendsList/delete/{userId}/{friendId}")
+    public ResponseEntity<FriendsListModel> deleteFriend(@PathVariable Integer userId,
+                                                         @PathVariable Integer friendId)
     {
-        friendsListService.deleteByFriendID(friendId);
+        friendsListService.deleteByFriendID(userId, friendId);
         return ResponseEntity.accepted().build();
     }
 
