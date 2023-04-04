@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class FriendsListModel {
 
     @Id
-    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    @Column(name = "user_Id")
     Integer userId;
     @Column(name = "friend_Id")
     Integer friendId;
