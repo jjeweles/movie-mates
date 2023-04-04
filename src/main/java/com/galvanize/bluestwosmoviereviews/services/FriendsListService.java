@@ -28,8 +28,9 @@ public class FriendsListService {
         return friendsListRepository.save(friendsListModel);
     }
 
-    public void deleteByFriendID(Integer friendId)
+    public void deleteByFriendID(Integer userId, Integer friendId)
     {
-        friendsListRepository.deleteById(friendId);
+        FriendsListModel friendsListModel = new FriendsListModel(userId, friendId);
+        friendsListRepository.delete(friendsListModel);
     }
 }
