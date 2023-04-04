@@ -39,6 +39,12 @@ public class FriendsListController {
     @PostMapping("/friendsList/add")
     public ResponseEntity<FriendsListModel> addFriend(@RequestBody FriendsListModel newFriend)
     {
+        List<FriendsListModel> friendList = friendsListService.getFriendsListByID(newFriend.getUserId());
+
+        if(friendList.contains(newFriend))
+        {
+                return null;
+        }
         FriendsListModel friends = friendsListService.addFriend(newFriend);
         return new ResponseEntity<>(friends, HttpStatus.CREATED);
     }
@@ -47,8 +53,16 @@ public class FriendsListController {
     public ResponseEntity<FriendsListModel> deleteFriend(@PathVariable Integer userId,
                                                          @PathVariable Integer friendId)
     {
-        friendsListService.deleteByFriendID(userId, friendId);
-        return ResponseEntity.accepted().build();
+        List<FriendsListModel> friendList = friendsListService.getFriendsListByID(userId);
+        for(FriendsListModel checkForFriend: friendList)
+        {
+
+            if(checkForFriend.getFriendId().equals(friendId)){
+                friendsListService.deleteByFriendID(userId, friendId);
+                return ResponseEntity.accepted().build();
+            }
+        }
+        return null;
     }
 
 }
