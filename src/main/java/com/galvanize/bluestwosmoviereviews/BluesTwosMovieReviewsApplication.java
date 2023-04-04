@@ -10,6 +10,8 @@ public class BluesTwosMovieReviewsApplication {
 
         SpringApplication.run(BluesTwosMovieReviewsApplication.class, args);
 
+
+
     }
 
 }

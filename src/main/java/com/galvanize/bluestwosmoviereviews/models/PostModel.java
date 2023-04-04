@@ -20,28 +20,21 @@ public class PostModel {
     @Column(name = "post_text")
     String post_text;
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "userID")
-    UserModel userModel;
+    @Column(name = "userID")
+    Integer userID;
 
-    @JoinColumn(name = "categoryID")
-    CategoryModel categoryModel;
+    @Column(name = "categoryID")
+    Integer categoryID;
 
-    @OneToMany(mappedBy = "postModel")
-    @Column(name = "replyID")
-    List<ReplyModel> replyModel;
-
-
-    public PostModel(){
+    public PostModel() {
     }
 
-    public PostModel(Integer postID, String post_title, String post_text, UserModel userModel, CategoryModel categoryModel, List<ReplyModel> replyModel) {
+    public PostModel(Integer postID, String post_title, String post_text, Integer userID, Integer categoryID, Integer replyID) {
         this.postID = postID;
         this.post_title = post_title;
         this.post_text = post_text;
-        this.userModel = userModel;
-        this.categoryModel = categoryModel;
-        this.replyModel = replyModel;
+        this.userID = userID;
+        this.categoryID = categoryID;
     }
 
     public Integer getPostID() {
@@ -68,41 +61,35 @@ public class PostModel {
         this.post_text = post_text;
     }
 
-    public UserModel getUserModel() {
-        return userModel;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
-    public CategoryModel getCategoryModel() {
-        return categoryModel;
+    public Integer getCategoryID() {
+        return categoryID;
     }
 
-    public void setCategoryModel(CategoryModel categoryModel) {
-        this.categoryModel = categoryModel;
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
     }
 
-    public List<ReplyModel> getReplyModel() {
-        return replyModel;
-    }
 
-    public void setReplyModel(List<ReplyModel> replyModel) {
-        this.replyModel = replyModel;
-    }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         PostModel postModel = (PostModel) o;
-        return Objects.equals(postID, postModel.postID) && Objects.equals(post_title, postModel.post_title) && Objects.equals(post_text, postModel.post_text) && Objects.equals(userModel, postModel.userModel) && Objects.equals(categoryModel, postModel.categoryModel) && Objects.equals(replyModel, postModel.replyModel);
+        return Objects.equals(postID, postModel.postID) && Objects.equals(post_title, postModel.post_title) && Objects.equals(post_text, postModel.post_text) && Objects.equals(userID, postModel.userID) && Objects.equals(categoryID, postModel.categoryID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(postID, post_title, post_text, userModel, categoryModel, replyModel);
+        return Objects.hash(postID, post_title, post_text, userID, categoryID);
     }
 
     @Override
@@ -111,10 +98,9 @@ public class PostModel {
                 "postID=" + postID +
                 ", post_title='" + post_title + '\'' +
                 ", post_text='" + post_text + '\'' +
-                ", userModel=" + userModel +
-                ", categoryModel=" + categoryModel +
-                ", replyModel=" + replyModel +
+                ", userID=" + userID +
+                ", categoryID=" + categoryID +
                 '}';
     }
-}
 
+ }

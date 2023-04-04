@@ -2,6 +2,7 @@ package com.galvanize.bluestwosmoviereviews.models;
 
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.Objects;
 
 @Entity
@@ -16,22 +17,22 @@ public class ReplyModel {
     String reply_text;
 
 
-    @JoinColumn(name = "userID")
-    UserModel userModel;
+    @Column(name = "userID")
+    Integer userID;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "postID")
-    PostModel postModel;
+
+    @Column(name = "postID")
+    Integer postID;
 
     public ReplyModel(){
 
     }
 
-    public ReplyModel(Integer replyID, String reply_text, UserModel userModel, PostModel postModel) {
+    public ReplyModel(Integer replyID, String reply_text, Integer userID, Integer postID) {
         this.replyID = replyID;
         this.reply_text = reply_text;
-        this.userModel = userModel;
-        this.postModel = postModel;
+        this.userID = userID;
+        this.postID = postID;
     }
 
     public Integer getReplyID() {
@@ -50,20 +51,20 @@ public class ReplyModel {
         this.reply_text = reply_text;
     }
 
-    public UserModel getUserModel() {
-        return userModel;
+    public Integer getUserID() {
+        return userID;
     }
 
-    public void setUserModel(UserModel userModel) {
-        this.userModel = userModel;
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
-    public PostModel getPostModel() {
-        return postModel;
+    public Integer getPostID() {
+        return postID;
     }
 
-    public void setPostModel(PostModel postModel) {
-        this.postModel = postModel;
+    public void setPostID(Integer postID) {
+        this.postID = postID;
     }
 
     @Override
@@ -71,12 +72,12 @@ public class ReplyModel {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ReplyModel that = (ReplyModel) o;
-        return Objects.equals(replyID, that.replyID) && Objects.equals(reply_text, that.reply_text) && Objects.equals(userModel, that.userModel) && Objects.equals(postModel, that.postModel);
+        return Objects.equals(replyID, that.replyID) && Objects.equals(reply_text, that.reply_text) && Objects.equals(userID, that.userID) && Objects.equals(postID, that.postID);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(replyID, reply_text, userModel, postModel);
+        return Objects.hash(replyID, reply_text, userID, postID);
     }
 
     @Override
@@ -84,8 +85,8 @@ public class ReplyModel {
         return "ReplyModel{" +
                 "replyID=" + replyID +
                 ", reply_text='" + reply_text + '\'' +
-                ", userModel=" + userModel +
-                ", postModel=" + postModel +
+                ", userID=" + userID +
+                ", postID=" + postID +
                 '}';
     }
 }
