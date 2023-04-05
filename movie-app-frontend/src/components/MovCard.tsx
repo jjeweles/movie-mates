@@ -25,7 +25,7 @@ function MovCard(props: any) {
                         <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}{' '}
                             <span className="text-xs text-gray-400">({movie.release_date.split('-')[0]})</span></h1>
                     </div>
-
+                    {/* move add rating to icon on movie poster? */}
                     {ratings.map((rating: any) => {
                         if (rating.tmdbId === movie.id) {
                             return (

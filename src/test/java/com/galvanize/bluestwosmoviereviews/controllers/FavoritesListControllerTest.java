@@ -37,6 +37,7 @@ class FavoritesListControllerTest {
     FavoritesListModel list1;
     FavoritesListModel list2;
     List<FavoritesListModel> favorites;
+
     @BeforeEach
     void setUp()
     {
@@ -45,6 +46,7 @@ class FavoritesListControllerTest {
         favorites.add(list1);
         favorites.add(list2);
     }
+
     @Test
     void getAllFavorites ()throws Exception
     {
