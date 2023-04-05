@@ -61,13 +61,13 @@ function Users() {
                             {user.name}
                         </td>
                         <td className="px-6 py-4">
-                            3
+                            Coming Soon
                         </td>
                         <td className="px-6 py-4">
-                            5
+                            Coming Soon
                         </td>
                         <td className="px-6 py-4">
-                            5
+                            Coming Soon
                         </td>
                         <td className="px-6 py-4">
                             {isLoggedIn ? (
