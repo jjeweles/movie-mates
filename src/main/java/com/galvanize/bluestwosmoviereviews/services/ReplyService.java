@@ -44,4 +44,8 @@ public class ReplyService {
         }
         return replyToDelete;
     }
+
+    public ReplyModel findReplyByPostID(Integer postID) {
+        return replyRepository.findReplyByPostID(postID);
+    }
 }

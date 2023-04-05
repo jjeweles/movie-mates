@@ -9,6 +9,5 @@ public interface ReplyRepository extends JpaRepository<ReplyModel, Integer> {
     ReplyModel findReplyByReplyID(Integer replyID);
     ReplyModel save(ReplyModel reply);
     void deleteReplyByReplyID(Integer replyID);
-
-
-    }
+    ReplyModel findReplyByPostID(Integer postID);
+}

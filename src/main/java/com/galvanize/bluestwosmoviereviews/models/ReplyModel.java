@@ -11,18 +11,18 @@ public class ReplyModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer replyID;
+    private Integer replyID;
 
     @Column(name = "reply_text")
-    String reply_text;
+    private String reply_text;
 
 
     @Column(name = "userID")
-    Integer userID;
+    private Integer userID;
 
 
     @Column(name = "postID")
-    Integer postID;
+    private Integer postID;
 
     public ReplyModel(){
 
@@ -51,7 +51,7 @@ public class ReplyModel {
         this.reply_text = reply_text;
     }
 
-    public Integer getUserID() {
+    public Integer getReplyByUserID() {
         return userID;
     }
 

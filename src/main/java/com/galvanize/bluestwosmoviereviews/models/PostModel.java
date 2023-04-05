@@ -9,19 +9,19 @@ public class PostModel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    Integer postID;
+    private Integer postID;
 
     @Column(name = "post_title")
-    String post_title;
+    private String post_title;
 
     @Column(name = "post_text")
-    String post_text;
+    private String post_text;
 
     @Column(name = "userID")
-    Integer userID;
+    private Integer userID;
 
     @Column(name = "categoryID")
-    Integer categoryID;
+    private Integer categoryID;
 
     public PostModel() {
     }
