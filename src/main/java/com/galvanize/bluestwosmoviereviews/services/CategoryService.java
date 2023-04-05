@@ -4,7 +4,9 @@ import com.galvanize.bluestwosmoviereviews.data.CategoryRepository;
 import com.galvanize.bluestwosmoviereviews.data.ReplyRepository;
 import com.galvanize.bluestwosmoviereviews.models.CategoryModel;
 import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CategoryService {
 
 

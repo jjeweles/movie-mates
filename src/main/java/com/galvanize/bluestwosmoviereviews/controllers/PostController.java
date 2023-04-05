@@ -21,9 +21,9 @@ public class PostController {
     ReplyService replyService;
     CategoryService categoryService;
 
-    public PostController(){
-
-    }
+//    public PostController(){
+//
+//    }
 
     public PostController(PostService postService, ReplyService replyService, CategoryService categoryService){
         this.postService = postService;
@@ -62,44 +62,50 @@ public class PostController {
 
     /// ----- REPLY ENDPOINTS ----- \\\
 
-//    @GetMapping("posts/reply")
-//    public Iterable<ReplyModel> getAllReplies(){
-//        return replyService.getAllReplies();
-//    }
-//
-//    @GetMapping("posts/reply/{userID}")
-//    public ResponseEntity<ReplyModel> getReplyByID(@PathVariable Integer userID){
-//        ReplyModel reply = replyService.getReplyByID(userID);
-//
-//        return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
-//    }
-//    @GetMapping("posts/reply/{postID}")
-//    public ResponseEntity <List<ReplyModel>> findReplyByPostID(@PathVariable Integer postID){
-//        List<ReplyModel> reply = (List<ReplyModel>) replyService.findReplyByPostID(postID);
-//
-//        return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
-//    }
-//
-//    @PostMapping("posts/reply/{postID}")
-//    public ReplyModel addReply(@PathVariable Integer postID, @RequestBody ReplyModel reply){
-//        return replyService.addPost(reply);
-//    }
-//
-//    @PostMapping("posts/reply/{replyID}")
-//    public ReplyModel addReplyToReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply){
-//        return replyService.addPost(reply);
-//    }
-//
-//    @PutMapping("posts/{replyID}")
-//    public ReplyModel updateReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply){
-//        return replyService.updateReply(replyID, reply);
-//    }
-//
-//    @DeleteMapping("posts/{replyID}")
-//    public ResponseEntity<ReplyModel> deleteReply(@PathVariable Integer replyID){
-//        ReplyModel deletePost = replyService.deletePost(replyID);
-//        return deletePost == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletePost);
-//    }
+    @GetMapping("posts/reply")
+    public Iterable<ReplyModel> getAllReplies(){
+        return replyService.getAllReplies();
+    }
+
+    @GetMapping("posts/reply/user/{userID}")
+    public ResponseEntity<List<ReplyModel>> getReplyByID(@PathVariable Integer userID){
+        List<ReplyModel> reply = replyService.getReplyByUserID(userID);
+
+        return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
+    }
+    @GetMapping("posts/reply/post/{postID}")
+    public ResponseEntity <List<ReplyModel>> findReplyByPostID(@PathVariable Integer postID){
+        List<ReplyModel> reply = replyService.findReplyByPostID(postID);
+
+        return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
+    }
+
+
+    @PostMapping("posts/reply")
+    public ReplyModel addReply(@RequestBody ReplyModel reply){
+        return replyService.addReply(reply);
+    }
+
+    @PostMapping("posts/reply/post/{postID}")
+    public ReplyModel addReply(@PathVariable Integer postID, @RequestBody ReplyModel reply){
+        return replyService.addReply(reply);
+    }
+
+    @PostMapping("posts/reply/{replyID}")
+    public ReplyModel addReplyToReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply){
+        return replyService.addReply(reply);
+    }
+
+    @PutMapping("posts/reply/{replyID}")
+    public ReplyModel updateReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply){
+        return replyService.updateReply(replyID, reply);
+    }
+
+    @DeleteMapping("posts/reply/{replyID}")
+    public ResponseEntity<ReplyModel> deleteReply(@PathVariable Integer replyID){
+        ReplyModel deletePost = replyService.deletePost(replyID);
+        return deletePost == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletePost);
+    }
 
 
     /// ----- CATEGORY ENDPOINTS ----- \\\

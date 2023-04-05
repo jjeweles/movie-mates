@@ -4,7 +4,11 @@ import com.galvanize.bluestwosmoviereviews.data.PostRepository;
 import com.galvanize.bluestwosmoviereviews.data.ReplyRepository;
 import com.galvanize.bluestwosmoviereviews.models.PostModel;
 import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
+
+@Service
 public class ReplyService {
 
 
@@ -18,11 +22,14 @@ public class ReplyService {
         return replyRepository.findAll();
     }
 
-    public ReplyModel getReplyByID(Integer userID){
+    public List<ReplyModel> getReplyByUserID(Integer userID){
         return replyRepository.findReplyByUserID(userID);
     }
+    public List<ReplyModel> findReplyByPostID(Integer postID) {
+        return replyRepository.findReplyByPostID(postID);
+    }
 
-    public ReplyModel addPost(ReplyModel reply){
+    public ReplyModel addReply(ReplyModel reply){
         return replyRepository.save(reply);
     }
 
@@ -45,7 +52,5 @@ public class ReplyService {
         return replyToDelete;
     }
 
-    public ReplyModel findReplyByPostID(Integer postID) {
-        return replyRepository.findReplyByPostID(postID);
-    }
+
 }
