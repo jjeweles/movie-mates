@@ -6,16 +6,13 @@ function Register() {
     const [users, setUsers] = useState<any[]>([]);
 
     useEffect(() => {
-
         const getUsers = async () => {
             const response = await fetch('http://localhost:8080/api/v1/users');
             const data = await response.json();
             setUsers(data)
         }
-
         getUsers().then(() => null);
     }, []);
-
 
     const handleRegister = async (e: any) => {
         e.preventDefault();
@@ -43,7 +40,10 @@ function Register() {
             },
             body: JSON.stringify(data)
         })
-        window.location.href = '/login';
+        setTimeout(() => {
+            window.location.href = '/login';
+        }, 3000);
+        toast.success('Registration successful! Redirecting to login page...')
     }
 
 
