@@ -22,12 +22,20 @@ public class FriendsListController {
         this.friendsListService = friendsListService;
     }
 
+    @GetMapping("/friendsList/get")
+    public ResponseEntity<List<FriendsListModel>> getAllFriends() {
+
+        List<FriendsListModel> ratings = friendsListService.getAllFriends();
+        return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);
+    }
+
     @GetMapping("/friendsList/{userId}/get")
     public ResponseEntity<List<FriendsListModel>> getFriendsList(@PathVariable Integer userId)
     {
         List<FriendsListModel> friends = friendsListService.getFriendsListByID(userId);
         return friends == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(friends);
     }
+
     @GetMapping("/friendsList/{userId}/{friendId}/get")
     public ResponseEntity<FriendsListModel> getFriend(@PathVariable Integer userId,
                                                             @PathVariable Integer friendId)
@@ -41,10 +49,13 @@ public class FriendsListController {
     {
         List<FriendsListModel> friendList = friendsListService.getFriendsListByID(newFriend.getUserId());
 
-        if(friendList.contains(newFriend))
+        for (FriendsListModel e : friendList)
         {
-                return null;
+                if (e.getFriendId().equals(newFriend.getFriendId())) {
+                    return ResponseEntity.badRequest().build();
+                }
         }
+
         FriendsListModel friends = friendsListService.addFriend(newFriend);
         return new ResponseEntity<>(friends, HttpStatus.CREATED);
     }
@@ -54,6 +65,7 @@ public class FriendsListController {
                                                          @PathVariable Integer friendId)
     {
         List<FriendsListModel> friendList = friendsListService.getFriendsListByID(userId);
+
         for(FriendsListModel checkForFriend: friendList)
         {
 
@@ -62,7 +74,6 @@ public class FriendsListController {
                 return ResponseEntity.accepted().build();
             }
         }
-        return null;
+        return ResponseEntity.noContent().build();
     }
-
 }

@@ -10,11 +10,11 @@ import java.util.List;
 public class FriendsListService {
     private final FriendsListRepository friendsListRepository;
 
-
     public FriendsListService(FriendsListRepository friendsListRepository)
     {
         this.friendsListRepository = friendsListRepository;
     }
+
     public List<FriendsListModel> getFriendsListByID(Integer userId) {
         return friendsListRepository.findByUserId(userId);
     }
@@ -30,7 +30,11 @@ public class FriendsListService {
 
     public void deleteByFriendID(Integer userId, Integer friendId)
     {
-        FriendsListModel friendsListModel = new FriendsListModel(userId, friendId);
+        FriendsListModel friendsListModel = friendsListRepository.findByUserIdAndFriendId(userId, friendId);
         friendsListRepository.delete(friendsListModel);
+    }
+
+    public List<FriendsListModel> getAllFriends() {
+        return friendsListRepository.findAll();
     }
 }
