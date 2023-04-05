@@ -7,24 +7,23 @@ import javax.persistence.*;
 public class FriendsListModel {
 
     @Id
-    @Column(name = "user_Id")
-    Integer userId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    Integer friendsListId;
     @Column(name = "friend_Id")
     Integer friendId;
+
+    @Column(name = "user_Id")
+    Integer userId;
 
     public FriendsListModel() {
     }
 
-    public FriendsListModel(FriendsListModel newFriend)
-    {
-        this.userId = newFriend.getUserId();
-        this.friendId = newFriend.getFriendId();
-    }
-    public FriendsListModel(Integer userId, Integer friendId)
-    {
+    public FriendsListModel(Integer userId, Integer friendId) {
         this.userId = userId;
         this.friendId = friendId;
     }
+
     public Integer getUserId() {
         return userId;
     }
@@ -41,5 +40,11 @@ public class FriendsListModel {
         this.friendId = friendId;
     }
 
+    public Integer getFriendsListId() {
+        return friendsListId;
+    }
 
+    public void setFriendsListId(Integer friendsListId) {
+        this.friendsListId = friendsListId;
+    }
 }
