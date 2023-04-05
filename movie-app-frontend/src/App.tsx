@@ -27,7 +27,8 @@ function App() {
                     <Route path="/popular" element={<Popular/>} />
                     <Route path="/nowplaying" element={<NowPlaying/>} />
                     <Route path="/toprated" element={<TopRated/>} />
-                    <Route path="/dashboard/:username" element={<Dashboard/>} />
+                    <Route path="/dashboard/:id" element={<Dashboard/>} />
+                    <Route path="/friends/:id" element={<Dashboard/>} />
                     <Route path="/login" element={<Login/>} />
                     <Route path="/register" element={<Register/>} />
                     <Route path="/recommend/:id" element={<Recommend/>} />

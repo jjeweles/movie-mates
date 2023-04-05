@@ -1,31 +1,34 @@
-import React, {Fragment, useEffect, useState} from 'react';
+import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import {getUserPosts, followFriend, unfollowFriend} from "../utils/utils";
 import Spinner from "../components/Spinner";
 import {toast, ToastContainer} from "react-toastify";
-import {faUser} from "@fortawesome/free-solid-svg-icons";
+import {faUser, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {BigHead} from "@bigheads/core";
 
 function Dashboard() {
     const [loading, setLoading] = useState(true);
     const [favList, setFavList] = useState<any[]>([]);
     const [watchList, setWatchList] = useState<any[]>([]);
     const [ratings, setRatings] = useState<any[]>([]);
+    const [friends, setFriends] = useState<any[]>([]);
     const { id } = useParams<{ id: string }>();
     const userID = localStorage.getItem("user_id");
+    let following = false;
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const userResponse = await fetch(`http://localhost:8080/api/v1/users/${userID}`);
+            const userResponse = await fetch(`http://localhost:8080/api/v1/users/${id}`);
             const userData = await userResponse.json();
             localStorage.setItem('username', userData.username);
             localStorage.setItem('name', userData.name);
             localStorage.setItem('email', userData.email);
-
         }
 
         const fetchWatchListData = async () => {
-            const watchListResponse = await fetch(`http://localhost:8080/api/v1/watchlist/${userID}`);
+            const watchListResponse = await fetch(`http://localhost:8080/api/v1/watchlist/${id}`);
             const watchListData = await watchListResponse.json();
             for (let i = 0; i < watchListData.length; i++) {
                 const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${watchListData[i].tmdbID}?api_key=52107296ca5b59d71cb74cfb9ed7f144`)
@@ -36,7 +39,7 @@ function Dashboard() {
         }
 
         const fetchFavData = async () => {
-            const favListResponse = await fetch(`http://localhost:8080/api/v1/favList/${userID}`);
+            const favListResponse = await fetch(`http://localhost:8080/api/v1/favList/${id}`);
             const favListData = await favListResponse.json();
             for (let i = 0; i < favListData.length; i++) {
                 const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${favListData[i].tmdbId}?api_key=52107296ca5b59d71cb74cfb9ed7f144`)
@@ -45,6 +48,15 @@ function Dashboard() {
             }
         }
 
+        const fetchFriendsList = async () => {
+            const friendsResponse = await fetch(`http://localhost:8080/api/v1/friendsList/${id}/get`);
+            const friendsData = await friendsResponse.json();
+            for (let i = 0; i < friendsData.length; i++) {
+                setFriends(friends => [...friends, friendsData[i]])
+            }
+        }
+
+        fetchFriendsList().then(() => null);
         fetchUserData().then(() => null);
         fetchFavData().then(() => null);
         fetchWatchListData().then(() => null);
@@ -81,18 +93,20 @@ function Dashboard() {
             })
         toast.success("Removing from favorites...")
     }
+    const divRef = useRef(null);
+
+    const gotoFriend = (e: any) => {
+        // @ts-ignore
+        const friendID = divRef.current.dataset.value;
+        window.location.href = `/friends/${friendID}`;
+    }
 
     const user = {
+        id: localStorage.getItem('user_id'),
         username: localStorage.getItem('username'),
         name: localStorage.getItem('name'),
         email: localStorage.getItem('email')
     }
-
-    // const history = [
-    //     { id: 1, title: 'Movie 1' },
-    //     { id: 2, title: 'Movie 2' },
-    //     // ... more movies
-    // ];
 
     if (loading) {
         return <Spinner/>
@@ -113,7 +127,7 @@ function Dashboard() {
                 }`}
             </style>
             <div className="flex flex-col text-center items-center sm:items-stretch sm:text-left sm:flex-row gap-10">
-                <div className="text-center sm:text-left w-64 h-fit p-6 text-white rounded-lg shadow-lg grid gap-3 bevel bg-gradient-to-r">
+                <div className="flex flex-col flex-wrap text-center sm:text-left w-3/4 sm:w-80 h-fit p-6 text-white rounded-lg shadow-lg grid gap-3 bevel bg-gradient-to-r">
                     <div className="flex items-center justify-center sm:justify-start mb-4">
                         <FontAwesomeIcon icon={faUser} className="text-4xl"/>
                         {/* @ts-ignore */ }
@@ -141,11 +155,72 @@ function Dashboard() {
                             <span>{ratings}</span>
                         </div>
                     </div>
+                    <div className=" border-b border-b-white p-2"/>
+                    <div className="flex items-center justify-center sm:justify-start mb-2">
+                        <h2 className="text-lg font-bold">Friend's List</h2>
+                    </div>
+                    <div className="flex gap-3 text-sm w-auto">
+                        {friends.map(friend => (
+                            <div className="w-20 hover:cursor-pointer" onClick={gotoFriend} ref={divRef} data-value={friend.friendId} key={friend.friendId}>
+                                <BigHead
+                                    accessory="none"
+                                    body="chest"
+                                    circleColor="blue"
+                                    clothing="dressShirt"
+                                    clothingColor="green"
+                                    eyebrows="serious"
+                                    eyes="wink"
+                                    faceMask={false}
+                                    faceMaskColor="red"
+                                    facialHair="none"
+                                    graphic="none"
+                                    hair="none"
+                                    hairColor="blue"
+                                    hat="beanie"
+                                    hatColor="white"
+                                    lashes
+                                    lipColor="turqoise"
+                                    mask
+                                    mouth="serious"
+                                    skinTone="light"
+                                />
+                            </div>
+                        ))}
+                    </div>
+                    <div className=" border-b border-b-white p-2"/>
+                        <div className="flex items-center justify-center sm:justify-start mb-2">
+                            <div className="flex gap-2 text-xs">
+                                {userID === id ? null : (
+                                    <>
+                                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2" value={id} onClick={followFriend}>
+                                            Follow
+                                        </button>
+                                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2" value={id} onClick={unfollowFriend}>
+                                            Unfollow
+                                        </button>
+                                    </>
+                                )}
+                                <button className="bg-stone-900 text-white rounded-lg px-4 py-2" value={id} onClick={getUserPosts}>
+                                    See Posts
+                                </button>
+                                <ToastContainer
+                                    position="top-center"
+                                    autoClose={3000}
+                                    hideProgressBar={false}
+                                    newestOnTop={false}
+                                    closeOnClick
+                                    rtl={false}
+                                    pauseOnFocusLoss={false}
+                                    draggable
+                                    theme="dark"
+                                />
+                            </div>
+                        </div>
                 </div>
                 <div className="flex flex-col gap-4 text-stone-400">
                     <div className="mb-6">
                         <h2 className="text-2xl font-bold mb-4">Watchlist</h2>
-                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1">
+                        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 px-1">
                             {watchList.map(movie => (
                                 <div className="bg-stone-900 rounded-lg p-3" key={movie.id}>
                                     <div className="flex flex-col items-center">
@@ -154,38 +229,31 @@ function Dashboard() {
                                                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
                                                 {/*<p className="absolute -top-1 -left-2 text-sm font-bold bg-blue-400 rounded-full w-max p-1 text-black">8.1</p>*/}
                                             </Link>
-                                            <button
-                                                onClick={handleWatchlistRemove}
-                                                className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
-                                                <svg
-                                                    data-value={movie.id}
-                                                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                                                    <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
-                                                </svg>
-                                            </button>
-                                            <ToastContainer
-                                                position="top-center"
-                                                autoClose={3000}
-                                                hideProgressBar={false}
-                                                newestOnTop={false}
-                                                closeOnClick
-                                                rtl={false}
-                                                pauseOnFocusLoss={false}
-                                                draggable
-                                                theme="dark"
-                                            />
+                                            {user.id == id && (
+                                                <>
+                                                    <button
+                                                        onClick={handleWatchlistRemove}
+                                                        className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
+                                                        <svg
+                                                            data-value={movie.id}
+                                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+                                                        </svg>
+                                                    </button>
+                                                    <ToastContainer
+                                                        position="top-center"
+                                                        autoClose={3000}
+                                                        hideProgressBar={false}
+                                                        newestOnTop={false}
+                                                        closeOnClick
+                                                        rtl={false}
+                                                        pauseOnFocusLoss={false}
+                                                        draggable
+                                                        theme="dark"
+                                                    />
+                                                </>
+                                            )}
                                         </div>
-                                        {/*<div className="text-center flex flex-col">*/}
-                                        {/*    /!*<div className="">*!/*/}
-                                        {/*    /!*    <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>*!/*/}
-                                        {/*    /!*</div>*!/*/}
-                                        {/*    <div className="text-xs">*/}
-                                        {/*        <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700"*/}
-                                        {/*                value={movie.id} onClick={handleWatchlistRemove}>*/}
-                                        {/*            Remove*/}
-                                        {/*        </button>*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
                                     </div>
                                 </div>
                             ))}
@@ -202,77 +270,36 @@ function Dashboard() {
                                                 <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" className="rounded-lg static"/>
                                                 {/*<p className="absolute -bottom-1 -left-2 text-sm font-bold bg-blue-400 rounded-full w-max p-1 text-black">8.1</p>*/}
                                             </Link>
-                                            <button
-                                                onClick={handleFavlistRemove}
-                                                className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
-                                                <svg
-                                                    data-value={movie.id}
-                                                    xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
-                                                    <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
-                                                </svg>
-                                            </button>
-                                            <ToastContainer
-                                                position="top-center"
-                                                autoClose={3000}
-                                                hideProgressBar={false}
-                                                newestOnTop={false}
-                                                closeOnClick
-                                                rtl={false}
-                                                pauseOnFocusLoss={false}
-                                                draggable
-                                                theme="dark"
-                                            />
+                                            {user.id == id && (
+                                                <>
+                                                    <button
+                                                        onClick={handleFavlistRemove}
+                                                        className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
+                                                        <svg
+                                                            data-value={movie.id}
+                                                            xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
+                                                            <path d="M18.3 5.71a.996.996 0 0 0-1.41 0L12 10.59 7.11 5.7A.996.996 0 1 0 5.7 7.11L10.59 12 5.7 16.89a.996.996 0 1 0 1.41 1.41L12 13.41l4.89 4.89a.996.996 0 1 0 1.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"/>
+                                                        </svg>
+                                                    </button>
+                                                    <ToastContainer
+                                                        position="top-center"
+                                                        autoClose={3000}
+                                                        hideProgressBar={false}
+                                                        newestOnTop={false}
+                                                        closeOnClick
+                                                        rtl={false}
+                                                        pauseOnFocusLoss={false}
+                                                        draggable
+                                                        theme="dark"
+                                                    />
+                                                </>
+                                            )}
                                         </div>
-                                        {/*<div className="text-center flex flex-col">*/}
-                                        {/*    /!*<div className="">*!/*/}
-                                        {/*    /!*    <h1 className="sm:text-xs md:text-sm font-medium text-white">{movie.title}</h1>*!/*/}
-                                        {/*    /!*</div>*!/*/}
-                                        {/*    <div className="text-xs">*/}
-                                        {/*        <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-4 hover:bg-red-700"*/}
-                                        {/*                value={movie.id} onClick={handleFavlistRemove}>*/}
-                                        {/*            Remove*/}
-                                        {/*        </button>*/}
-                                        {/*        <ToastContainer*/}
-                                        {/*            position="top-center"*/}
-                                        {/*            autoClose={3000}*/}
-                                        {/*            hideProgressBar={false}*/}
-                                        {/*            newestOnTop={false}*/}
-                                        {/*            closeOnClick*/}
-                                        {/*            rtl={false}*/}
-                                        {/*            pauseOnFocusLoss={false}*/}
-                                        {/*            draggable*/}
-                                        {/*            theme="dark"*/}
-                                        {/*        />*/}
-                                        {/*    </div>*/}
-                                        {/*</div>*/}
                                     </div>
                                 </div>
                             ))}
                         </div>
                     </div>
-                    {/*<div className="mb-6">*/}
-                    {/*    <h2 className="text-2xl font-bold mb-4">History</h2>*/}
-                    {/*    <div className="flex gap-4">*/}
-                    {/*        {history.map(movie => (*/}
-                    {/*            <div className="bg-stone-900 rounded-lg shadow-lg p-3">*/}
-                    {/*                <div className="flex flex-col items-center">*/}
-                    {/*                    <div className="w-32 h-48 rounded-lg bg-gray-400 mb-4">*/}
-                    {/*                        <img src={"https://image.tmdb.org/t/p/w500/gOnmaxHo0412UVr1QM5Nekv1xPi.jpg"} alt="" className="rounded-lg static"/>*/}
-                    {/*                        /!*<div className="absolute -bottom-[184px] left-50 rounded-bl-lg rounded-tr-lg p-2">*!/*/}
-                    {/*                        /!*    <p className="text-sm font-bold bg-blue-400 rounded-full p-1 text-black">8.1</p>*!/*/}
-                    {/*                        /!*</div>*!/*/}
-                    {/*                    </div>*/}
-                    {/*                    <div className="text-center flex flex-col">*/}
-                    {/*                        <div className="">*/}
-                    {/*                            <h1 className="text-lg font-medium text-white">{movie.title}</h1>*/}
-                    {/*                            <p className="text-sm text-gray-400">Release Date</p>*/}
-                    {/*                        </div>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*        ))}*/}
-                    {/*    </div>*/}
-                    {/*</div>*/}
                 </div>
             </div>
         </Fragment>

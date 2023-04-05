@@ -57,3 +57,35 @@ export const handleRecommendation = (e: any) => {
     }, 2500);
     toast.info("Generating Recommendations");
 }
+
+export const followFriend = (e: any) => {
+    const data = {
+        userId: localStorage.getItem('user_id'),
+        friendId: e.target.value
+    }
+    axios.post(`http://localhost:8080/api/v1/friendsList/add`, data)
+        .then(res => {
+            const timer = setTimeout(() => {
+                window.location.href = `/dashboard/${data.userId}`
+            }, 2000);
+        })
+    toast.success("Following friend...")
+}
+
+export const unfollowFriend = (e: any) => {
+    const data = {
+        userId: localStorage.getItem('user_id'),
+        friendId: e.target.value
+    }
+    axios.delete(`http://localhost:8080/api/v1/friendsList/delete/${data.userId}/${data.friendId}`)
+        .then(res => {
+            const timer = setTimeout(() => {
+                window.location.href = `/dashboard/${data.userId}`
+            }, 2000);
+        })
+    toast.success("Unfollowing friend...")
+}
+
+export const getUserPosts = async () => {
+    console.log("Getting user posts...")
+}
