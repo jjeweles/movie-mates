@@ -89,3 +89,19 @@ export const unfollowFriend = (e: any) => {
 export const getUserPosts = async () => {
     console.log("Getting user posts...")
 }
+
+export const addRating = async (e: any) => {
+    const data = {
+        userID: localStorage.getItem('user_id'),
+        starRating: e.currentTarget.getAttribute('data-rating'),
+        tmdbId: e.currentTarget.getAttribute('data-movieid')
+    }
+    axios.post(`http://localhost:8080/api/v1/rating/save`, data)
+        .then(res => {
+                const timer = setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
+            }
+        )
+    toast.success("Rating added...")
+}
