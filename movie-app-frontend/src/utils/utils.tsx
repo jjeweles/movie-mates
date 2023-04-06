@@ -63,6 +63,11 @@ export const followFriend = (e: any) => {
         userId: localStorage.getItem('user_id'),
         friendId: e.target.value
     }
+
+    if (data.userId == data.friendId) {
+        return toast.error("You can't follow yourself");
+    }
+
     axios.post(`http://localhost:8080/api/v1/friendsList/add`, data)
         .then(res => {
             const timer = setTimeout(() => {
