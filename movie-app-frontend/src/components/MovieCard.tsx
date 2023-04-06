@@ -34,7 +34,8 @@ function MovieCard() {
               <div className="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                   <div className="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
                       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4">
-                          {movies.map((movie: any) => (
+
+
                               <div className="container">
                                   <div className="cellphone-container">
                                       <div className="movie">
@@ -90,7 +91,8 @@ function MovieCard() {
                                       </div>
                                   </div>
                               </div>
-                            ))}
+
+
                       </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from "react";
 import Spinner from "../components/Spinner";
 import {followFriend} from "../utils/utils";
 import {ToastContainer} from "react-toastify";
+import {Link} from "react-router-dom";
 
 function Users() {
 
@@ -55,7 +56,9 @@ function Users() {
                 {users.map((user: any) => (
                     <tr className="bg-white border-b dark:bg-stone-800 dark:border-stone-700" key={user.userID}>
                         <th scope="row" className="px-6 py-4 font-medium text-stone-900 whitespace-nowrap dark:text-white">
-                            {user.username}
+                            <Link to={`/dashboard/${user.userID}`}>
+                                {user.username}
+                            </Link>
                         </th>
                         <td className="px-6 py-4">
                             {user.name}

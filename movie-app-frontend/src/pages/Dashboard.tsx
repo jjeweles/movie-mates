@@ -1,6 +1,7 @@
 import React, {Fragment, useEffect, useRef, useState} from 'react';
 import {Link, useParams} from "react-router-dom";
 import axios from "axios";
+import {getRandomOptions} from "../utils/bigheads";
 import {getUserPosts, followFriend, unfollowFriend} from "../utils/utils";
 import Spinner from "../components/Spinner";
 import {toast, ToastContainer} from "react-toastify";
@@ -93,11 +94,9 @@ function Dashboard() {
             })
         toast.success("Removing from favorites...")
     }
-    const divRef = useRef(null);
 
     const gotoFriend = (e: any) => {
-        // @ts-ignore
-        const friendID = divRef.current.dataset.value;
+        const friendID = e.currentTarget.getAttribute('data-value');
         window.location.href = `/friends/${friendID}`;
     }
 
@@ -159,31 +158,11 @@ function Dashboard() {
                     <div className="flex items-center justify-center sm:justify-start mb-2">
                         <h2 className="text-lg font-bold">Friend's List</h2>
                     </div>
-                    <div className="flex gap-3 text-sm w-auto">
+                    <div className="flex gap-3 text-sm mb-2">
                         {friends.map(friend => (
-                            <div className="w-20 hover:cursor-pointer" onClick={gotoFriend} ref={divRef} data-value={friend.friendId} key={friend.friendId}>
-                                <BigHead
-                                    accessory="none"
-                                    body="chest"
-                                    circleColor="blue"
-                                    clothing="dressShirt"
-                                    clothingColor="green"
-                                    eyebrows="serious"
-                                    eyes="wink"
-                                    faceMask={false}
-                                    faceMaskColor="red"
-                                    facialHair="none"
-                                    graphic="none"
-                                    hair="none"
-                                    hairColor="blue"
-                                    hat="beanie"
-                                    hatColor="white"
-                                    lashes
-                                    lipColor="turqoise"
-                                    mask
-                                    mouth="serious"
-                                    skinTone="light"
-                                />
+                            <div className="w-16 h-10 p-1 rounded-full hover:cursor-pointer" onClick={gotoFriend} data-value={friend.friendId} key={friend.friendId}>
+                                {/* @ts-ignore  */}
+                                <BigHead {...getRandomOptions()}/>
                             </div>
                         ))}
                     </div>
@@ -233,7 +212,7 @@ function Dashboard() {
                                                 <>
                                                     <button
                                                         onClick={handleWatchlistRemove}
-                                                        className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
+                                                        className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-700 transition ease-in-out duration-200">
                                                         <svg
                                                             data-value={movie.id}
                                                             xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">
@@ -274,7 +253,7 @@ function Dashboard() {
                                                 <>
                                                     <button
                                                         onClick={handleFavlistRemove}
-                                                        className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-900 transition ease-in-out duration-200">
+                                                        className="absolute -top-4 -right-4 text-sm font-bold bg-stone-400 rounded-full w-max p-1 text-black hover:bg-red-700 transition ease-in-out duration-200">
                                                         <svg
                                                             data-value={movie.id}
                                                             xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24">

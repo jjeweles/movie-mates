@@ -83,11 +83,16 @@ function Movie() {
                     <div className="flex flex-row flex-wrap gap-3">
                         {movie.genres.map((genre: any) => (
                             <span
-                                className="text-stone-200 text-xs lg:text-md lg:mb-4 bg-white/30 p-2 rounded-full"
-                                key={genre.name}
-                            >
+                                key={genre.id}
+                                className="bg-gray-100 text-gray-800 text-xs font-medium px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300">
                                 {genre.name}
                             </span>
+                            // <span
+                            //     className="text-stone-200 text-xs lg:text-md lg:mb-4 bg-white/30 p-2 rounded-full"
+                            //     key={genre.name}
+                            // >
+                            //     {genre.name}
+                            // </span>
                         ))}
                     </div>
                     {providers && providers.flatrate && providers.flatrate.length > 0 && (
