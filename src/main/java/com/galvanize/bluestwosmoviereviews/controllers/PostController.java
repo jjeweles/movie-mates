@@ -32,10 +32,8 @@ public class PostController {
     }
 
     @GetMapping("posts/userposts/{userID}")
-    public ResponseEntity<PostModel> getPostsByID(@PathVariable Integer userID){
-        PostModel post = postService.getPostsByID(userID);
-
-        return post == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(post);
+    public List<PostModel> getPostsByUserID(@PathVariable Integer userID){
+        return postService.getPostsByID(userID);
     }
 
     @GetMapping("posts/findpost/{postID}")

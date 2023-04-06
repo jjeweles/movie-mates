@@ -86,8 +86,8 @@ export const unfollowFriend = (e: any) => {
     toast.success("Unfollowing friend...")
 }
 
-export const getUserPosts = async () => {
-    console.log("Getting user posts...")
+export const getUserPosts = async (e: any) => {
+    window.location.href = `/community/user/${e.currentTarget.value}`
 }
 
 export const addRating = async (e: any) => {

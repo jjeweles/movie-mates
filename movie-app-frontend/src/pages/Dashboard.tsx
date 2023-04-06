@@ -155,7 +155,7 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className=" border-b border-b-white p-2"/>
-                    <div className="flex items-center justify-center sm:justify-start mb-2">
+                    <div className="flex items-center justify-center sm:justify-start">
                         <h2 className="text-lg font-bold">Friend's List</h2>
                     </div>
                     <div className="flex gap-3 text-sm mb-2">

@@ -20,7 +20,7 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public PostModel getPostsByID(Integer userID){
+    public List<PostModel> getPostsByID(Integer userID){
         return postRepository.findPostsByUserID(userID);
     }
 
