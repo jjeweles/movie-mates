@@ -7,6 +7,10 @@ export const handleWatchList = async (e: any) => {
         userID: localStorage.getItem('user_id')
     }
 
+    if (localStorage.getItem('user_id') == null) {
+        return toast.error("Please login to add to Watch List");
+    }
+
     const response = await fetch(`http://localhost:8080/api/v1/watchlist/${data.userID}`)
     const watchList = await response.json();
 
@@ -30,6 +34,10 @@ export const handleFavList = async (e: any) => {
     const data = {
         tmdbId: e.target.value,
         userID: localStorage.getItem('user_id')
+    }
+
+    if (localStorage.getItem('user_id') == null) {
+        return toast.error("Please login to add to Favorites");
     }
 
     const response = await fetch(`http://localhost:8080/api/v1/favList/${data.userID}`)
