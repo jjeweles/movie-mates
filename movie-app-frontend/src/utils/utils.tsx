@@ -8,7 +8,8 @@ export const handleWatchList = async (e: any) => {
     }
 
     if (localStorage.getItem('user_id') == null) {
-        return toast.error("Please login to add to Watch List");
+        toast.error("Please login to add to Watch List");
+        return window.location.href = '/login';
     }
 
     const response = await fetch(`http://localhost:8080/api/v1/watchlist/${data.userID}`)
@@ -37,7 +38,8 @@ export const handleFavList = async (e: any) => {
     }
 
     if (localStorage.getItem('user_id') == null) {
-        return toast.error("Please login to add to Favorites");
+        toast.error("Please login to add to Favorites");
+        return window.location.href = '/login';
     }
 
     const response = await fetch(`http://localhost:8080/api/v1/favList/${data.userID}`)
@@ -73,7 +75,8 @@ export const followFriend = (e: any) => {
     }
 
     if (data.userId == data.friendId) {
-        return toast.error("You can't follow yourself");
+        toast.error("You can't follow yourself");
+        return window.location.reload();
     }
 
     axios.post(`http://localhost:8080/api/v1/friendsList/add`, data)
