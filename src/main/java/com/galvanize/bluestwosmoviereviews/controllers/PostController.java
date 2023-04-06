@@ -1,6 +1,7 @@
 package com.galvanize.bluestwosmoviereviews.controllers;
 
 
+import com.galvanize.bluestwosmoviereviews.models.CategoryModel;
 import com.galvanize.bluestwosmoviereviews.models.PostModel;
 import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
 import com.galvanize.bluestwosmoviereviews.services.CategoryService;
@@ -21,9 +22,6 @@ public class PostController {
     ReplyService replyService;
     CategoryService categoryService;
 
-//    public PostController(){
-//
-//    }
 
     public PostController(PostService postService, ReplyService replyService, CategoryService categoryService){
         this.postService = postService;
@@ -109,5 +107,32 @@ public class PostController {
 
 
     /// ----- CATEGORY ENDPOINTS ----- \\\
+
+    @GetMapping("posts/category")
+    public Iterable<CategoryModel> getAllCategories(){
+        return categoryService.findAllCategories();
+    }
+
+    @GetMapping("posts/category/{categoryID}")
+    public ResponseEntity <CategoryModel> findCategoryByID(@PathVariable Integer categoryID){
+        CategoryModel reply = categoryService.findCategoryByCategoryID(categoryID);
+
+        return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
+    }
+    @PostMapping("posts/category")
+    public CategoryModel addCategory(@RequestBody CategoryModel category){
+        return categoryService.addCategory(category);
+    }
+
+    @PutMapping("posts/category/{categoryID}")
+    public CategoryModel updateCategory(@PathVariable Integer categoryID, @RequestBody CategoryModel category){
+        return categoryService.updateCategory(categoryID, category);
+    }
+
+    @DeleteMapping("posts/category/{categoryID}")
+    public ResponseEntity<CategoryModel> deleteCategory(@PathVariable Integer categoryID){
+        CategoryModel deleteCategory = categoryService.deleteCategoryByCategoryID(categoryID);
+        return deleteCategory == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deleteCategory);
+    }
 
 }
