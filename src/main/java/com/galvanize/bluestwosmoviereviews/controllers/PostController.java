@@ -34,11 +34,18 @@ public class PostController {
         return postService.getAllPosts();
     }
 
-    @GetMapping("posts/{userID}")
+    @GetMapping("posts/userposts/{userID}")
     public ResponseEntity<PostModel> getPostsByID(@PathVariable Integer userID){
         PostModel post = postService.getPostsByID(userID);
 
         return post == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(post);
+    }
+
+    @GetMapping("posts/findpost/{postID}")
+    public ResponseEntity <PostModel> findPostsByPostID(@PathVariable Integer postID){
+        PostModel reply = postService.getPostsByID(postID);
+
+        return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
 
     @PostMapping("posts/add")

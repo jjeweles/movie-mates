@@ -5,6 +5,8 @@ import com.galvanize.bluestwosmoviereviews.models.PostModel;
 import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class PostService {
 
