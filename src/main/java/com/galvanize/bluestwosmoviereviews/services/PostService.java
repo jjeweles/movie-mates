@@ -48,4 +48,7 @@ public class PostService {
         return postToDelete;
     }
 
+    public PostModel getPostsByPostID(Integer postID) {
+        return postRepository.findPostsByPostID(postID);
+    }
 }

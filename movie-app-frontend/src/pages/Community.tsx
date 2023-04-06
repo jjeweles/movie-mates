@@ -8,14 +8,15 @@ function Community() {
 
     const [loading, setLoading] = useState(true);
     const [posts, setPosts] = useState([]);
+    const [replies, setReplies] = useState([]);
 
     useEffect(() => {
         fetch("http://localhost:8080/api/v1/posts")
             .then(response => response.json())
             .then(data => {
                 setPosts(data.sort().reverse());
-                setLoading(false);
             })
+            .finally(() => setLoading(false));
 
     }, []);
 
@@ -35,19 +36,17 @@ function Community() {
                         |
                         <button className="hover:font-bold text-white">oldest</button>
                         |
-                        <button className="hover:font-bold text-white">submit</button>
+                        <Link to="/community/post" className="hover:font-bold text-white">submit</Link>
                     </div>
                 </div>
                 {posts.map((post: any) => (
                 <div className="flex flex-col gap-1.5 text-sm p-2" key={post.postID}>
                     <div className="flex gap-1.5">
                         <span className="font-bold text-stone-400 mr-1">{post.postID}</span>
-                        <Link to="/community/1">{post.post_title}</Link>
+                        <Link to={`/community/${post.postID}`}>{post.post_title}</Link>
                     </div>
                     <div className="flex gap-1.5 text-stone-400 text-xs ml-5">
-                        <Link to="/dashboard/1">by {post.userID}</Link>
-                        |
-                        <Link to="/community/1">comments</Link>
+                        <Link to={`/dashboard/${post.userID}`}>by {post.userID}</Link>
                     </div>
                 </div>
                 ))}

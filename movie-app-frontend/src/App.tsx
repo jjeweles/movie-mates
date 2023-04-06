@@ -16,6 +16,7 @@ import MovieCard from "./components/MovieCard";
 import Community from "./pages/Community";
 import Post from "./pages/Post";
 import Users from "./pages/Users";
+import CommunityPost from "./pages/CommunityPost";
 
 function App() {
 
@@ -39,6 +40,7 @@ function App() {
                     <Route path="/community" element={<Community/>} />
                     <Route path="/users/" element={<Users/>} />
                     <Route path="/community/:id" element={<Post/>} />
+                    <Route path="/community/post" element={<CommunityPost/>} />
                     <Route path="*" element={<h1 className="text-white">404: Not Found</h1>} />
                 </Routes>
                 <Footer />

@@ -43,7 +43,7 @@ public class PostController {
 
     @GetMapping("posts/findpost/{postID}")
     public ResponseEntity <PostModel> findPostsByPostID(@PathVariable Integer postID){
-        PostModel reply = postService.getPostsByID(postID);
+        PostModel reply = postService.getPostsByPostID(postID);
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
@@ -96,8 +96,8 @@ public class PostController {
         return replyService.addReply(reply);
     }
 
-    @PostMapping("posts/reply/{replyID}")
-    public ReplyModel addReplyToReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply){
+    @PostMapping("posts/reply/")
+    public ReplyModel addReplyToReply(@RequestBody ReplyModel reply){
         return replyService.addReply(reply);
     }
 
