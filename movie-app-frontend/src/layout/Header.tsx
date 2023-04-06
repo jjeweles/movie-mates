@@ -37,11 +37,12 @@ function Header() {
                                 </Link>
                             </div>
                             <div className="hidden sm:block sm:ml-6">
-                                <div className="flex space-x-4">
+                                <div className="flex space-x-2">
                                     <Link to="/popular" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Popular</Link>
                                     <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Now Playing</Link>
                                     <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Top Rated</Link>
                                     <Link to="/community" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Community</Link>
+                                    <Link to="/users" className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Users</Link>
                                     {userID && userID !== "undefined" ?
                                         <Link to={`/dashboard/${userID}`} className="text-stone-300 hover:bg-stone-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Dashboard</Link>
                                         : null}
@@ -73,7 +74,7 @@ function Header() {
 
                                 <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} sm:hidden bg-stone-800 p-4 rounded-lg transition duration-300 ease-in-out`} id="mobile-menu">
                                     <div className="w-screen h-screen text-center px-2 space-y-10 z-50 relative divide-y divide-y-reverse divide-dashed">
-                                        <Link to="/" className="text-left text-blue-200 hover:bg-stone-700 hover:text-white block ml-6 rounded-md text-xl font-medium" onClick={closeMobileMenu}>
+                                        <Link to="/" className="w-fit text-left hover:bg-stone-700 hover:text-white block ml-6 rounded-md text-xl font-medium" onClick={closeMobileMenu}>
                                             <svg className="h-8 w-8 text-white" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                                 <path fillRule="evenodd" d="M2.5 3.5a.5.5 0 01.5-.5h13a.5.5 0 01.5.5v13a.5.5 0 01-.5.5h-13a.5.5 0 01-.5-.5v-13zm1 0v13h13v-13h-13z" clipRule="evenodd" />
                                                 <path fillRule="evenodd" d="M6.5 6.5a.5.5 0 01.5-.5h6a.5.5 0 01.5.5v6a.5.5 0 01-.5.5h-6a.5.5 0 01-.5-.5v-6zm1 0v6h6v-6h-6z" clipRule="evenodd" />
@@ -83,6 +84,7 @@ function Header() {
                                         <Link to="/nowplaying" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Now Playing</Link>
                                         <Link to="/toprated" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Top Rated</Link>
                                         <Link to="/community" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Community</Link>
+                                        <Link to="/users" className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Users</Link>
                                         {userID && userID !== "undefined" ?
                                             <Link to={`/dashboard/${userID}`} className="text-stone-300 hover:bg-stone-700 hover:text-white block ml-10 px-3 py-2 rounded-md text-2xl font-medium" onClick={closeMobileMenu}>Dashboard</Link>
                                             : null}

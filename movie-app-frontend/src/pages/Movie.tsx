@@ -47,8 +47,6 @@ function Movie() {
         }, 1000);
     }, []);
 
-    console.log(providers);
-
     const handleShowVideo = () => {
         setShowVideo(!showVideo);
     }

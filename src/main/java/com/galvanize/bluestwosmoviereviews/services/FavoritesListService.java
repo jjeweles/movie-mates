@@ -18,6 +18,7 @@ public class FavoritesListService {
     EntityManager entityManager;
 
     private final FavoritesListRepository favoritesRepository;
+
     @Autowired
     FavoritesListService(FavoritesListRepository favoritesRepository) {
         this.favoritesRepository = favoritesRepository;
@@ -26,10 +27,12 @@ public class FavoritesListService {
     public List<FavoritesListModel> getFavoritesListByID(Integer userID) {
             return favoritesRepository.findByUserID(userID);
     }
+
     public FavoritesListModel getFavs(Integer userId, Integer tmdbId) {
         FavoritesListModel favoritesListModel = new FavoritesListModel(userId, tmdbId);
         return favoritesRepository.save(favoritesListModel);
     }
+
     public void deleteByTmbdId(Integer userId, Integer tmdbId) {
         FavoritesListModel modelToDelete = favoritesRepository.findByUserIDAndTmdbId(userId, tmdbId);
         favoritesRepository.delete(modelToDelete);

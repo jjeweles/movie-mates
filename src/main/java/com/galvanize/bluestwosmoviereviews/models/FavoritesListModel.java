@@ -21,6 +21,7 @@ public class FavoritesListModel {
         this.tmdbId = tmdbId;
         this.userID = userID;
     }
+
     public int getFavoritesID() {
         return favoritesID;
     }

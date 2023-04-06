@@ -27,11 +27,13 @@ public class FavoritesListServiceTest {
 
     @Mock
     FavoritesListRepository favoritesListRepository;
+
     @BeforeEach
     void setUp()
     {
         favoritesListService = new FavoritesListService(favoritesListRepository);
     }
+
     @Test
     void getFavoritesListByUserId()
     {

@@ -17,6 +17,7 @@ import java.util.Optional;
 public class FavoritesListController {
 
     FavoritesListService favoritesListService;
+
     public FavoritesListController(FavoritesListService favoritesListService)
     {
         this.favoritesListService = favoritesListService;
@@ -28,13 +29,14 @@ public class FavoritesListController {
 
         return favorites == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(favorites);
     }
+
     @PostMapping("/favList/save/")
     public ResponseEntity<FavoritesListModel> addTmdbIdToFavesList(@RequestBody FavoritesListModel favoritesListModel)
     {
         FavoritesListModel newFavorite = favoritesListService.addNewFavorite(favoritesListModel);
         return new ResponseEntity<>(newFavorite, HttpStatus.CREATED);
     }
-    
+
     @DeleteMapping("/favList/delete/{userId}/{tmdbId}")
     public ResponseEntity<FavoritesListModel> deleteTmdbIdFromFavList(@PathVariable Integer userId, @PathVariable Integer tmdbId) {
 
