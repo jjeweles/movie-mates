@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useParams} from "react-router-dom";
-import {handleWatchList, handleFavList} from "../utils/utils";
+import {handleWatchList, handleFavList, addRating} from "../utils/utils";
 import {faXmark} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {ToastContainer} from "react-toastify";
@@ -12,7 +12,10 @@ function Movie() {
     const [trailer, setTrailer] = useState<any>([]);
     const [showVideo, setShowVideo] = useState(false);
     const [loading, setLoading] = useState(true);
+    const [modal, setModal] = useState(false);
     const [providers, setProviders] = useState<any>([]);
+    const [rating, setRating] = useState<any>([]);
+    const [ratings, setRatings] = useState<any>([]);
 
     useEffect(() => {
         const fetchMovieData = async () => {
@@ -38,9 +41,19 @@ function Movie() {
             setProviders(providerData.results.US);
         }
 
+        const fetchRating = async () => {
+            const ratingResponse = await fetch(`http://localhost:8080/api/v1/rating/getMovieAvgMovieRating/${id}`)
+            const ratingsResponse = await fetch(`http://localhost:8080/api/v1/rating/getRatingsForMovie/${id}`)
+            const ratingData = await ratingResponse.json();
+            const ratingsData = await ratingsResponse.json();
+            setRatings(ratingsData);
+            setRating(ratingData);
+        }
+
         fetchMovieData()
             .then(() => fetchTrailer())
             .then(() => fetchProviders())
+            .then(() => fetchRating())
 
         const timer = setTimeout(() => {
             setLoading(false);
@@ -50,6 +63,11 @@ function Movie() {
     const handleShowVideo = () => {
         setShowVideo(!showVideo);
     }
+
+    const handleStarClick = (e: any) => {
+        addRating(e).then(null);
+        setModal(false);
+    };
 
     const trailerURL = `https://www.youtube.com/embed/${trailer}`;
     const backgroundImg = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`
@@ -80,7 +98,7 @@ function Movie() {
                     <h3 className="font-bold text-2xl md:text-4xl lg:text-2xl text-gray-200 movie--title mb-2">
                         {movie.title} <span className="text-sm text-gray-400">({movie.release_date.split('-')[0]})</span>
                     </h3>
-                    <div className="flex flex-row flex-wrap gap-3">
+                    <div className="flex flex-row flex-wrap gap-3 mb-3">
                         {movie.genres.map((genre: any) => (
                             <span
                                 key={genre.id}
@@ -119,6 +137,72 @@ function Movie() {
                     <div className="flex-grow my-4">
                         <p className="text-base md:text-xl lg:text-base text-gray-100 leading-snug truncate-overflow">
                             {movie.overview}
+                        </p>
+                    </div>
+                    <div className="flex-grow mb-3">
+                        <p className="text-xs text-gray-100 leading-snug truncate-overflow">
+
+                            <div className="flex items-center">
+                                <svg aria-hidden="true" className="w-5 h-5 text-yellow-400" fill="currentColor"
+                                     viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><title>Rating star</title>
+                                    <path
+                                        d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                </svg>
+                                <p className="ml-2 text-sm font-bold text-gray-900 dark:text-white">
+                                    {isNaN(rating) ? 0 : rating - .25}
+                                </p>
+                                <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+                                <span
+                                   className="text-xs font-medium text-gray-300">
+                                    {ratings.length} Ratings
+                                </span>
+                                <span className="w-1 h-1 mx-1.5 bg-gray-500 rounded-full dark:bg-gray-400"></span>
+                                <button
+                                    onClick={() => setModal(true)}
+                                    className="text-xs font-medium text-gray-300 underline hover:text-white hover:font-bold">
+                                    Rate Movie
+                                </button>
+                            </div>
+                            {modal && (
+                                <div className="fixed z-10 inset-0 overflow-y-auto">
+                                    <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                                        <div className="fixed inset-0 bg-gray-500 bg-opacity-5 transition-opacity"
+                                             aria-hidden="true"></div>
+                                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                                        <div className="inline-block align-bottom bg-stone-800 rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full sm:p-6">
+                                            <h3 className="text-lg leading-6 font-medium text-gray-400">
+                                                Rate 1 - 5 stars
+                                            </h3>
+                                            <div className="mt-6 flex justify-center space-x-4">
+                                                {[1, 2, 3, 4, 5].map((star) => (
+                                                    <button key={star} className="w-8 h-8"
+                                                            data-movieid={movie.id}
+                                                            data-rating={star}
+                                                            onClick={handleStarClick}>
+                                                        <svg className="w-full h-full text-yellow-400" fill="currentColor">
+                                                            <title>Rating star</title>
+                                                            <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                                                        </svg>
+                                                    </button>
+                                                ))}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            )}
+                            <ToastContainer
+                                position="top-center"
+                                autoClose={3000}
+                                hideProgressBar={false}
+                                newestOnTop={false}
+                                closeOnClick
+                                rtl={false}
+                                pauseOnFocusLoss={false}
+                                draggable
+                                pauseOnHover
+                                theme="dark"
+                            />
+
                         </p>
                     </div>
                     <div className="button-container flex justify-between mb-2 mt-2 flex-col sm:flex-row sm:flex-wrap gap-1">
