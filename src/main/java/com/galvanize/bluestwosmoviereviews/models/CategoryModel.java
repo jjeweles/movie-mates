@@ -9,14 +9,14 @@ public class CategoryModel {
 
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    Integer categoryID;
+    private Integer categoryID;
 
 
     @Column(name = "userID")
-    Integer userID;
+    private Integer userID;
 
     @Column(name = "category_name")
-    String category_name;
+    private String category_name;
 
     public CategoryModel(){
 
@@ -34,6 +34,22 @@ public class CategoryModel {
 
     public void setCategory_name(String category_name) {
         this.category_name = category_name;
+    }
+
+    public Integer getCategoryID() {
+        return categoryID;
+    }
+
+    public void setCategoryID(Integer categoryID) {
+        this.categoryID = categoryID;
+    }
+
+    public Integer getUserID() {
+        return userID;
+    }
+
+    public void setUserID(Integer userID) {
+        this.userID = userID;
     }
 
     @Override
