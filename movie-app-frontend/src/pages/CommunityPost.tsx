@@ -30,11 +30,7 @@ function CommunityPost() {
                     <div className="flex gap-1.5">
                         <FontAwesomeIcon icon={faFilm} size="xl"/>
                         <span className="font-bold">Community</span>
-                        <button className="hover:font-bold text-white">newest</button>
-                        |
-                        <button className="hover:font-bold text-white">oldest</button>
-                        |
-                        <Link to="/community/post" className="hover:font-bold text-white">submit</Link>
+                        <Link to="/community/" className="hover:font-bold text-white">back to main</Link>
                     </div>
                 </div>
                 <div className="flex flex-col">
