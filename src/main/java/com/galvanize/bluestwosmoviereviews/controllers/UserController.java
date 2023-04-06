@@ -25,14 +25,12 @@ public class UserController {
     @GetMapping("users/{id}")
     public ResponseEntity<UserModel> getUserByID(@PathVariable Integer id) {
         UserModel user = userService.getUserByID(id);
-
         return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);
     }
 
     @GetMapping("users/get/{username}")
     public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {
         UserModel user = userService.getUserByUsername(username);
-
         return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);
     }
 
@@ -49,7 +47,6 @@ public class UserController {
     @DeleteMapping("users/{id}")
     public ResponseEntity<UserModel> deleteUser(@PathVariable Integer id) {
         UserModel deletedUser = userService.deleteUser(id);
-
         return deletedUser == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletedUser);
     }
 

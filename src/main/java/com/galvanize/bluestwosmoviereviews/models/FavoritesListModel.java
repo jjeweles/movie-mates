@@ -16,8 +16,7 @@ public class FavoritesListModel {
     public FavoritesListModel() {
     }
 
-    public FavoritesListModel(int tmdbId, int userID)
-    {
+    public FavoritesListModel(int tmdbId, int userID) {
         this.tmdbId = tmdbId;
         this.userID = userID;
     }
@@ -45,6 +44,7 @@ public class FavoritesListModel {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+
     @Override
     public int hashCode() {
         return Objects.hash(favoritesID, tmdbId, userID);

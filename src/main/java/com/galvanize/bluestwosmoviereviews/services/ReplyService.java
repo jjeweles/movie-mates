@@ -1,8 +1,6 @@
 package com.galvanize.bluestwosmoviereviews.services;
 
-import com.galvanize.bluestwosmoviereviews.data.PostRepository;
 import com.galvanize.bluestwosmoviereviews.data.ReplyRepository;
-import com.galvanize.bluestwosmoviereviews.models.PostModel;
 import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
 import org.springframework.stereotype.Service;
 
@@ -10,7 +8,6 @@ import java.util.List;
 
 @Service
 public class ReplyService {
-
 
     ReplyRepository replyRepository;
 
@@ -51,6 +48,4 @@ public class ReplyService {
         }
         return replyToDelete;
     }
-
-
 }

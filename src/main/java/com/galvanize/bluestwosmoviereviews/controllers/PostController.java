@@ -1,6 +1,5 @@
 package com.galvanize.bluestwosmoviereviews.controllers;
 
-
 import com.galvanize.bluestwosmoviereviews.models.CategoryModel;
 import com.galvanize.bluestwosmoviereviews.models.PostModel;
 import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
@@ -12,7 +11,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/")
@@ -21,7 +19,6 @@ public class PostController {
     PostService postService;
     ReplyService replyService;
     CategoryService categoryService;
-
 
     public PostController(PostService postService, ReplyService replyService, CategoryService categoryService){
         this.postService = postService;
@@ -44,7 +41,6 @@ public class PostController {
     @GetMapping("posts/findpost/{postID}")
     public ResponseEntity <PostModel> findPostsByPostID(@PathVariable Integer postID){
         PostModel reply = postService.getPostsByPostID(postID);
-
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
 
@@ -64,7 +60,6 @@ public class PostController {
         return deletePost == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletePost);
     }
 
-
     /// ----- REPLY ENDPOINTS ----- \\\
 
     @GetMapping("posts/reply")
@@ -78,13 +73,13 @@ public class PostController {
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
+
     @GetMapping("posts/reply/post/{postID}")
     public ResponseEntity <List<ReplyModel>> findReplyByPostID(@PathVariable Integer postID){
         List<ReplyModel> reply = replyService.findReplyByPostID(postID);
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
-
 
     @PostMapping("posts/reply")
     public ReplyModel addReply(@RequestBody ReplyModel reply){
@@ -112,7 +107,6 @@ public class PostController {
         return deletePost == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletePost);
     }
 
-
     /// ----- CATEGORY ENDPOINTS ----- \\\
 
     @GetMapping("posts/category")
@@ -126,6 +120,7 @@ public class PostController {
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
+
     @PostMapping("posts/category")
     public CategoryModel addCategory(@RequestBody CategoryModel category){
         return categoryService.addCategory(category);

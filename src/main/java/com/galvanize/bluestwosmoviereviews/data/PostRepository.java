@@ -6,10 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepository extends JpaRepository<PostModel, Integer> {
-
     PostModel findPostsByUserID(Integer userID);
-
     PostModel findPostsByPostID(Integer userID);
-
-
 }

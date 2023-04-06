@@ -30,12 +30,10 @@ public class PostService {
 
     public PostModel updatePost(Integer postID, PostModel post){
         PostModel postToUpdate = postRepository.findPostsByPostID(postID);
-
         if(postToUpdate != null){
             postToUpdate.setPost_title(post.getPost_title());
             postToUpdate.setPost_text(post.getPost_text());
         }
-
         assert postToUpdate != null;
         return postRepository.save(postToUpdate);
     }

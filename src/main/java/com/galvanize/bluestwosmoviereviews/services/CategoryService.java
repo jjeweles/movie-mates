@@ -11,7 +11,6 @@ import java.util.List;
 @Service
 public class CategoryService {
 
-
     CategoryRepository categoryRepository;
 
     public CategoryService(CategoryRepository categoryRepository){
@@ -59,6 +58,4 @@ public class CategoryService {
         assert categoryToUpdate != null;
         return categoryRepository.save(categoryToUpdate);
     }
-
-
 }

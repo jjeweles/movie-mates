@@ -11,7 +11,6 @@ public class CategoryModel {
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     private Integer categoryID;
 
-
     @Column(name = "userID")
     private Integer userID;
 
@@ -19,7 +18,6 @@ public class CategoryModel {
     private String category_name;
 
     public CategoryModel(){
-
     }
 
     public CategoryModel(Integer categoryID, Integer userID, String category_name) {

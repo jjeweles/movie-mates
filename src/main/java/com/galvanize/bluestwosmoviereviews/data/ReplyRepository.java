@@ -6,11 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<ReplyModel, Integer> {
-
     List<ReplyModel> findReplyByUserID(Integer userID);
     ReplyModel findReplyByReplyID(Integer replyID);
-    ReplyModel save(ReplyModel reply);
-
     void deleteReplyByReplyID(Integer replyID);
     List<ReplyModel> findReplyByPostID(Integer postID);
 }

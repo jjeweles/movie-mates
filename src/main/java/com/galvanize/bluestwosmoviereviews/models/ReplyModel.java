@@ -25,7 +25,6 @@ public class ReplyModel {
     private Integer postID;
 
     public ReplyModel(){
-
     }
 
     public ReplyModel(Integer replyID, String reply_text, Integer userID, Integer postID) {

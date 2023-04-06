@@ -18,22 +18,17 @@ public class RatingModel {
     @Column(name = "star_rating")
     private Integer starRating;
 
-//    @Column(name = "thumbs_up_or_down")
-//    private boolean thumbsUpOrDown;
-
     @Column(name = "userID")
     private int userID;
 
-    public RatingModel(Integer ratingId, Integer tmdbId, Integer starRating, boolean thumbsUpOrDown, int userID) {
+    public RatingModel(Integer ratingId, Integer tmdbId, Integer starRating, int userID) {
         this.ratingId = ratingId;
         this.tmdbId = tmdbId;
         this.starRating = starRating;
-//        this.thumbsUpOrDown = thumbsUpOrDown;
         this.userID = userID;
     }
 
     public RatingModel() {
-
     }
 
     public Integer getRatingId() {
@@ -59,14 +54,6 @@ public class RatingModel {
     public void setStarRating(int starRating) {
         this.starRating = starRating;
     }
-
-//    public boolean isThumbsUpOrDown() {
-//        return thumbsUpOrDown;
-//    }
-
-//    public void setThumbsUpOrDown(boolean thumbsUpOrDown) {
-//        this.thumbsUpOrDown = thumbsUpOrDown;
-//    }
 
     public int getUserID() {
         return userID;

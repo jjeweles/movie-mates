@@ -18,8 +18,7 @@ public class FavoritesListController {
 
     FavoritesListService favoritesListService;
 
-    public FavoritesListController(FavoritesListService favoritesListService)
-    {
+    public FavoritesListController(FavoritesListService favoritesListService) {
         this.favoritesListService = favoritesListService;
     }
 
@@ -31,8 +30,7 @@ public class FavoritesListController {
     }
 
     @PostMapping("/favList/save/")
-    public ResponseEntity<FavoritesListModel> addTmdbIdToFavesList(@RequestBody FavoritesListModel favoritesListModel)
-    {
+    public ResponseEntity<FavoritesListModel> addTmdbIdToFavesList(@RequestBody FavoritesListModel favoritesListModel) {
         FavoritesListModel newFavorite = favoritesListService.addNewFavorite(favoritesListModel);
         return new ResponseEntity<>(newFavorite, HttpStatus.CREATED);
     }
@@ -48,9 +46,7 @@ public class FavoritesListController {
     /* ###### For testing purposes only ###### */
     @DeleteMapping("/favList/deleteAll/{userId}")
     public ResponseEntity<FavoritesListModel> deleteAllFavList(@PathVariable Integer userId) {
-
         favoritesListService.deleteAll(userId);
-
         return ResponseEntity.accepted().build();
     }
 
