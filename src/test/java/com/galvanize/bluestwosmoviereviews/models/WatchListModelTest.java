@@ -11,6 +11,7 @@ class WatchListModelTest {
 
         WatchListModel watchList = new WatchListModel( 1, 2);
         assertEquals(2, watchList.getTmdbID());
-        assertEquals(3, watchList.getWatchlistID());
+        assertEquals(0, watchList.getWatchlistID());
+        assertEquals(1, watchList.getUserID());
     }
 }

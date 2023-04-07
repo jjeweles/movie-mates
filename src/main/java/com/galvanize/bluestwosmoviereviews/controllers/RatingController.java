@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/")
 public class RatingController {
 
-    RatingService ratingService;
+    private final RatingService ratingService;
 
     public RatingController(RatingService ratingService) {
         this.ratingService = ratingService;
