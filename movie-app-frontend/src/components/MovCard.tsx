@@ -2,6 +2,8 @@ import {Link} from "react-router-dom";
 import {ToastContainer} from "react-toastify";
 import {addRating, handleFavList, handleRecommendation, handleWatchList} from "../utils/utils";
 import React, {useState} from "react";
+import {faBookmark, faCheckCircle} from "@fortawesome/free-solid-svg-icons";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 function MovCard(props: any) {
     const {movie, ratings} = props;
@@ -21,9 +23,17 @@ function MovCard(props: any) {
                     </div>
 
                     <div className="text-xs">
-                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>Watch List</button>
-                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>Favorite</button>
-                        <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
+                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>
+                            <FontAwesomeIcon icon={faBookmark} size="sm" className="mr-2"/>
+                            Watch List
+                        </button>
+                        <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleFavList}>
+                            <FontAwesomeIcon icon={faCheckCircle} size="sm" className="mr-2"/>
+                            Favorite
+                        </button>
+                        <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>
+                            More Like This
+                        </button>
                         <ToastContainer
                             position="top-center"
                             autoClose={1750}
