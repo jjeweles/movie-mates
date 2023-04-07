@@ -3,18 +3,17 @@ package com.galvanize.bluestwosmoviereviews.services;
 import com.galvanize.bluestwosmoviereviews.data.WatchListRepository;
 import com.galvanize.bluestwosmoviereviews.models.WatchListModel;
 import org.junit.jupiter.api.BeforeEach;
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
-import static org.mockito.ArgumentMatchers.any;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.when;
 
@@ -45,7 +44,6 @@ public class WatchListServiceTest {
 
         assertEquals(3, result.size());
         assertEquals(watchList, result);
-
     }
 
     @Test
@@ -58,7 +56,6 @@ public class WatchListServiceTest {
 
         assertThat(result).isNotNull();
         assertThat(result.getTmdbID()).isEqualTo(2);
-
     }
 
     @Test
@@ -71,6 +68,4 @@ public class WatchListServiceTest {
         assertThat(watchList1).isNotNull();
         assertThat(watchList1.getTmdbID()).isEqualTo(2);
     }
-
-
 }

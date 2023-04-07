@@ -65,5 +65,4 @@ class UserServiceTest {
         user.setUserID(1);
         assertThat(user.getUserID()).isEqualTo(1);
     }
-
 }
