@@ -8,11 +8,11 @@ import java.util.Objects;
 public class FavoritesListModel {
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    int favoritesID;
+    private Integer favoritesID;
     @Column(name = "tmdbID")
-    int tmdbId;
+    private Integer tmdbId;
     @Column(name = "userID")
-    int userID;
+    private Integer userID;
 
     public FavoritesListModel() {
     }

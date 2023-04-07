@@ -7,6 +7,12 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 import java.util.Optional;
 
+/**
+ * Repository for the Favorite List Model
+ * @see FavoritesListModel
+ * @see JpaRepository
+ * @see Repository
+ */
 @Repository
 public interface FavoritesListRepository extends JpaRepository<FavoritesListModel, Integer> {
     List<FavoritesListModel> findByUserID(Integer userId);

@@ -20,7 +20,7 @@ public class FavoritesListService {
     private final FavoritesListRepository favoritesRepository;
 
     @Autowired
-    FavoritesListService(FavoritesListRepository favoritesRepository) {
+    public FavoritesListService(FavoritesListRepository favoritesRepository) {
         this.favoritesRepository = favoritesRepository;
     }
 
