@@ -22,27 +22,27 @@ public class FavoritesListModel {
         this.userID = userID;
     }
 
-    public int getFavoritesID() {
+    public Integer getFavoritesID() {
         return favoritesID;
     }
 
-    public void setFavoritesID(int favListId) {
-        this.favoritesID = favListId;
+    public void setFavoritesID(Integer favoritesID) {
+        this.favoritesID = favoritesID;
     }
 
-    public int getTmdbId() {
+    public Integer getTmdbId() {
         return tmdbId;
     }
 
-    public void setTmdbId(int tmdbId) {
+    public void setTmdbId(Integer tmdbId) {
         this.tmdbId = tmdbId;
     }
 
-    public int getUserID() {
+    public Integer getUserID() {
         return userID;
     }
 
-    public void setUserID(int userID) {
+    public void setUserID(Integer userID) {
         this.userID = userID;
     }
 

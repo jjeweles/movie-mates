@@ -23,10 +23,12 @@ public class FavoritesListController {
     public FavoritesListController(FavoritesListService favoritesListService) {
         this.favoritesListService = favoritesListService;
     }
+
     /**
      * Get all favorites by user ID
+     *
      * @param userId get list of favorites based on userId
-     * @return ResponseEntity<List<FavoritesModel>> list of all favorite movies returned
+     * @return ResponseEntity<List < FavoritesModel>> list of all favorite movies returned
      * @see FavoritesListModel
      * @see FavoritesListService
      */
@@ -36,8 +38,10 @@ public class FavoritesListController {
 
         return favorites == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(favorites);
     }
+
     /**
      * Save a new favorite movie
+     *
      * @param favoritesListModel favorite movie to add
      * @return ResponseEntity<FavoritesModel> add favorite to user's profile
      * @see FavoritesListModel
@@ -48,8 +52,10 @@ public class FavoritesListController {
         FavoritesListModel newFavorite = favoritesListService.addNewFavorite(favoritesListModel);
         return new ResponseEntity<>(newFavorite, HttpStatus.CREATED);
     }
+
     /**
      * Remove a movie from favorites list
+     *
      * @param userId used to obtain favorites list of the user
      * @param tmdbId movie to remove from the user's favorite list
      * @return ResponseEntity<FavoritesModel> add favorite to user's profile

@@ -16,6 +16,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import javax.print.attribute.standard.Media;
+import java.io.OutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.any;
@@ -23,11 +25,11 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@ExtendWith(MockitoExtension.class)
-@WebMvcTest
+@WebMvcTest(FavoritesListController.class)
 class FavoritesListControllerTest {
     @Autowired
     MockMvc mockMvc;
@@ -36,26 +38,26 @@ class FavoritesListControllerTest {
     FavoritesListService favoritesListService;
     FavoritesListModel list1;
     FavoritesListModel list2;
-    List<FavoritesListModel> favorites;
+    List<FavoritesListModel> favorites = new ArrayList<>();
 
     @BeforeEach
-    void setUp()
-    {
-        list1 = new FavoritesListModel(1122,3);
-        list2 = new FavoritesListModel(1133,3);
+    void setUp() {
+        list1 = new FavoritesListModel(1122, 3);
+        list2 = new FavoritesListModel(1133, 3);
         favorites.add(list1);
         favorites.add(list2);
     }
 
     @Test
-    void getAllFavorites ()throws Exception
-    {
+    void getAllFavoritesByUserID() throws Exception {
         when(favoritesListService.getFavoritesListByID(3)).thenReturn(favorites);
-        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/favList/get")
-                    .contentType(MediaType.APPLICATION_JSON))
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/favList/3")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.tmbdId").value(list1.getTmdbId()))
-                .andExpect((jsonPath("$.tmbdId").value(list2.getTmdbId())));
+                .andExpect(jsonPath("$[0].tmdbId").value(list1.getTmdbId()))
+                .andExpect((jsonPath("$[1].tmdbId").value(list2.getTmdbId())));
 
     }
 //    @Test

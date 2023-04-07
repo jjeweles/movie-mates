@@ -17,7 +17,7 @@ public class FriendsListController {
     private final FriendsListService friendsListService;
 
     @Autowired
-    FriendsListController(FriendsListService friendsListService) {
+    public FriendsListController(FriendsListService friendsListService) {
         this.friendsListService = friendsListService;
     }
 
