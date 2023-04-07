@@ -9,15 +9,12 @@ public class FriendsListModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    Integer friendsListId;
+    private Integer friendsListId;
     @Column(name = "friend_Id")
-    Integer friendId;
+    private Integer friendId;
 
     @Column(name = "user_Id")
-    Integer userId;
-
-    public FriendsListModel() {
-    }
+    private Integer userId;
 
     public FriendsListModel(Integer userId, Integer friendId) {
         this.userId = userId;
