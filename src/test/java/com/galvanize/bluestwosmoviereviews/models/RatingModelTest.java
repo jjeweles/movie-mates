@@ -9,7 +9,7 @@ class RatingModelTest {
 
     @Test
     void testRatingConstructor() {
-        rating = new RatingModel(1, 123, 5, true, 1);
+        rating = new RatingModel(1, 123, 5, 1);
         assertEquals(1, rating.getRatingId());
         assertEquals(123, rating.getTmdbId());
         assertEquals(5, rating.getStarRating());

@@ -9,15 +9,15 @@ public class UserModel {
 
     @Id
     @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
-    Integer userID;
+    private Integer userID;
     @Column(unique = true, name = "username")
-    String username;
+    private String username;
     @Column(name = "password")
-    String password;
+    private String password;
     @Column(name = "email")
-    String email;
+    private String email;
     @Column(name = "name")
-    String name;
+    private String name;
 
     public UserModel() {
     }

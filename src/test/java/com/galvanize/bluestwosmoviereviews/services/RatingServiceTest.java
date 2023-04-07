@@ -34,8 +34,8 @@ public class RatingServiceTest {
     @Test
     public void testGetAllRatings() {
         List<RatingModel> ratings = new ArrayList<>();
-        ratings.add(new RatingModel(1, 1234, 5, true, 1));
-        ratings.add(new RatingModel(2, 5678, 4, false, 2));
+        ratings.add(new RatingModel(1, 1234, 5, 1));
+        ratings.add(new RatingModel(2, 5678, 4, 2));
 
         when(ratingRepository.findAll()).thenReturn(ratings);
 
@@ -47,8 +47,8 @@ public class RatingServiceTest {
 
     @Test
     public void testUpdateRatingReturnsRatingOrNull() {
-        RatingModel rating1 = new RatingModel(1, 123, 5, true, 1);
-        RatingModel rating2 = new RatingModel(1, 123, 3, false, 1);
+        RatingModel rating1 = new RatingModel(1, 123, 5, 1);
+        RatingModel rating2 = new RatingModel(1, 123, 3, 1);
 
         when(ratingRepository.findById(anyInt()))
                 .thenReturn(Optional.of(rating1));
@@ -65,8 +65,8 @@ public class RatingServiceTest {
         int userId = 123;
 
         List<RatingModel> ratings = new ArrayList<>();
-        ratings.add(new RatingModel(1, 1234, 5, true, userId));
-        ratings.add(new RatingModel(2, 5678, 4, false, userId));
+        ratings.add(new RatingModel(1, 1234, 5, userId));
+        ratings.add(new RatingModel(2, 5678, 4, userId));
 
         when(ratingRepository.findByUserID(userId)).thenReturn(ratings);
 
@@ -80,8 +80,8 @@ public class RatingServiceTest {
         int tmdbId = 4;
 
         List<RatingModel> ratings = new ArrayList<>();
-        ratings.add(new RatingModel(1, tmdbId, 5, true, 1));
-        ratings.add(new RatingModel(2, tmdbId, 4, false, 1));
+        ratings.add(new RatingModel(1, tmdbId, 5, 1));
+        ratings.add(new RatingModel(2, tmdbId, 4, 1));
 
         when(ratingRepository.findByTmdbId(tmdbId)).thenReturn(ratings);
 
@@ -93,7 +93,7 @@ public class RatingServiceTest {
     @Test
     public void testAddRatingReturnsRating() {
 
-        RatingModel rating1 = new RatingModel(232, 123, 5, true, 1);
+        RatingModel rating1 = new RatingModel(232, 123, 5, 1);
 
         when(ratingRepository.save(any(RatingModel.class))).thenReturn(rating1);
 
@@ -105,7 +105,7 @@ public class RatingServiceTest {
 
     @Test
     public void deleteRatingReturnsRating() {
-        RatingModel rating1 = new RatingModel(232, 123, 5, true, 1);
+        RatingModel rating1 = new RatingModel(232, 123, 5, 1);
 
         when(ratingRepository.findByRatingId(anyInt())).thenReturn(rating1);
 

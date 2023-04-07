@@ -31,7 +31,7 @@ class UserServiceTest {
     @Test
     void getUserByIdShouldReturnUserOrReturnNullIfNoUser() {
         userModel = new UserModel("test", "test", "test", "test");
-        when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
+        when(userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
         UserModel user = userService.getUserByID(1);
         user.setUserID(1);
         assertThat(user.getUserID()).isEqualTo(1);
@@ -41,7 +41,7 @@ class UserServiceTest {
     @Test
     void addUserShouldReturnUser() {
         userModel = new UserModel("test", "test", "test", "test");
-        when (userRepository.save(any(UserModel.class))).thenReturn(userModel);
+        when(userRepository.save(any(UserModel.class))).thenReturn(userModel);
         UserModel user = userService.addUser(userModel);
         user.setUserID(1);
         assertThat(user.getUserID()).isEqualTo(1);
@@ -50,8 +50,8 @@ class UserServiceTest {
     @Test
     void updateUserShouldReturnUser() {
         userModel = new UserModel("test", "test", "test", "test");
-        when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
-        when (userRepository.save(any(UserModel.class))).thenReturn(userModel);
+        when(userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
+        when(userRepository.save(any(UserModel.class))).thenReturn(userModel);
         UserModel user = userService.updateUser(1, userModel);
         user.setUserID(1);
         assertThat(user.getUserID()).isEqualTo(1);
@@ -60,7 +60,7 @@ class UserServiceTest {
     @Test
     void deleteUserShouldReturnUser() {
         userModel = new UserModel("test", "test", "test", "test");
-        when (userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
+        when(userRepository.findById(anyInt())).thenReturn(Optional.of(userModel));
         UserModel user = userService.deleteUser(1);
         user.setUserID(1);
         assertThat(user.getUserID()).isEqualTo(1);

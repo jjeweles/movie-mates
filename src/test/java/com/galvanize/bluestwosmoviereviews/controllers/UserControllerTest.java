@@ -52,13 +52,13 @@ class UserControllerTest {
     @Test
     void addUserShouldReturnUser() throws Exception {
 
-            UserModel user = new UserModel("test", "test", "test", "test");
+        UserModel user = new UserModel("test", "test", "test", "test");
 
-            when(userService.addUser(user)).thenReturn(user);
-            mockMvc.perform(post("/api/v1/users/add")
-                    .contentType("application/json")
-                    .content(objectMapper.writeValueAsString(user)))
-                    .andExpect(status().isOk());
+        when(userService.addUser(user)).thenReturn(user);
+        mockMvc.perform(post("/api/v1/users/add")
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(user)))
+                .andExpect(status().isOk());
     }
 
     @Test
@@ -68,8 +68,8 @@ class UserControllerTest {
 
         when(userService.addUser(user)).thenReturn(null);
         mockMvc.perform(post("/api/v1/users/add")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(user)))
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk());
 
     }
@@ -81,8 +81,8 @@ class UserControllerTest {
 
         when(userService.updateUser(1, user)).thenReturn(user);
         mockMvc.perform(put("/api/v1/users/1")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(user)))
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk());
 
     }
@@ -94,8 +94,8 @@ class UserControllerTest {
 
         when(userService.updateUser(1, user)).thenReturn(null);
         mockMvc.perform(put("/api/v1/users/1")
-                .contentType("application/json")
-                .content(objectMapper.writeValueAsString(user)))
+                        .contentType("application/json")
+                        .content(objectMapper.writeValueAsString(user)))
                 .andExpect(status().isOk());
 
     }
@@ -107,7 +107,7 @@ class UserControllerTest {
         user.setUserID(1);
         when(userService.deleteUser(1)).thenReturn(user);
         mockMvc.perform(delete("/api/v1/users/1")
-                .contentType(MediaType.APPLICATION_JSON))
+                        .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userID").value(1));
 

@@ -42,8 +42,8 @@ class RatingControllerTest {
 
     @BeforeEach
     void setup() {
-        rating1 = new RatingModel(1, 123, 5, true, 1);
-        rating2 = new RatingModel(2, 456, 4, false, 2);
+        rating1 = new RatingModel(1, 123, 5, 1);
+        rating2 = new RatingModel(2, 456, 4, 2);
         ratingList = new ArrayList<>();
         ratingList.add(rating1);
         ratingList.add(rating2);
@@ -71,8 +71,8 @@ class RatingControllerTest {
 
     @Test
     void testGetAllRatingsById() throws Exception {
-        rating1 = new RatingModel(1, 123, 5,true, 2);
-        rating2 = new RatingModel(2, 456, 4, false, 1);
+        rating1 = new RatingModel(1, 123, 5, 2);
+        rating2 = new RatingModel(2, 456, 4, 1);
 
         when(ratingService.getAllRatingsByUserId(anyInt())).thenReturn(ratingList);
 
@@ -85,8 +85,8 @@ class RatingControllerTest {
 
     @Test
     void testGetAllRatingsByTmdbId() throws Exception {
-        rating1 = new RatingModel(1, 123, 5,true, 2);
-        rating2 = new RatingModel(2, 456, 4, false, 1);
+        rating1 = new RatingModel(1, 123, 5, 2);
+        rating2 = new RatingModel(2, 456, 4, 1);
 
         when(ratingService.getAllRatingsByTmdbId(anyInt())).thenReturn(ratingList);
 
