@@ -7,7 +7,10 @@ import java.util.List;
 
 public interface ReplyRepository extends JpaRepository<ReplyModel, Integer> {
     List<ReplyModel> findReplyByUserID(Integer userID);
+
     ReplyModel findReplyByReplyID(Integer replyID);
+
     void deleteReplyByReplyID(Integer replyID);
+
     List<ReplyModel> findReplyByPostID(Integer postID);
 }

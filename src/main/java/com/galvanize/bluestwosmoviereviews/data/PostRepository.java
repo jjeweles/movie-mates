@@ -9,5 +9,6 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<PostModel, Integer> {
     List<PostModel> findPostsByUserID(Integer userID);
+
     PostModel findPostsByPostID(Integer userID);
 }

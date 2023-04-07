@@ -10,5 +10,6 @@ import java.util.Optional;
 @Repository
 public interface FavoritesListRepository extends JpaRepository<FavoritesListModel, Integer> {
     List<FavoritesListModel> findByUserID(Integer userId);
+
     FavoritesListModel findByUserIDAndTmdbId(Integer userId, Integer tmdbId);
 }

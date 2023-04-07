@@ -6,10 +6,11 @@ import java.util.Objects;
 @Entity
 @Table(name = "favorites")
 public class FavoritesListModel {
-    @Id @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     int favoritesID;
     @Column(name = "tmdbID")
-    int  tmdbId;
+    int tmdbId;
     @Column(name = "userID")
     int userID;
 

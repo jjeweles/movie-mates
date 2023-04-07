@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-@Table (name = "watchlist")
+@Table(name = "watchlist")
 public class WatchListModel {
 
     @Id

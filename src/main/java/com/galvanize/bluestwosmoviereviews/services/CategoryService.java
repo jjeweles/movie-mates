@@ -13,7 +13,7 @@ public class CategoryService {
 
     CategoryRepository categoryRepository;
 
-    public CategoryService(CategoryRepository categoryRepository){
+    public CategoryService(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;
     }
 
@@ -21,18 +21,18 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public CategoryModel findCategoryByCategoryID(Integer categoryID){
+    public CategoryModel findCategoryByCategoryID(Integer categoryID) {
         return categoryRepository.findCategoryByCategoryID(categoryID);
     }
 
-    public CategoryModel addCategory(CategoryModel reply){
+    public CategoryModel addCategory(CategoryModel reply) {
         return categoryRepository.save(reply);
     }
 
-    public CategoryModel updateCategories(Integer categoryID, CategoryModel reply){
+    public CategoryModel updateCategories(Integer categoryID, CategoryModel reply) {
         CategoryModel categoryToUpdate = categoryRepository.findCategoryByCategoryID(categoryID);
 
-        if(categoryToUpdate != null){
+        if (categoryToUpdate != null) {
             categoryToUpdate.setCategory_name(reply.getCategory_name());
         }
 
@@ -40,18 +40,18 @@ public class CategoryService {
         return categoryRepository.save(categoryToUpdate);
     }
 
-    public CategoryModel deleteCategoryByCategoryID (Integer categoryID){
+    public CategoryModel deleteCategoryByCategoryID(Integer categoryID) {
         CategoryModel categoryToDelete = categoryRepository.findCategoryByCategoryID(categoryID);
-        if (categoryToDelete != null){
+        if (categoryToDelete != null) {
             categoryRepository.delete(categoryToDelete);
         }
         return categoryToDelete;
     }
 
-    public CategoryModel updateCategory(Integer categoryID, CategoryModel category){
+    public CategoryModel updateCategory(Integer categoryID, CategoryModel category) {
         CategoryModel categoryToUpdate = categoryRepository.findCategoryByCategoryID(categoryID);
 
-        if(categoryToUpdate != null){
+        if (categoryToUpdate != null) {
             categoryToUpdate.setCategory_name(category.getCategory_name());
         }
 

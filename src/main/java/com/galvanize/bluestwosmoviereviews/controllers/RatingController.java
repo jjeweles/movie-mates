@@ -41,7 +41,7 @@ public class RatingController {
     @GetMapping("rating/getMovieAvgMovieRating/{tmdbId}")
     public ResponseEntity<Double> getAvgMovieRating(@PathVariable Integer tmdbId) {
         Double averageRating = ratingService.getAverageMovieRating(tmdbId);
-        return averageRating == 0 ? ResponseEntity.noContent().build()  : ResponseEntity.ok(averageRating);
+        return averageRating == 0 ? ResponseEntity.noContent().build() : ResponseEntity.ok(averageRating);
     }
 
     @PutMapping("rating/update/{ratingId}")

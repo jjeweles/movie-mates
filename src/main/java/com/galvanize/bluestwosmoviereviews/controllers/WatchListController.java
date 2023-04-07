@@ -13,12 +13,12 @@ public class WatchListController {
 
     WatchListService watchListService;
 
-    public WatchListController(WatchListService watchListService){
+    public WatchListController(WatchListService watchListService) {
         this.watchListService = watchListService;
     }
 
     @GetMapping("api/v1/watchlist/{userID}")
-    public ResponseEntity<List<WatchListModel>> getWatchListById(@PathVariable Integer userID){
+    public ResponseEntity<List<WatchListModel>> getWatchListById(@PathVariable Integer userID) {
         List<WatchListModel> watchList = watchListService.getWatchList(userID);
 
         return watchList == null ? ResponseEntity.notFound().build() : ResponseEntity.ok(watchList);
@@ -30,7 +30,7 @@ public class WatchListController {
     }
 
     @DeleteMapping("api/v1/watchlist/{userID}/{tmdbID}")
-    public ResponseEntity<WatchListModel> deleteMovie(@PathVariable Integer userID,@PathVariable Integer tmdbID){
+    public ResponseEntity<WatchListModel> deleteMovie(@PathVariable Integer userID, @PathVariable Integer tmdbID) {
         WatchListModel deletedMovie = watchListService.deleteFromWatchList(userID, tmdbID);
 
         return deletedMovie == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletedMovie);

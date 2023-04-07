@@ -17,8 +17,7 @@ public class FriendsListController {
     private final FriendsListService friendsListService;
 
     @Autowired
-    FriendsListController(FriendsListService friendsListService)
-    {
+    FriendsListController(FriendsListService friendsListService) {
         this.friendsListService = friendsListService;
     }
 
@@ -44,9 +43,9 @@ public class FriendsListController {
     public ResponseEntity<FriendsListModel> addFriend(@RequestBody FriendsListModel newFriend) {
         List<FriendsListModel> friendList = friendsListService.getFriendsListByID(newFriend.getUserId());
         for (FriendsListModel e : friendList) {
-                if (e.getFriendId().equals(newFriend.getFriendId())) {
-                    return ResponseEntity.badRequest().build();
-                }
+            if (e.getFriendId().equals(newFriend.getFriendId())) {
+                return ResponseEntity.badRequest().build();
+            }
         }
         FriendsListModel friends = friendsListService.addFriend(newFriend);
         return new ResponseEntity<>(friends, HttpStatus.CREATED);
@@ -55,8 +54,8 @@ public class FriendsListController {
     @DeleteMapping("/friendsList/delete/{userId}/{friendId}")
     public ResponseEntity<FriendsListModel> deleteFriend(@PathVariable Integer userId, @PathVariable Integer friendId) {
         List<FriendsListModel> friendList = friendsListService.getFriendsListByID(userId);
-        for(FriendsListModel checkForFriend: friendList) {
-            if(checkForFriend.getFriendId().equals(friendId)){
+        for (FriendsListModel checkForFriend : friendList) {
+            if (checkForFriend.getFriendId().equals(friendId)) {
                 friendsListService.deleteByFriendID(userId, friendId);
                 return ResponseEntity.accepted().build();
             }

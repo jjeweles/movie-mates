@@ -19,11 +19,11 @@ public class WatchListService {
     private WatchListRepository watchListRepository;
 
     @Autowired
-    public WatchListService(WatchListRepository watchListRepository){
+    public WatchListService(WatchListRepository watchListRepository) {
         this.watchListRepository = watchListRepository;
     }
 
-    public List<WatchListModel> getWatchList(Integer userID){
+    public List<WatchListModel> getWatchList(Integer userID) {
         return watchListRepository.findByUserID(userID);
     }
 
@@ -31,9 +31,9 @@ public class WatchListService {
         return watchListRepository.save(watchListModel);
     }
 
-    public WatchListModel deleteFromWatchList(Integer userID, Integer tmdbId){
+    public WatchListModel deleteFromWatchList(Integer userID, Integer tmdbId) {
         WatchListModel movieToDelete = watchListRepository.findByUserIDAndTmdbID(userID, tmdbId);
-        if (movieToDelete != null){
+        if (movieToDelete != null) {
             watchListRepository.delete(movieToDelete);
         }
         return movieToDelete;

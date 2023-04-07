@@ -17,7 +17,7 @@ public class CategoryModel {
     @Column(name = "category_name")
     private String category_name;
 
-    public CategoryModel(){
+    public CategoryModel() {
     }
 
     public CategoryModel(Integer categoryID, Integer userID, String category_name) {

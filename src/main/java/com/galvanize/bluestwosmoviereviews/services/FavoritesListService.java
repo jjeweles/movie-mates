@@ -25,7 +25,7 @@ public class FavoritesListService {
     }
 
     public List<FavoritesListModel> getFavoritesListByID(Integer userID) {
-            return favoritesRepository.findByUserID(userID);
+        return favoritesRepository.findByUserID(userID);
     }
 
     public FavoritesListModel getFavs(Integer userId, Integer tmdbId) {

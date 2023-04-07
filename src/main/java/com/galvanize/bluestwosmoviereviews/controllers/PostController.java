@@ -20,40 +20,40 @@ public class PostController {
     ReplyService replyService;
     CategoryService categoryService;
 
-    public PostController(PostService postService, ReplyService replyService, CategoryService categoryService){
+    public PostController(PostService postService, ReplyService replyService, CategoryService categoryService) {
         this.postService = postService;
         this.replyService = replyService;
         this.categoryService = categoryService;
     }
 
     @GetMapping("posts")
-    public Iterable<PostModel> getAllPosts(){
+    public Iterable<PostModel> getAllPosts() {
         return postService.getAllPosts();
     }
 
     @GetMapping("posts/userposts/{userID}")
-    public List<PostModel> getPostsByUserID(@PathVariable Integer userID){
+    public List<PostModel> getPostsByUserID(@PathVariable Integer userID) {
         return postService.getPostsByID(userID);
     }
 
     @GetMapping("posts/findpost/{postID}")
-    public ResponseEntity <PostModel> findPostsByPostID(@PathVariable Integer postID){
+    public ResponseEntity<PostModel> findPostsByPostID(@PathVariable Integer postID) {
         PostModel reply = postService.getPostsByPostID(postID);
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
 
     @PostMapping("posts/add")
-    public PostModel addPost(@RequestBody PostModel post){
+    public PostModel addPost(@RequestBody PostModel post) {
         return postService.addPost(post);
     }
 
     @PutMapping("posts/{postID}")
-    public PostModel updatePost(@PathVariable Integer postID, @RequestBody PostModel post){
+    public PostModel updatePost(@PathVariable Integer postID, @RequestBody PostModel post) {
         return postService.updatePost(postID, post);
     }
 
     @DeleteMapping("posts/{postID}")
-    public ResponseEntity<PostModel> deletePost(@PathVariable Integer postID){
+    public ResponseEntity<PostModel> deletePost(@PathVariable Integer postID) {
         PostModel deletePost = postService.deletePost(postID);
         return deletePost == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletePost);
     }
@@ -61,46 +61,46 @@ public class PostController {
     /// ----- REPLY ENDPOINTS ----- \\\
 
     @GetMapping("posts/reply")
-    public Iterable<ReplyModel> getAllReplies(){
+    public Iterable<ReplyModel> getAllReplies() {
         return replyService.getAllReplies();
     }
 
     @GetMapping("posts/reply/user/{userID}")
-    public ResponseEntity<List<ReplyModel>> getReplyByID(@PathVariable Integer userID){
+    public ResponseEntity<List<ReplyModel>> getReplyByID(@PathVariable Integer userID) {
         List<ReplyModel> reply = replyService.getReplyByUserID(userID);
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
 
     @GetMapping("posts/reply/post/{postID}")
-    public ResponseEntity <List<ReplyModel>> findReplyByPostID(@PathVariable Integer postID){
+    public ResponseEntity<List<ReplyModel>> findReplyByPostID(@PathVariable Integer postID) {
         List<ReplyModel> reply = replyService.findReplyByPostID(postID);
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
 
     @PostMapping("posts/reply")
-    public ReplyModel addReply(@RequestBody ReplyModel reply){
+    public ReplyModel addReply(@RequestBody ReplyModel reply) {
         return replyService.addReply(reply);
     }
 
     @PostMapping("posts/reply/post/{postID}")
-    public ReplyModel addReply(@PathVariable Integer postID, @RequestBody ReplyModel reply){
+    public ReplyModel addReply(@PathVariable Integer postID, @RequestBody ReplyModel reply) {
         return replyService.addReply(reply);
     }
 
     @PostMapping("posts/reply/")
-    public ReplyModel addReplyToReply(@RequestBody ReplyModel reply){
+    public ReplyModel addReplyToReply(@RequestBody ReplyModel reply) {
         return replyService.addReply(reply);
     }
 
     @PutMapping("posts/reply/{replyID}")
-    public ReplyModel updateReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply){
+    public ReplyModel updateReply(@PathVariable Integer replyID, @RequestBody ReplyModel reply) {
         return replyService.updateReply(replyID, reply);
     }
 
     @DeleteMapping("posts/reply/{replyID}")
-    public ResponseEntity<ReplyModel> deleteReply(@PathVariable Integer replyID){
+    public ResponseEntity<ReplyModel> deleteReply(@PathVariable Integer replyID) {
         ReplyModel deletePost = replyService.deletePost(replyID);
         return deletePost == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletePost);
     }
@@ -108,29 +108,29 @@ public class PostController {
     /// ----- CATEGORY ENDPOINTS ----- \\\
 
     @GetMapping("posts/category")
-    public Iterable<CategoryModel> getAllCategories(){
+    public Iterable<CategoryModel> getAllCategories() {
         return categoryService.findAllCategories();
     }
 
     @GetMapping("posts/category/{categoryID}")
-    public ResponseEntity <CategoryModel> findCategoryByID(@PathVariable Integer categoryID){
+    public ResponseEntity<CategoryModel> findCategoryByID(@PathVariable Integer categoryID) {
         CategoryModel reply = categoryService.findCategoryByCategoryID(categoryID);
 
         return reply == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(reply);
     }
 
     @PostMapping("posts/category")
-    public CategoryModel addCategory(@RequestBody CategoryModel category){
+    public CategoryModel addCategory(@RequestBody CategoryModel category) {
         return categoryService.addCategory(category);
     }
 
     @PutMapping("posts/category/{categoryID}")
-    public CategoryModel updateCategory(@PathVariable Integer categoryID, @RequestBody CategoryModel category){
+    public CategoryModel updateCategory(@PathVariable Integer categoryID, @RequestBody CategoryModel category) {
         return categoryService.updateCategory(categoryID, category);
     }
 
     @DeleteMapping("posts/category/{categoryID}")
-    public ResponseEntity<CategoryModel> deleteCategory(@PathVariable Integer categoryID){
+    public ResponseEntity<CategoryModel> deleteCategory(@PathVariable Integer categoryID) {
         CategoryModel deleteCategory = categoryService.deleteCategoryByCategoryID(categoryID);
         return deleteCategory == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deleteCategory);
     }

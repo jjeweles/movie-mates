@@ -12,7 +12,7 @@ public class PostService {
 
     PostRepository postRepository;
 
-    public PostService(PostRepository postRepository){
+    public PostService(PostRepository postRepository) {
         this.postRepository = postRepository;
     }
 
@@ -20,17 +20,17 @@ public class PostService {
         return postRepository.findAll();
     }
 
-    public List<PostModel> getPostsByID(Integer userID){
+    public List<PostModel> getPostsByID(Integer userID) {
         return postRepository.findPostsByUserID(userID);
     }
 
-    public PostModel addPost(PostModel post){
+    public PostModel addPost(PostModel post) {
         return postRepository.save(post);
     }
 
-    public PostModel updatePost(Integer postID, PostModel post){
+    public PostModel updatePost(Integer postID, PostModel post) {
         PostModel postToUpdate = postRepository.findPostsByPostID(postID);
-        if(postToUpdate != null){
+        if (postToUpdate != null) {
             postToUpdate.setPost_title(post.getPost_title());
             postToUpdate.setPost_text(post.getPost_text());
         }
@@ -38,9 +38,9 @@ public class PostService {
         return postRepository.save(postToUpdate);
     }
 
-    public PostModel deletePost (Integer postID){
+    public PostModel deletePost(Integer postID) {
         PostModel postToDelete = postRepository.findPostsByPostID(postID);
-        if (postToDelete != null){
+        if (postToDelete != null) {
             postRepository.delete(postToDelete);
         }
         return postToDelete;
