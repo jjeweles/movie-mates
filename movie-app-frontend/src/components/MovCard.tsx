@@ -22,7 +22,7 @@ function MovCard(props: any) {
                             <span className="text-xs text-gray-400">({movie.release_date.split('-')[0]})</span></h1>
                     </div>
 
-                    <div className="text-xs">
+                    <div className="flex flex-col md:flex-row text-xs">
                         <button className="bg-stone-900 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleWatchList}>
                             <FontAwesomeIcon icon={faBookmark} size="sm" className="mr-2"/>
                             Watch List
@@ -31,6 +31,8 @@ function MovCard(props: any) {
                             <FontAwesomeIcon icon={faCheckCircle} size="sm" className="mr-2"/>
                             Favorite
                         </button>
+                    </div>
+                    <div className="flex flex-col md:flex-row justify-center text-xs">
                         <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>
                             More Like This
                         </button>
