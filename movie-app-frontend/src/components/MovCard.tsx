@@ -26,7 +26,7 @@ function MovCard(props: any) {
                         <button className="bg-stone-700 text-white rounded-lg px-4 py-2 mt-2 hover:bg-stone-700" value={movie.id} onClick={handleRecommendation}>More Like This</button>
                         <ToastContainer
                             position="top-center"
-                            autoClose={3000}
+                            autoClose={1750}
                             hideProgressBar={false}
                             newestOnTop={false}
                             closeOnClick

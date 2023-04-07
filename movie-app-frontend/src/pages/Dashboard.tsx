@@ -184,7 +184,7 @@ function Dashboard() {
                                 </button>
                                 <ToastContainer
                                     position="top-center"
-                                    autoClose={3000}
+                                    autoClose={1750}
                                     hideProgressBar={false}
                                     newestOnTop={false}
                                     closeOnClick
@@ -221,7 +221,7 @@ function Dashboard() {
                                                     </button>
                                                     <ToastContainer
                                                         position="top-center"
-                                                        autoClose={3000}
+                                                        autoClose={1750}
                                                         hideProgressBar={false}
                                                         newestOnTop={false}
                                                         closeOnClick
@@ -262,7 +262,7 @@ function Dashboard() {
                                                     </button>
                                                     <ToastContainer
                                                         position="top-center"
-                                                        autoClose={3000}
+                                                        autoClose={1750}
                                                         hideProgressBar={false}
                                                         newestOnTop={false}
                                                         closeOnClick

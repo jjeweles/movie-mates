@@ -91,7 +91,7 @@ function Users() {
                             )}
                             <ToastContainer
                                 position="top-center"
-                                autoClose={3000}
+                                autoClose={1750}
                                 hideProgressBar={false}
                                 newestOnTop={false}
                                 closeOnClick

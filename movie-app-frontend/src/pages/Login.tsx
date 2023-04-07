@@ -34,7 +34,7 @@ function Login() {
                     <button className="bg-orange-400/75 text-white p-2 rounded-lg">Login</button>
                     <ToastContainer
                         position="top-center"
-                        autoClose={3000}
+                        autoClose={1750}
                         hideProgressBar={false}
                         newestOnTop={false}
                         closeOnClick
