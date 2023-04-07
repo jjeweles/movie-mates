@@ -3,7 +3,6 @@ import {faFilm, faSignsPost, faArrowsUpToLine} from "@fortawesome/free-solid-svg
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import Spinner from "../components/Spinner";
-import {toast} from "react-toastify";
 
 function Post() {
 
@@ -12,7 +11,10 @@ function Post() {
     const [user, setUser] = useState<any>();
     const [replies, setReplies] = useState<any>([]);
     const [textareaValue, setTextareaValue] = useState("");
+    const [textareaReplyValue, setTextareaReplyValue] = useState("");
     const [loading, setLoading] = useState(true);
+    const [showReply, setShowReply] = useState(false);
+    const [showComment, setShowComment] = useState(false);
 
     useEffect( () => {
 
@@ -57,8 +59,17 @@ function Post() {
         setTextareaValue(event.target.value);
     };
 
+    const handleTextareaReplyChange = (event: any) => {
+        setTextareaReplyValue(event.target.value);
+    }
+
     const addReply = async (e: any) => {
         e.preventDefault()
+
+        if (textareaValue === "") {
+            return null
+        }
+
         const reply = {
             reply_text: textareaValue,
             postID: id,
@@ -72,6 +83,22 @@ function Post() {
             body: JSON.stringify(reply)
         })
         window.location.reload()
+    }
+
+    const handleReply = async (e: any) => {
+        setShowReply(!showReply)
+    }
+
+    const handleComment = async (e: any) => {
+        setShowComment(!showComment)
+    }
+
+    const addReplyToReply = async (e: any) => {
+        e.preventDefault()
+        if (textareaReplyValue === "") {
+            return null
+        }
+        return null;
     }
 
     if (loading) {
@@ -114,14 +141,26 @@ function Post() {
                         {post.post_text}
                     </div>
                     <div className="my-7">
-                        <form onSubmit={addReply}>
-                            <textarea
-                                value={textareaValue} onChange={handleTextareaChange}
-                                className="ml-5 p-2 w-4/5 sm:w-1/2 h-20 bg-stone-300 border border-amber-500 text-black rounded outline-none placeholder-gray-500" placeholder="Add a comment..."/><br/>
-                            <button className="ml-5 bg-orange-500 hover:bg-orange-700 text-black font-bold py-1 px-2 rounded" type="submit">Add Comment</button>
-                        </form>
+                        {!showComment &&
+                            <button
+                                onClick={handleComment}
+                                className="ml-5 bg-orange-500 hover:bg-orange-700 text-black font-bold py-1 px-2 rounded" type="submit">Add Comment</button>
+                        }
+                        {showComment &&
+                            <form onSubmit={addReply}>
+                                <textarea
+                                    value={textareaValue} onChange={handleTextareaChange}
+                                    className="ml-5 p-2 w-4/5 sm:w-1/2 h-20 bg-stone-300 border border-amber-500 text-black rounded outline-none placeholder-gray-500" placeholder="Add a comment..."/><br/>
+                                <div className="flex gap-2">
+                                    <button className="ml-5 bg-orange-500 hover:bg-orange-700 text-black font-bold py-1 px-2 rounded" type="submit">Submit</button>
+                                    <button
+                                        onClick={handleComment}
+                                        className="ml-5 bg-orange-500 hover:bg-orange-700 text-black font-bold py-1 px-2 rounded" type="submit">Close</button>
+                                </div>
+                            </form>
+                        }
                     </div>
-                    <div className=" border-b border-b-orange-500 p-2 mb-7"/>
+                    <div className="border-b border-b-orange-500 p-2 mb-7"/>
                     {replies.map((reply:any) => (
                         // @ts-ignore
                         <div className="flex flex-col gap-1.5 text-sm p-2" key={reply.replyID}>
@@ -141,10 +180,28 @@ function Post() {
                                     }
                                 </div>
                             </div>
-                            <div className="flex gap-1.5 text-stone-400 text-sm ml-5">
-                                <span className="font-bold text-stone-400 mr-1">
-                                    {reply.reply_text}
-                                </span>
+                            <div className="flex flex-col gap-2">
+                                <div className="flex gap-1.5 text-stone-400 text-sm ml-5">
+                                    <button onClick={handleReply} value={reply.replyID}>
+                                        <span className="font-bold text-stone-400 mr-1">
+                                            {reply.reply_text}
+                                        </span>
+                                    </button>
+                                </div>
+                                {showReply &&
+                                    <div className="flex gap-1.5 text-xs text-stone-400">
+                                        <form onSubmit={addReplyToReply}>
+                                            <textarea
+                                                value={textareaReplyValue} onChange={handleTextareaReplyChange}
+                                                className="ml-5 p-2 h-20 bg-stone-300 border border-amber-500 text-black rounded outline-none placeholder-gray-500" placeholder="Reply..."/><br/>
+                                            <div className="flex gap-2">
+                                                <button className="ml-5 bg-orange-500 hover:bg-orange-700 text-black font-bold py-1 px-2 rounded" type="submit">Reply</button>
+                                                <button
+                                                    onClick={handleReply}
+                                                    className="ml-5 bg-orange-500 hover:bg-orange-700 text-black font-bold py-1 px-2 rounded" type="submit">Close</button>
+                                            </div>                                        </form>
+                                    </div>
+                                }
                             </div>
                         </div>
                     ))}

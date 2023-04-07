@@ -158,9 +158,9 @@ function Dashboard() {
                     <div className="flex items-center justify-center sm:justify-start">
                         <h2 className="text-lg font-bold">Friend's List</h2>
                     </div>
-                    <div className="flex gap-3 text-sm mb-2">
+                    <div className="flex flex-wrap gap-3 text-sm mb-2">
                         {friends.map(friend => (
-                            <div className="w-16 h-10 p-1 rounded-full hover:cursor-pointer" onClick={gotoFriend} data-value={friend.friendId} key={friend.friendId}>
+                            <div className="w-16 h-10 p-1 mb-3 rounded-full hover:cursor-pointer" onClick={gotoFriend} data-value={friend.friendId} key={friend.friendId}>
                                 {/* @ts-ignore  */}
                                 <BigHead {...getRandomOptions()}/>
                             </div>

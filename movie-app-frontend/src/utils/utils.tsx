@@ -76,16 +76,20 @@ export const followFriend = (e: any) => {
 
     if (data.userId == data.friendId) {
         toast.error("You can't follow yourself");
-        return window.location.reload();
-    }
+        const timer = setTimeout(() => {
+            return null;
+        }, 2000);
+    } else {
 
-    axios.post(`http://localhost:8080/api/v1/friendsList/add`, data)
-        .then(res => {
-            const timer = setTimeout(() => {
-                window.location.href = `/dashboard/${data.userId}`
-            }, 2000);
-        })
-    toast.success("Following friend...")
+        axios.post(`http://localhost:8080/api/v1/friendsList/add`, data)
+            .then(res => {
+                const timer = setTimeout(() => {
+                    window.location.href = `/dashboard/${data.userId}`
+                }, 2000);
+            })
+        toast.success("Following friend...")
+
+    }
 }
 
 export const unfollowFriend = (e: any) => {
