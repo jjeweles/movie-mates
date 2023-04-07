@@ -10,7 +10,7 @@ public class WatchListModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "watchlistID")
-    Integer watchlistID;
+    int watchlistID;
 
     @Column(name = "userID")
     Integer userID;
