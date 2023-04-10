@@ -6,6 +6,12 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * REST controller for managing user operations.
+ * <p>
+ * The {@code UserController} class handles HTTP requests for operations such as
+ * creating, updating, retrieving, and deleting users.
+ */
 @CrossOrigin
 @RestController
 @RequestMapping("/api/v1/")
@@ -13,15 +19,18 @@ public class UserController {
 
     private final UserService userService;
 
+     /** Constructs a new {@code UserController} with the specified {@code UserService}.
+            *
+            * @param userService the user service used to perform user-related operations
+     */
     public UserController(UserService userService) {
         this.userService = userService;
     }
 
-     /**
-     * Get all users
-     * @return Iterable<UserModel> list of all users returned
-     * @see UserModel
-     * @see UserService
+    /**
+     * Retrieves all users.
+     *
+     * @return an {@code Iterable} containing all {@code UserModel} instances
      */
     @GetMapping("users")
     public Iterable<UserModel> getAllUsers() {
@@ -29,11 +38,11 @@ public class UserController {
     }
 
     /**
-     * Get user by id
-     * @param id Integer id of user to be returned
-     * @return UserModel user with matching id
-     * @see UserModel
-     * @see UserService
+     * Retrieves a user by their ID.
+     *
+     * @param id the ID of the user to retrieve
+     * @return a {@code ResponseEntity} containing the requested {@code UserModel} instance if found,
+     *         or an empty {@code ResponseEntity} with a no-content status if not found
      */
     @GetMapping("users/{id}")
     public ResponseEntity<UserModel> getUserByID(@PathVariable Integer id) {
@@ -42,11 +51,11 @@ public class UserController {
     }
 
     /**
-     * Get user by username
-     * @param username String username of user to be returned
-     * @return UserModel user with matching username
-     * @see UserModel
-     * @see UserService
+     * Retrieves a user by their username.
+     *
+     * @param username the username of the user to retrieve
+     * @return a {@code ResponseEntity} containing the requested {@code UserModel} instance if found,
+     *         or an empty {@code ResponseEntity} with a no-content status if not found
      */
     @GetMapping("users/get/{username}")
     public ResponseEntity<UserModel> getUserByUsername(@PathVariable String username) {
@@ -55,11 +64,10 @@ public class UserController {
     }
 
     /**
-     * Add user
-     * @param user UserModel user to be added
-     * @return UserModel user added
-     * @see UserModel
-     * @see UserService
+     * Creates a new user.
+     *
+     * @param user the {@code UserModel} instance to create
+     * @return the created {@code UserModel} instance
      */
     @PostMapping("users/add")
     public UserModel addUser(@RequestBody UserModel user) {
@@ -67,12 +75,11 @@ public class UserController {
     }
 
     /**
-     * Update user
-     * @param id Integer id of user to be updated
-     * @param user UserModel user to be updated
-     * @return UserModel user updated
-     * @see UserModel
-     * @see UserService
+     * Updates an existing user.
+     *
+     * @param id   the ID of the user to update
+     * @param user the {@code UserModel} instance containing the updated data
+     * @return the updated {@code UserModel} instance
      */
     @PutMapping("users/{id}")
     public UserModel updateUser(@PathVariable Integer id, @RequestBody UserModel user) {
@@ -80,11 +87,11 @@ public class UserController {
     }
 
     /**
-     * Delete user
-     * @param id Integer id of user to be deleted
-     * @return UserModel user deleted
-     * @see UserModel
-     * @see UserService
+     * Deletes a user by their ID.
+     *
+     * @param id the ID of the user to delete
+     * @return a {@code ResponseEntity} containing the deleted {@code UserModel} instance if found,
+     *         or an empty {@code ResponseEntity} with a no-content status if not found
      */
     @DeleteMapping("users/{id}")
     public ResponseEntity<UserModel> deleteUser(@PathVariable Integer id) {
