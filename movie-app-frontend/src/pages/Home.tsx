@@ -19,7 +19,7 @@ function Home() {
                     <img className="w-full h-full object-cover grayscale opacity-10 rounded-2xl" src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1450&q=80" alt="Auto" />
                 </div>
                 <div className="relative max-w-7xl mx-auto py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
-                    <h1 className="text-2xl font-extrabold tracking-tight text-[#FFBC93FF] sm:text-5xl lg:text-4xl">Movie Mates / Flick Friends </h1>
+                    <h1 className="text-2xl font-extrabold tracking-tight text-[#FFBC93FF] sm:text-5xl lg:text-4xl">Movie Mates </h1>
                     <div className="mt-6 max-w-3xl text-sm sm:text-xl text-white">
                         <ul>
                             <li>Spring Boot and React App to rate and review your favorite movies.</li>
