@@ -7,7 +7,7 @@ function Home() {
         e.preventDefault();
         const query = e.target.query.value;
         const timer = setTimeout(() => {
-            window.location.href = `/search/${query}`;
+            window.location.href = "/search/" + query;
         }, 2500);
         toast.loading("Searching for movies");
     }

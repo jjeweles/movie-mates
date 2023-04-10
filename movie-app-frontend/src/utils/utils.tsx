@@ -12,7 +12,7 @@ export const handleWatchList = async (e: any) => {
         return window.location.href = '/login';
     }
 
-    const response = await fetch(`http://localhost:8080/api/v1/watchlist/${data.userID}`)
+    const response = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/watchlist/${data.userID}`)
     const watchList = await response.json();
 
     for (let i = 0; i < watchList.length; i++) {
@@ -21,7 +21,7 @@ export const handleWatchList = async (e: any) => {
         }
     }
 
-    axios.post('http://localhost:8080/api/v1/watchlist/add', data)
+    axios.post('https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/watchlist/add', data)
         .then(res => {
             // code to pause for 3 seconds and then redirect to dashboard
             const timer = setTimeout(() => {
@@ -42,7 +42,7 @@ export const handleFavList = async (e: any) => {
         return window.location.href = '/login';
     }
 
-    const response = await fetch(`http://localhost:8080/api/v1/favList/${data.userID}`)
+    const response = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/favList/${data.userID}`)
     const favList = await response.json();
 
     for (let i = 0; i < favList.length; i++) {
@@ -51,7 +51,7 @@ export const handleFavList = async (e: any) => {
         }
     }
 
-    axios.post('http://localhost:8080/api/v1/favList/save/', data)
+    axios.post('https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/favList/save/', data)
         .then(res => {
             const timer = setTimeout(() => {
                 window.location.href = `/dashboard/${localStorage.getItem('user_id')}`;
@@ -81,7 +81,7 @@ export const followFriend = (e: any) => {
         }, 2000);
     } else {
 
-        axios.post(`http://localhost:8080/api/v1/friendsList/add`, data)
+        axios.post(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/friendsList/add`, data)
             .then(res => {
                 const timer = setTimeout(() => {
                     window.location.href = `/dashboard/${data.userId}`
@@ -97,7 +97,7 @@ export const unfollowFriend = (e: any) => {
         userId: localStorage.getItem('user_id'),
         friendId: e.target.value
     }
-    axios.delete(`http://localhost:8080/api/v1/friendsList/delete/${data.userId}/${data.friendId}`)
+    axios.delete(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/friendsList/delete/${data.userId}/${data.friendId}`)
         .then(res => {
             const timer = setTimeout(() => {
                 window.location.href = `/dashboard/${data.userId}`
@@ -116,7 +116,7 @@ export const addRating = async (e: any) => {
         starRating: e.currentTarget.getAttribute('data-rating'),
         tmdbId: e.currentTarget.getAttribute('data-movieid')
     }
-    axios.post(`http://localhost:8080/api/v1/rating/save`, data)
+    axios.post(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/rating/save`, data)
         .then(res => {
                 const timer = setTimeout(() => {
                     window.location.reload();

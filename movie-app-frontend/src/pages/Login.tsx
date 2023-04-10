@@ -9,7 +9,7 @@ function Login() {
             username: e.target[0].value,
             password: e.target[1].value
         }
-        const response = await fetch('http://localhost:8080/api/v1/users/get/' + formData.username)
+        const response = await fetch('https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users/get/' + formData.username)
         const data = await response.json();
         if (data.password !== formData.password) {
             return toast.error("Incorrect Password");

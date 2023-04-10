@@ -19,7 +19,7 @@ function NowPlaying() {
         }
 
         const fetchRatings = async () => {
-            const result = fetch(`http://localhost:8080/api/v1/rating/get`)
+            const result = fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/rating/get`)
                 .then(response => response.json())
                 .then(data => {
                         setRatings(data)

@@ -12,7 +12,7 @@ function Community() {
     const sortDirectionRef = useRef('desc');
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/posts")
+        fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts")
             .then(response => response.json())
             .then(data => {
                 setPosts(data.sort().reverse());

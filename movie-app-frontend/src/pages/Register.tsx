@@ -7,7 +7,7 @@ function Register() {
 
     useEffect(() => {
         const getUsers = async () => {
-            const response = await fetch('http://localhost:8080/api/v1/users');
+            const response = await fetch('https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users');
             const data = await response.json();
             setUsers(data)
         }
@@ -32,7 +32,7 @@ function Register() {
             username: e.target[2].value,
             password: e.target[3].value
         }
-        const response = await fetch('http://localhost:8080/api/v1/users/add', {
+        const response = await fetch('https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users/add', {
             method: 'POST',
             headers: {
                 "Accept": "application/json, text/plain, */*", // It can be used to overcome cors errors

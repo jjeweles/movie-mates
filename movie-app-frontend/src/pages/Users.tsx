@@ -11,7 +11,7 @@ function Users() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:8080/api/v1/users')
+        fetch('https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users')
             .then(res => res.json())
             .then(data => {
                 setUsers(data);

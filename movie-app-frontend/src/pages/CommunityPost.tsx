@@ -12,7 +12,7 @@ function CommunityPost() {
             userID: localStorage.getItem("user_id"),
             categoryID: 1
         }
-        await fetch("http://localhost:8080/api/v1/posts/add", {
+        await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/add", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

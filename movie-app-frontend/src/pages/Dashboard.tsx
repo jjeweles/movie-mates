@@ -21,7 +21,7 @@ function Dashboard() {
 
     useEffect(() => {
         const fetchUserData = async () => {
-            const userResponse = await fetch(`http://localhost:8080/api/v1/users/${id}`);
+            const userResponse = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users/${id}`);
             const userData = await userResponse.json();
             localStorage.setItem('username', userData.username);
             localStorage.setItem('name', userData.name);
@@ -29,7 +29,7 @@ function Dashboard() {
         }
 
         const fetchWatchListData = async () => {
-            const watchListResponse = await fetch(`http://localhost:8080/api/v1/watchlist/${id}`);
+            const watchListResponse = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/watchlist/${id}`);
             const watchListData = await watchListResponse.json();
             for (let i = 0; i < watchListData.length; i++) {
                 const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${watchListData[i].tmdbID}?api_key=52107296ca5b59d71cb74cfb9ed7f144`)
@@ -40,7 +40,7 @@ function Dashboard() {
         }
 
         const fetchFavData = async () => {
-            const favListResponse = await fetch(`http://localhost:8080/api/v1/favList/${id}`);
+            const favListResponse = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/favList/${id}`);
             const favListData = await favListResponse.json();
             for (let i = 0; i < favListData.length; i++) {
                 const movieResponse = await fetch(`https://api.themoviedb.org/3/movie/${favListData[i].tmdbId}?api_key=52107296ca5b59d71cb74cfb9ed7f144`)
@@ -50,7 +50,7 @@ function Dashboard() {
         }
 
         const fetchFriendsList = async () => {
-            const friendsResponse = await fetch(`http://localhost:8080/api/v1/friendsList/${id}/get`);
+            const friendsResponse = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/friendsList/${id}/get`);
             const friendsData = await friendsResponse.json();
             for (let i = 0; i < friendsData.length; i++) {
                 setFriends(friends => [...friends, friendsData[i]])
@@ -72,7 +72,7 @@ function Dashboard() {
             tmdbID: e.target.dataset.value,
             userID: localStorage.getItem('user_id')
         }
-        axios.delete(`http://localhost:8080/api/v1/watchlist/${data.userID}/${data.tmdbID}`)
+        axios.delete(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/watchlist/${data.userID}/${data.tmdbID}`)
             .then(res => {
                 const timer = setTimeout(() => {
                     window.location.reload();
@@ -86,7 +86,7 @@ function Dashboard() {
             tmdbID: e.target.dataset.value,
             userID: localStorage.getItem('user_id')
         }
-        axios.delete(`http://localhost:8080/api/v1/favList/delete/${data.userID}/${data.tmdbID}`)
+        axios.delete(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/favList/delete/${data.userID}/${data.tmdbID}`)
             .then(res => {
                 const timer = setTimeout(() => {
                     window.location.reload();

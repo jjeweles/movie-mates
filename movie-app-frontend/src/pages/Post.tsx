@@ -19,15 +19,15 @@ function Post() {
     useEffect( () => {
 
         const getAllData = async () => {
-            const postResponse = await fetch("http://localhost:8080/api/v1/posts/findpost/" + id)
+            const postResponse = await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/findpost/" + id)
             const post = await postResponse.json()
             setPost(post)
 
-            const replyResponse = await fetch("http://localhost:8080/api/v1/posts/reply/post/" + id)
+            const replyResponse = await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/reply/post/" + id)
             const replies = await replyResponse.json()
             setReplies(replies)
 
-            const userResponse = await fetch("http://localhost:8080/api/v1/users/" + post.userID)
+            const userResponse = await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users/" + post.userID)
             const user = await userResponse.json()
             setUser(user)
         }
@@ -41,7 +41,7 @@ function Post() {
     }, []);
 
     const deletePost = async () => {
-        await fetch("http://localhost:8080/api/v1/posts/" + id, {
+        await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/" + id, {
             method: "DELETE"
         })
         window.location.href = "/community"
@@ -49,7 +49,7 @@ function Post() {
 
     const deleteReply = async (e: any) => {
         const replyID = e.currentTarget.value
-        await fetch("http://localhost:8080/api/v1/posts/reply/" + replyID, {
+        await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/reply/" + replyID, {
             method: "DELETE"
         })
         window.location.reload()
@@ -75,7 +75,7 @@ function Post() {
             postID: id,
             userID: localStorage.getItem("user_id")
         }
-        await fetch("http://localhost:8080/api/v1/posts/reply/", {
+        await fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/reply/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

@@ -13,14 +13,14 @@ function Community() {
     const [user, setUser] = useState({} as any);
 
     useEffect(() => {
-        fetch("http://localhost:8080/api/v1/posts/userposts/" + id)
+        fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/posts/userposts/" + id)
             .then(res => res.json())
             .then(data => {
                 setPosts(data.sort().reverse());
                 setLoading(false);
             })
 
-        fetch("http://localhost:8080/api/v1/users/" + id)
+        fetch("https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/users/" + id)
             .then(res => res.json())
             .then(data => {
                 setUser(data);

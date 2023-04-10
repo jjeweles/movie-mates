@@ -16,6 +16,9 @@ public class FriendsListModel {
     @Column(name = "user_Id")
     private Integer userId;
 
+    public FriendsListModel() {
+    }
+
     public FriendsListModel(Integer userId, Integer friendId) {
         this.userId = userId;
         this.friendId = friendId;

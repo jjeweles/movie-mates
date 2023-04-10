@@ -42,8 +42,8 @@ function Movie() {
         }
 
         const fetchRating = async () => {
-            const ratingResponse = await fetch(`http://localhost:8080/api/v1/rating/getMovieAvgMovieRating/${id}`)
-            const ratingsResponse = await fetch(`http://localhost:8080/api/v1/rating/getRatingsForMovie/${id}`)
+            const ratingResponse = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/rating/getMovieAvgMovieRating/${id}`)
+            const ratingsResponse = await fetch(`https://blues-twos-movie-reviews-xeeg6ppgsa-vp.a.run.app/api/v1/rating/getRatingsForMovie/${id}`)
             const ratingData = await ratingResponse.json();
             const ratingsData = await ratingsResponse.json();
             setRatings(ratingsData);
