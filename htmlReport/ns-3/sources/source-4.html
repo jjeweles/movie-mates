@@ -1,0 +1,220 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PostModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.models</a>
+</div>
+
+<h1>Coverage Summary for Class: PostModel (com.galvanize.bluestwosmoviereviews.models)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PostModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PostModel$HibernateProxy$2DFa2xMi</td>
+  </tr>
+  <tr>
+    <td class="name">PostModel$HibernateProxy$FlcIyBuk</td>
+  </tr>
+  <tr>
+    <td class="name">PostModel$HibernateProxy$oBlfU1yB</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (15/15)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (23/23)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.models;
+&nbsp;
+&nbsp;import javax.persistence.*;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;posts&quot;)
+&nbsp;public class PostModel {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    private Integer postID;
+&nbsp;
+&nbsp;    @Column(name = &quot;post_title&quot;)
+&nbsp;    private String post_title;
+&nbsp;
+&nbsp;    @Column(name = &quot;post_text&quot;)
+&nbsp;    private String post_text;
+&nbsp;
+&nbsp;    @Column(name = &quot;userID&quot;)
+&nbsp;    private Integer userID;
+&nbsp;
+&nbsp;    @Column(name = &quot;categoryID&quot;)
+&nbsp;    private Integer categoryID;
+&nbsp;
+<b class="fc">&nbsp;    public PostModel() {</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public PostModel(Integer postID, String post_title, String post_text, Integer userID, Integer categoryID, Integer replyID) {</b>
+<b class="fc">&nbsp;        this.postID = postID;</b>
+<b class="fc">&nbsp;        this.post_title = post_title;</b>
+<b class="fc">&nbsp;        this.post_text = post_text;</b>
+<b class="fc">&nbsp;        this.userID = userID;</b>
+<b class="fc">&nbsp;        this.categoryID = categoryID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getPostID() {
+<b class="fc">&nbsp;        return postID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPostID(Integer postID) {
+<b class="fc">&nbsp;        this.postID = postID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getPost_title() {
+<b class="fc">&nbsp;        return post_title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPost_title(String post_title) {
+<b class="fc">&nbsp;        this.post_title = post_title;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public String getPost_text() {
+<b class="fc">&nbsp;        return post_text;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setPost_text(String post_text) {
+<b class="fc">&nbsp;        this.post_text = post_text;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getUserID() {
+<b class="fc">&nbsp;        return userID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setUserID(Integer userID) {
+<b class="fc">&nbsp;        this.userID = userID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getCategoryID() {
+<b class="fc">&nbsp;        return categoryID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setCategoryID(Integer categoryID) {
+<b class="fc">&nbsp;        this.categoryID = categoryID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="fc">&nbsp;        if (this == o) return true;</b>
+<b class="fc">&nbsp;        if (o == null || getClass() != o.getClass()) return false;</b>
+<b class="fc">&nbsp;        PostModel postModel = (PostModel) o;</b>
+<b class="fc">&nbsp;        return Objects.equals(postID, postModel.postID) &amp;&amp; Objects.equals(post_title, postModel.post_title) &amp;&amp; Objects.equals(post_text, postModel.post_text) &amp;&amp; Objects.equals(userID, postModel.userID) &amp;&amp; Objects.equals(categoryID, postModel.categoryID);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="fc">&nbsp;        return Objects.hash(postID, post_title, post_text, userID, categoryID);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="fc">&nbsp;        return &quot;PostModel{&quot; +</b>
+&nbsp;                &quot;postID=&quot; + postID +
+&nbsp;                &quot;, post_title=&#39;&quot; + post_title + &#39;\&#39;&#39; +
+&nbsp;                &quot;, post_text=&#39;&quot; + post_text + &#39;\&#39;&#39; +
+&nbsp;                &quot;, userID=&quot; + userID +
+&nbsp;                &quot;, categoryID=&quot; + categoryID +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

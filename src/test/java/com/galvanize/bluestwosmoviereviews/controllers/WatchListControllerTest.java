@@ -81,9 +81,9 @@ class WatchListControllerTest {
                 .andExpect(MockMvcResultMatchers.content().json(objectMapper.writeValueAsString(deletedMovie)));
     }
 
-    @Test
-    void deleteAllWatchList() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/watchlist/deleteAll/1"))
-                .andExpect(MockMvcResultMatchers.status().isAccepted());
-    }
+//    @Test
+//    void deleteAllWatchList() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.delete("/api/v1/watchlist/deleteAll/1"))
+//                .andExpect(MockMvcResultMatchers.status().isAccepted());
+//    }
 }

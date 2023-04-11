@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RatingModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.models</a>
+</div>
+
+<h1>Coverage Summary for Class: RatingModel (com.galvanize.bluestwosmoviereviews.models)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RatingModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    76.9%
+  </span>
+  <span class="absValue">
+    (10/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/20)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">RatingModel$HibernateProxy$BovI8R4n</td>
+  </tr>
+  <tr>
+    <td class="name">RatingModel$HibernateProxy$eJSu01oW</td>
+  </tr>
+  <tr>
+    <td class="name">RatingModel$HibernateProxy$PaV5mlzE</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    76.9%
+  </span>
+  <span class="absValue">
+    (10/13)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    70%
+  </span>
+  <span class="absValue">
+    (14/20)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.models;
+&nbsp;
+&nbsp;import javax.persistence.*;
+&nbsp;import java.util.Objects;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;ratings&quot;)
+&nbsp;public class RatingModel {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    @Column(name = &quot;id&quot;)
+&nbsp;    private Integer ratingId;
+&nbsp;
+&nbsp;    @Column(name = &quot;tmdb_id&quot;)
+&nbsp;    private Integer tmdbId;
+&nbsp;
+&nbsp;    @Column(name = &quot;star_rating&quot;)
+&nbsp;    private Integer starRating;
+&nbsp;
+&nbsp;    @Column(name = &quot;userID&quot;)
+&nbsp;    private int userID;
+&nbsp;
+<b class="fc">&nbsp;    public RatingModel(Integer ratingId, Integer tmdbId, Integer starRating, int userID) {</b>
+<b class="fc">&nbsp;        this.ratingId = ratingId;</b>
+<b class="fc">&nbsp;        this.tmdbId = tmdbId;</b>
+<b class="fc">&nbsp;        this.starRating = starRating;</b>
+<b class="fc">&nbsp;        this.userID = userID;</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public RatingModel() {</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getRatingId() {
+<b class="fc">&nbsp;        return ratingId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setRatingId(Integer ratingId) {
+<b class="fc">&nbsp;        this.ratingId = ratingId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getTmdbId() {
+<b class="fc">&nbsp;        return tmdbId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setTmdbId(int tmdbId) {
+<b class="fc">&nbsp;        this.tmdbId = tmdbId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getStarRating() {
+<b class="fc">&nbsp;        return starRating;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setStarRating(int starRating) {
+<b class="fc">&nbsp;        this.starRating = starRating;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public int getUserID() {
+<b class="fc">&nbsp;        return userID;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setUserID(int userId) {
+<b class="fc">&nbsp;        this.userID = userId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public boolean equals(Object o) {
+<b class="nc">&nbsp;        if (this == o) return true;</b>
+<b class="nc">&nbsp;        if (o == null || getClass() != o.getClass()) return false;</b>
+<b class="nc">&nbsp;        RatingModel that = (RatingModel) o;</b>
+<b class="nc">&nbsp;        return userID == that.userID &amp;&amp; Objects.equals(ratingId, that.ratingId) &amp;&amp; Objects.equals(tmdbId, that.tmdbId) &amp;&amp; Objects.equals(starRating, that.starRating);</b>
+&nbsp;        // removed: &quot;thumbsUpOrDown == that.thumbsUpOrDown &amp;&amp;&quot; just before userID in return until thumsUpOrDown working
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public int hashCode() {
+<b class="nc">&nbsp;        return Objects.hash(ratingId, tmdbId, starRating, userID);</b>
+&nbsp;        // removed thumsUpOrDown until working
+&nbsp;    }
+&nbsp;
+&nbsp;    @Override
+&nbsp;    public String toString() {
+<b class="nc">&nbsp;        return &quot;RatingModel{&quot; +</b>
+&nbsp;                &quot;ratingId=&quot; + ratingId +
+&nbsp;                &quot;, tmdbId=&quot; + tmdbId +
+&nbsp;                &quot;, starRating=&quot; + starRating +
+&nbsp;//                &quot;, thumbsUpOrDown=&quot; + thumbsUpOrDown +
+&nbsp;                &#39;}&#39;;
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

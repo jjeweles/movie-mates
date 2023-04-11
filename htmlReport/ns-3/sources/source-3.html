@@ -1,0 +1,169 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FriendsListModel</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.models</a>
+</div>
+
+<h1>Coverage Summary for Class: FriendsListModel (com.galvanize.bluestwosmoviereviews.models)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FriendsListModel</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FriendsListModel$HibernateProxy$Dblq6mAz</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListModel$HibernateProxy$Si69nwfo</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListModel$HibernateProxy$U2xP0Kep</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (10/10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.models;
+&nbsp;
+&nbsp;import javax.persistence.*;
+&nbsp;
+&nbsp;@Entity
+&nbsp;@Table(name = &quot;friends&quot;)
+&nbsp;public class FriendsListModel {
+&nbsp;
+&nbsp;    @Id
+&nbsp;    @GeneratedValue(strategy = GenerationType.IDENTITY)
+&nbsp;    @Column(name = &quot;id&quot;)
+&nbsp;    private Integer friendsListId;
+&nbsp;    @Column(name = &quot;friend_Id&quot;)
+&nbsp;    private Integer friendId;
+&nbsp;
+&nbsp;    @Column(name = &quot;user_Id&quot;)
+&nbsp;    private Integer userId;
+&nbsp;
+<b class="fc">&nbsp;    public FriendsListModel() {</b>
+&nbsp;    }
+&nbsp;
+<b class="fc">&nbsp;    public FriendsListModel(Integer userId, Integer friendId) {</b>
+<b class="fc">&nbsp;        this.userId = userId;</b>
+<b class="fc">&nbsp;        this.friendId = friendId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getUserId() {
+<b class="fc">&nbsp;        return userId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setUserId(Integer userId) {
+<b class="fc">&nbsp;        this.userId = userId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getFriendId() {
+<b class="fc">&nbsp;        return friendId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setFriendId(Integer friendId) {
+<b class="fc">&nbsp;        this.friendId = friendId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Integer getFriendsListId() {
+<b class="fc">&nbsp;        return friendsListId;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void setFriendsListId(Integer friendsListId) {
+<b class="fc">&nbsp;        this.friendsListId = friendsListId;</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,100 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FavoritesListRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.data</a>
+</div>
+
+<h1>Coverage Summary for Class: FavoritesListRepository (com.galvanize.bluestwosmoviereviews.data)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">FavoritesListRepository$MockitoMock$4kxxHHEP</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListRepository$MockitoMock$4kxxHHEP$auxiliary$gmWkwLDM</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListRepository$MockitoMock$4kxxHHEP$auxiliary$Ntoi60Ci</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListRepository$MockitoMock$4kxxHHEP$auxiliary$XbWqcHkB</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.data;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;/**
+&nbsp; * Repository for the Favorite List Model
+&nbsp; * @see FavoritesListModel
+&nbsp; * @see JpaRepository
+&nbsp; * @see Repository
+&nbsp; */
+&nbsp;@Repository
+&nbsp;public interface FavoritesListRepository extends JpaRepository&lt;FavoritesListModel, Integer&gt; {
+&nbsp;    List&lt;FavoritesListModel&gt; findByUserID(Integer userId);
+&nbsp;
+&nbsp;    FavoritesListModel findByUserIDAndTmdbId(Integer userId, Integer tmdbId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

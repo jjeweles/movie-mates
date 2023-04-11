@@ -10,6 +10,8 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -37,6 +39,17 @@ class UserControllerTest {
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.userID").value(1));
+
+    }
+
+    @Test
+    void getAllUsersShouldReturnIterableOfAllUsers() throws Exception {
+
+        Iterable<UserModel> users = new ArrayList<>();
+        when(userService.getAllUsers()).thenReturn(users);
+        mockMvc.perform(get("/api/v1/users/")
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk());
 
     }
 

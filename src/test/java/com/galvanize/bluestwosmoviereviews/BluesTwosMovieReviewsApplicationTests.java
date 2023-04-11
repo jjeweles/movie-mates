@@ -10,4 +10,9 @@ class BluesTwosMovieReviewsApplicationTests {
     void contextLoads() {
     }
 
+    @Test
+    void mainStartsSpringBoot() {
+        BluesTwosMovieReviewsApplication.main(new String[] {});
+    }
+
 }

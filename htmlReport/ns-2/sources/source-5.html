@@ -1,0 +1,205 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: UserController (com.galvanize.bluestwosmoviereviews.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    85.7%
+  </span>
+  <span class="absValue">
+    (6/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    81.8%
+  </span>
+  <span class="absValue">
+    (9/11)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.controllers;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.UserModel;
+&nbsp;import com.galvanize.bluestwosmoviereviews.services.UserService;
+&nbsp;import org.springframework.http.MediaType;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;/**
+&nbsp; * REST controller for managing user operations.
+&nbsp; * &lt;p&gt;
+&nbsp; * The {@code UserController} class handles HTTP requests for operations such as
+&nbsp; * creating, updating, retrieving, and deleting users.
+&nbsp; */
+&nbsp;@CrossOrigin
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/v1/&quot;)
+&nbsp;public class UserController {
+&nbsp;
+&nbsp;    private final UserService userService;
+&nbsp;
+&nbsp;     /** Constructs a new {@code UserController} with the specified {@code UserService}.
+&nbsp;            *
+&nbsp;            * @param userService the user service used to perform user-related operations
+&nbsp;     */
+<b class="fc">&nbsp;    public UserController(UserService userService) {</b>
+<b class="fc">&nbsp;        this.userService = userService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves all users.
+&nbsp;     *
+&nbsp;     * @return an {@code Iterable} containing all {@code UserModel} instances
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;users&quot;)
+&nbsp;    public Iterable&lt;UserModel&gt; getAllUsers() {
+<b class="fc">&nbsp;        return userService.getAllUsers();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves a user by their ID.
+&nbsp;     *
+&nbsp;     * @param id the ID of the user to retrieve
+&nbsp;     * @return a {@code ResponseEntity} containing the requested {@code UserModel} instance if found,
+&nbsp;     *         or an empty {@code ResponseEntity} with a no-content status if not found
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;users/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;UserModel&gt; getUserByID(@PathVariable Integer id) {
+<b class="fc">&nbsp;        UserModel user = userService.getUserByID(id);</b>
+<b class="fc">&nbsp;        return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves a user by their username.
+&nbsp;     *
+&nbsp;     * @param username the username of the user to retrieve
+&nbsp;     * @return a {@code ResponseEntity} containing the requested {@code UserModel} instance if found,
+&nbsp;     *         or an empty {@code ResponseEntity} with a no-content status if not found
+&nbsp;     */
+&nbsp;    @GetMapping(&quot;users/get/{username}&quot;)
+&nbsp;    public ResponseEntity&lt;UserModel&gt; getUserByUsername(@PathVariable String username) {
+<b class="nc">&nbsp;        UserModel user = userService.getUserByUsername(username);</b>
+<b class="nc">&nbsp;        return user == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a new user.
+&nbsp;     *
+&nbsp;     * @param user the {@code UserModel} instance to create
+&nbsp;     * @return the created {@code UserModel} instance
+&nbsp;     */
+&nbsp;    @PostMapping(&quot;users/add&quot;)
+&nbsp;    public UserModel addUser(@RequestBody UserModel user) {
+<b class="fc">&nbsp;        return userService.addUser(user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates an existing user.
+&nbsp;     *
+&nbsp;     * @param id   the ID of the user to update
+&nbsp;     * @param user the {@code UserModel} instance containing the updated data
+&nbsp;     * @return the updated {@code UserModel} instance
+&nbsp;     */
+&nbsp;    @PutMapping(&quot;users/{id}&quot;)
+&nbsp;    public UserModel updateUser(@PathVariable Integer id, @RequestBody UserModel user) {
+<b class="fc">&nbsp;        return userService.updateUser(id, user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Deletes a user by their ID.
+&nbsp;     *
+&nbsp;     * @param id the ID of the user to delete
+&nbsp;     * @return a {@code ResponseEntity} containing the deleted {@code UserModel} instance if found,
+&nbsp;     *         or an empty {@code ResponseEntity} with a no-content status if not found
+&nbsp;     */
+&nbsp;    @DeleteMapping(&quot;users/{id}&quot;)
+&nbsp;    public ResponseEntity&lt;UserModel&gt; deleteUser(@PathVariable Integer id) {
+<b class="fc">&nbsp;        UserModel deletedUser = userService.deleteUser(id);</b>
+<b class="fc">&nbsp;        return deletedUser == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(deletedUser);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

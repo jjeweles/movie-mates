@@ -1,0 +1,189 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PostService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.services</a>
+</div>
+
+<h1>Coverage Summary for Class: PostService (com.galvanize.bluestwosmoviereviews.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PostService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$3oPa9eLt</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$jePw0eSQ</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$MEhW8EE5</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$qPzItuzI</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$szk3T5xI</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$VTAB0ei8</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$WSWevQwd</td>
+  </tr>
+  <tr>
+    <td class="name">PostService$MockitoMock$1WEPrtpC$auxiliary$XduzxRga</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (17/17)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.services;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.data.PostRepository;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.PostModel;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.ReplyModel;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+<b class="fc">&nbsp;@Service</b>
+&nbsp;public class PostService {
+&nbsp;
+&nbsp;    PostRepository postRepository;
+&nbsp;
+<b class="fc">&nbsp;    public PostService(PostRepository postRepository) {</b>
+<b class="fc">&nbsp;        this.postRepository = postRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Iterable&lt;PostModel&gt; getAllPosts() {
+<b class="fc">&nbsp;        return postRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;PostModel&gt; getPostsByID(Integer userID) {
+<b class="fc">&nbsp;        return postRepository.findPostsByUserID(userID);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PostModel addPost(PostModel post) {
+<b class="fc">&nbsp;        return postRepository.save(post);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PostModel updatePost(Integer postID, PostModel post) {
+<b class="fc">&nbsp;        PostModel postToUpdate = postRepository.findPostsByPostID(postID);</b>
+<b class="fc">&nbsp;        if (postToUpdate != null) {</b>
+<b class="fc">&nbsp;            postToUpdate.setPost_title(post.getPost_title());</b>
+<b class="fc">&nbsp;            postToUpdate.setPost_text(post.getPost_text());</b>
+&nbsp;        }
+<b class="fc">&nbsp;        assert postToUpdate != null;</b>
+<b class="fc">&nbsp;        return postRepository.save(postToUpdate);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PostModel deletePost(Integer postID) {
+<b class="fc">&nbsp;        PostModel postToDelete = postRepository.findPostsByPostID(postID);</b>
+<b class="fc">&nbsp;        if (postToDelete != null) {</b>
+<b class="fc">&nbsp;            postRepository.delete(postToDelete);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return postToDelete;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public PostModel getPostsByPostID(Integer postID) {
+<b class="fc">&nbsp;        return postRepository.findPostsByPostID(postID);</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

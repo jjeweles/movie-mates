@@ -1,0 +1,93 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FriendsListRepository</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.data</a>
+</div>
+
+<h1>Coverage Summary for Class: FriendsListRepository (com.galvanize.bluestwosmoviereviews.data)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+</tr>
+  <tr>
+    <td class="name">FriendsListRepository$MockitoMock$TaaE2hda</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListRepository$MockitoMock$TaaE2hda$auxiliary$9KxCJ9lJ</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListRepository$MockitoMock$TaaE2hda$auxiliary$VndCedwO</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListRepository$MockitoMock$TaaE2hda$auxiliary$yhosJDzE</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.data;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.FriendsListModel;
+&nbsp;import org.springframework.data.jpa.repository.JpaRepository;
+&nbsp;import org.springframework.stereotype.Repository;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Repository
+&nbsp;public interface FriendsListRepository extends JpaRepository&lt;FriendsListModel, Integer&gt; {
+&nbsp;    List&lt;FriendsListModel&gt; findByUserId(Integer userId);
+&nbsp;
+&nbsp;    FriendsListModel findByUserIdAndFriendId(Integer userId, Integer friendId);
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
@@ -25,6 +26,7 @@ import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -60,26 +62,54 @@ class FavoritesListControllerTest {
                 .andExpect((jsonPath("$[1].tmdbId").value(list2.getTmdbId())));
 
     }
-//    @Test
-//    void testAddTmdbIdToFavList() throws Exception {
-//        when(favoritesListService.addToFavorites(any(FavoritesListModel.class))).thenReturn(list1);
-//
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        mockMvc.perform(MockMvcRequestBuilders.post("/api/v1/favList/save/3/1122")
-//                        .contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(list1)))
-//                .andExpect(status().isCreated())
-//                .andExpect(jsonPath("$.tmdbId").value(1122));
-//    }
-//
-//    @Test
-//    void deleteRating() throws Exception {
-//        FavoritesListModel favoritesListModel = new FavoritesListModel(1122, 3);
-//
-//        mockMvc.perform(delete("/api/v1/favList/delete" + list1)
-//                .contentType(MediaType.APPLICATION_JSON)
-//                        .content("{\"userId\":\"3\",\"tmdbId\":\"1122\"}"))
-//                .andExpect(status().isAccepted());
-//        verify(favoritesListService).deleteByTmbdId(favoritesListModel);
-//    }
-//
+
+    @Test
+    void returnFavListByUserID() throws Exception {
+        when(favoritesListService.getFavoritesListByID(3)).thenReturn(favorites);
+
+        mockMvc.perform(MockMvcRequestBuilders.get("/api/v1/favList/3")
+                .contentType(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].tmdbId").value(list1.getTmdbId()))
+                .andExpect((jsonPath("$[1].tmdbId").value(list2.getTmdbId())));
+
+    }
+
+    @Test
+    void addTmdbIdToFavesList() {
+        // Given
+        FavoritesListModel inputFavoritesListModel = new FavoritesListModel();
+        inputFavoritesListModel.setTmdbId(123);
+        inputFavoritesListModel.setUserID(1);
+
+        FavoritesListModel expectedFavoritesListModel = new FavoritesListModel();
+        expectedFavoritesListModel.setFavoritesID(1);
+        expectedFavoritesListModel.setTmdbId(123);
+        expectedFavoritesListModel.setUserID(1);
+
+        when(favoritesListService.addNewFavorite(inputFavoritesListModel)).thenReturn(expectedFavoritesListModel);
+
+        // When
+        FavoritesListController favoritesListController = new FavoritesListController(favoritesListService);
+        ResponseEntity<FavoritesListModel> responseEntity = favoritesListController.addTmdbIdToFavesList(inputFavoritesListModel);
+
+        // Then
+        verify(favoritesListService).addNewFavorite(inputFavoritesListModel);
+
+    }
+
+    @Test
+    void deleteTmdbIdFromFavList() {
+        // Given
+        Integer userId = 1;
+        Integer tmdbId = 123;
+
+        // When
+        FavoritesListController favoritesListController = new FavoritesListController(favoritesListService);
+        ResponseEntity<FavoritesListModel> responseEntity = favoritesListController.deleteTmdbIdFromFavList(userId, tmdbId);
+
+        // Then
+        verify(favoritesListService).deleteByTmbdId(userId, tmdbId);
+    }
 }

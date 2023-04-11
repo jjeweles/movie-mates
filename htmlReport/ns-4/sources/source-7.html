@@ -1,0 +1,239 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > UserService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.services</a>
+</div>
+
+<h1>Coverage Summary for Class: UserService (com.galvanize.bluestwosmoviereviews.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">UserService</td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (17/19)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$4Ti56JN7</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$e0ESaobV</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$EMNWYnjd</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$NBiUSBAx</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$QisRwqfo</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$QqK7piFT</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$RxYlpuhp</td>
+  </tr>
+  <tr>
+    <td class="name">UserService$MockitoMock$qixuld39$auxiliary$ZcEJyvad</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    75%
+  </span>
+  <span class="absValue">
+    (6/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    89.5%
+  </span>
+  <span class="absValue">
+    (17/19)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.services;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.data.UserRepository;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.UserModel;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;/**
+&nbsp; * Provides user-related services using a {@code UserRepository}.
+&nbsp; * &lt;p&gt;
+&nbsp; * The {@code UserService} class handles operations such as creating, updating, retrieving, and
+&nbsp; * deleting users using a {@code UserRepository} instance.
+&nbsp; */
+<b class="fc">&nbsp;@Service</b>
+&nbsp;public class UserService {
+&nbsp;
+&nbsp;    private UserRepository userRepository;
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Constructs a new {@code UserService} with the specified {@code UserRepository}.
+&nbsp;     *
+&nbsp;     * @param userRepository the repository used to perform user-related operations
+&nbsp;     */
+<b class="fc">&nbsp;    public UserService(UserRepository userRepository) {</b>
+<b class="fc">&nbsp;        this.userRepository = userRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves a user by their ID.
+&nbsp;     *
+&nbsp;     * @param id the ID of the user to retrieve
+&nbsp;     * @return the {@code UserModel} instance with the specified ID, or {@code null} if not found
+&nbsp;     */
+&nbsp;    public UserModel getUserByID(Integer id) {
+<b class="fc">&nbsp;        return userRepository.findById(id).orElse(null);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Creates a new user.
+&nbsp;     *
+&nbsp;     * @param user the {@code UserModel} instance to create
+&nbsp;     * @return the created {@code UserModel} instance
+&nbsp;     */
+&nbsp;    public UserModel addUser(UserModel user) {
+<b class="fc">&nbsp;        return userRepository.save(user);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Updates an existing user.
+&nbsp;     *
+&nbsp;     * @param id   the ID of the user to update
+&nbsp;     * @param user the {@code UserModel} instance containing the updated data
+&nbsp;     * @return the updated {@code UserModel} instance
+&nbsp;     */
+&nbsp;    public UserModel updateUser(Integer id, UserModel user) {
+<b class="fc">&nbsp;        UserModel userToUpdate = userRepository.findById(id).orElse(null);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (userToUpdate != null) {</b>
+<b class="fc">&nbsp;            userToUpdate.setEmail(user.getEmail());</b>
+<b class="fc">&nbsp;            userToUpdate.setName(user.getName());</b>
+<b class="fc">&nbsp;            userToUpdate.setPassword(user.getPassword());</b>
+<b class="fc">&nbsp;            userToUpdate.setUsername(user.getUsername());</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        assert userToUpdate != null;</b>
+<b class="fc">&nbsp;        return userRepository.save(userToUpdate);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Deletes a user by their ID.
+&nbsp;     *
+&nbsp;     * @param id the ID of the user to delete
+&nbsp;     * @return the deleted {@code UserModel} instance, or {@code null} if not found
+&nbsp;     */
+&nbsp;    public UserModel deleteUser(Integer id) {
+<b class="fc">&nbsp;        UserModel userToDelete = userRepository.findById(id).orElse(null);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (userToDelete != null) {</b>
+<b class="fc">&nbsp;            userRepository.delete(userToDelete);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return userToDelete;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves a user by their username.
+&nbsp;     *
+&nbsp;     * @param username the username of the user to retrieve
+&nbsp;     * @return the {@code UserModel} instance with the specified username, or {@code null} if not found
+&nbsp;     */
+&nbsp;    public UserModel getUserByUsername(String username) {
+<b class="nc">&nbsp;        return userRepository.findByUsername(username);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    /**
+&nbsp;     * Retrieves all users.
+&nbsp;     *
+&nbsp;     * @return an {@code Iterable} containing all {@code UserModel} instances
+&nbsp;     */
+&nbsp;    public Iterable&lt;UserModel&gt; getAllUsers() {
+<b class="nc">&nbsp;        return userRepository.findAll();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FriendsListService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.services</a>
+</div>
+
+<h1>Coverage Summary for Class: FriendsListService (com.galvanize.bluestwosmoviereviews.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FriendsListService</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$5L51PAPI</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$AJAUSZ3s</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$gSWXatu3</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$j5dHrOfz</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$QqfkpELW</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$QWccWUxh</td>
+  </tr>
+  <tr>
+    <td class="name">FriendsListService$MockitoMock$Zgw20x5V$auxiliary$v5IDyqW8</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (6/6)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (8/8)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.services;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.data.FriendsListRepository;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.FriendsListModel;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class FriendsListService {
+&nbsp;    private final FriendsListRepository friendsListRepository;
+&nbsp;
+<b class="fc">&nbsp;    public FriendsListService(FriendsListRepository friendsListRepository) {</b>
+<b class="fc">&nbsp;        this.friendsListRepository = friendsListRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;FriendsListModel&gt; getFriendsListByID(Integer userId) {
+<b class="fc">&nbsp;        return friendsListRepository.findByUserId(userId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public FriendsListModel getFriendByFriendId(Integer userId, Integer friendId) {
+<b class="fc">&nbsp;        return friendsListRepository.findByUserIdAndFriendId(userId, friendId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public FriendsListModel addFriend(FriendsListModel friendsListModel) {
+<b class="fc">&nbsp;        return friendsListRepository.save(friendsListModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void deleteByFriendID(Integer userId, Integer friendId) {
+<b class="fc">&nbsp;        FriendsListModel friendsListModel = friendsListRepository.findByUserIdAndFriendId(userId, friendId);</b>
+<b class="fc">&nbsp;        friendsListRepository.delete(friendsListModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;FriendsListModel&gt; getAllFriends() {
+<b class="fc">&nbsp;        return friendsListRepository.findAll();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

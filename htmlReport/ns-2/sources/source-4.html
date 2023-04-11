@@ -1,0 +1,167 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RatingController</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.controllers</a>
+</div>
+
+<h1>Coverage Summary for Class: RatingController (com.galvanize.bluestwosmoviereviews.controllers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RatingController</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (14/16)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.controllers;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.RatingModel;
+&nbsp;import com.galvanize.bluestwosmoviereviews.services.RatingService;
+&nbsp;import org.springframework.http.HttpStatus;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.web.bind.annotation.*;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@CrossOrigin
+&nbsp;@RestController
+&nbsp;@RequestMapping(&quot;/api/v1/&quot;)
+&nbsp;public class RatingController {
+&nbsp;
+&nbsp;    private final RatingService ratingService;
+&nbsp;
+<b class="fc">&nbsp;    public RatingController(RatingService ratingService) {</b>
+<b class="fc">&nbsp;        this.ratingService = ratingService;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;rating/get&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;RatingModel&gt;&gt; getAllRatings() {
+&nbsp;
+<b class="fc">&nbsp;        List&lt;RatingModel&gt; ratings = ratingService.getAllRatings();</b>
+<b class="fc">&nbsp;        return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;rating/getUserRatings/{userId}&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;RatingModel&gt;&gt; getAllRatingsByUserId(@PathVariable Integer userId) {
+<b class="fc">&nbsp;        List&lt;RatingModel&gt; ratings = ratingService.getAllRatingsByUserId(userId);</b>
+<b class="fc">&nbsp;        return ratings == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(ratings);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;rating/getRatingsForMovie/{tmdbId}&quot;)
+&nbsp;    public ResponseEntity&lt;List&lt;RatingModel&gt;&gt; getMovieRatingByIdmbId(@PathVariable Integer tmdbId) {
+<b class="fc">&nbsp;        List&lt;RatingModel&gt; listOfRatingsForMovie = ratingService.getAllRatingsByTmdbId(tmdbId);</b>
+<b class="fc">&nbsp;        return listOfRatingsForMovie == null ? ResponseEntity.noContent().build() : ResponseEntity.ok(listOfRatingsForMovie);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @GetMapping(&quot;rating/getMovieAvgMovieRating/{tmdbId}&quot;)
+&nbsp;    public ResponseEntity&lt;Double&gt; getAvgMovieRating(@PathVariable Integer tmdbId) {
+<b class="nc">&nbsp;        Double averageRating = ratingService.getAverageMovieRating(tmdbId);</b>
+<b class="nc">&nbsp;        return averageRating == 0 ? ResponseEntity.noContent().build() : ResponseEntity.ok(averageRating);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PutMapping(&quot;rating/update/{ratingId}&quot;)
+&nbsp;    public ResponseEntity&lt;RatingModel&gt; updateRating(@PathVariable Integer ratingId, @RequestBody RatingModel ratingModel) {
+<b class="fc">&nbsp;        RatingModel updateRating = ratingService.updateRating(ratingId, ratingModel);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(updateRating, HttpStatus.OK);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @PostMapping(&quot;rating/save&quot;)
+&nbsp;    public ResponseEntity&lt;RatingModel&gt; addNewRating(@RequestBody RatingModel ratingModel) {
+<b class="fc">&nbsp;        RatingModel newRating = ratingService.addNewRating(ratingModel);</b>
+<b class="fc">&nbsp;        return new ResponseEntity&lt;&gt;(newRating, HttpStatus.CREATED);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @DeleteMapping(&quot;rating/delete/{ratingId}&quot;)
+&nbsp;    public ResponseEntity&lt;RatingModel&gt; deleteRating(@PathVariable Integer ratingId) {
+<b class="fc">&nbsp;        RatingModel deleteRating = ratingService.deleteById(ratingId);</b>
+<b class="fc">&nbsp;        return deleteRating == null ? ResponseEntity.noContent().build() : ResponseEntity.accepted().build();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,209 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > RatingService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.services</a>
+</div>
+
+<h1>Coverage Summary for Class: RatingService (com.galvanize.bluestwosmoviereviews.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">RatingService</td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (16/24)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$47m1jGJT</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$5VsZihbX</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$9SwDo2XZ</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$GZ0nqkXx</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$mA4LP41Y</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$pAUIZ4fv</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$rD7GsxGZ</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$y6TGv4EZ</td>
+  </tr>
+  <tr>
+    <td class="name">RatingService$MockitoMock$waon9tFc$auxiliary$zsucVB7c</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    87.5%
+  </span>
+  <span class="absValue">
+    (7/8)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66.7%
+  </span>
+  <span class="absValue">
+    (16/24)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.services;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.data.RatingRepository;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.RatingModel;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import java.util.List;
+&nbsp;import java.util.Optional;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class RatingService {
+&nbsp;
+&nbsp;    private RatingRepository ratingRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public RatingService(RatingRepository ratingRepository) {</b>
+<b class="fc">&nbsp;        this.ratingRepository = ratingRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;RatingModel&gt; getAllRatings() {
+<b class="fc">&nbsp;        return ratingRepository.findAll();</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public RatingModel updateRating(Integer ratingID, RatingModel rating) {
+<b class="fc">&nbsp;        Optional&lt;RatingModel&gt; existingRating = ratingRepository.findById(ratingID);</b>
+<b class="fc">&nbsp;        if (existingRating.isPresent()) {</b>
+<b class="fc">&nbsp;            existingRating.get().setTmdbId(rating.getTmdbId());</b>
+<b class="fc">&nbsp;            existingRating.get().setStarRating(rating.getStarRating());</b>
+&nbsp;//            existingRating.get().setThumbsUpOrDown(rating.isThumbsUpOrDown());
+<b class="fc">&nbsp;            existingRating.get().setUserID(rating.getUserID());</b>
+<b class="fc">&nbsp;            return ratingRepository.save(existingRating.get());</b>
+&nbsp;        }
+<b class="nc">&nbsp;        return null;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;RatingModel&gt; getAllRatingsByUserId(Integer userId) {
+<b class="fc">&nbsp;        return ratingRepository.findByUserID(userId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public RatingModel deleteById(Integer ratingId) {
+<b class="fc">&nbsp;        RatingModel ratingToDelete = ratingRepository.findByRatingId(ratingId);</b>
+&nbsp;
+<b class="fc">&nbsp;        if (ratingToDelete != null) {</b>
+<b class="fc">&nbsp;            ratingRepository.delete(ratingToDelete);</b>
+&nbsp;        }
+&nbsp;
+<b class="fc">&nbsp;        return ratingToDelete;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public RatingModel addNewRating(RatingModel ratingModel) {
+<b class="fc">&nbsp;        return ratingRepository.save(ratingModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;RatingModel&gt; getAllRatingsByTmdbId(Integer tmdbId) {
+<b class="fc">&nbsp;        return ratingRepository.findByTmdbId(tmdbId);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public Double getAverageMovieRating(Integer tmdbId) {
+<b class="nc">&nbsp;        List&lt;RatingModel&gt; listOfRatings = ratingRepository.findByTmdbId(tmdbId);</b>
+<b class="nc">&nbsp;        double averageRating = 0;</b>
+&nbsp;
+<b class="nc">&nbsp;        for (RatingModel movieRating : listOfRatings) {</b>
+<b class="nc">&nbsp;            averageRating += movieRating.getStarRating();</b>
+<b class="nc">&nbsp;        }</b>
+<b class="nc">&nbsp;        averageRating = averageRating / listOfRatings.size();</b>
+<b class="nc">&nbsp;        return Double.parseDouble(String.format(&quot;%.1f&quot;, averageRating));</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

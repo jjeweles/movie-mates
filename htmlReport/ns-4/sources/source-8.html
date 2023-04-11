@@ -1,0 +1,181 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > WatchListService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.services</a>
+</div>
+
+<h1>Coverage Summary for Class: WatchListService (com.galvanize.bluestwosmoviereviews.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">WatchListService</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (8/10)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">WatchListService$$EnhancerBySpringCGLIB$$68258143</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT$auxiliary$5oIyNRLu</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT$auxiliary$7A90ZOPJ</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT$auxiliary$EHmY9v3C</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT$auxiliary$jtIb80qo</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT$auxiliary$kYINgasQ</td>
+  </tr>
+  <tr>
+    <td class="name">WatchListService$MockitoMock$afPa7ocT$auxiliary$yn94jbvM</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (4/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    80%
+  </span>
+  <span class="absValue">
+    (8/10)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.services;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.data.WatchListRepository;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.WatchListModel;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import javax.persistence.EntityManager;
+&nbsp;import javax.persistence.PersistenceContext;
+&nbsp;import javax.transaction.Transactional;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class WatchListService {
+&nbsp;
+&nbsp;    @PersistenceContext
+&nbsp;    EntityManager entityManager;
+&nbsp;
+&nbsp;    private WatchListRepository watchListRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public WatchListService(WatchListRepository watchListRepository) {</b>
+<b class="fc">&nbsp;        this.watchListRepository = watchListRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;WatchListModel&gt; getWatchList(Integer userID) {
+<b class="fc">&nbsp;        return watchListRepository.findByUserID(userID);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public WatchListModel addToWatchList(WatchListModel watchListModel) {
+<b class="fc">&nbsp;        return watchListRepository.save(watchListModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public WatchListModel deleteFromWatchList(Integer userID, Integer tmdbId) {
+<b class="fc">&nbsp;        WatchListModel movieToDelete = watchListRepository.findByUserIDAndTmdbID(userID, tmdbId);</b>
+<b class="fc">&nbsp;        if (movieToDelete != null) {</b>
+<b class="fc">&nbsp;            watchListRepository.delete(movieToDelete);</b>
+&nbsp;        }
+<b class="fc">&nbsp;        return movieToDelete;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    public void deleteAll(Integer userID) {
+<b class="nc">&nbsp;        String query = &quot;DELETE FROM watchlist WHERE userID = &quot; + userID + &quot;&quot;;</b>
+<b class="nc">&nbsp;        entityManager.createNativeQuery(query).executeUpdate();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,194 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > FavoritesListService</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/idea.min.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.min.js"></script>
+  <script type="text/javascript" src="../../js/highlightjs-line-numbers.min.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.galvanize.bluestwosmoviereviews.services</a>
+</div>
+
+<h1>Coverage Summary for Class: FavoritesListService (com.galvanize.bluestwosmoviereviews.services)</h1>
+
+<table class="coverageStats">
+
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">FavoritesListService</td>
+<td class="coverageStat">
+  <span class="percent">
+    42.9%
+  </span>
+  <span class="absValue">
+    (3/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    36.4%
+  </span>
+  <span class="absValue">
+    (4/11)
+  </span>
+</td>
+</tr>
+  <tr>
+    <td class="name">FavoritesListService$$EnhancerBySpringCGLIB$$a245152b</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$3saQNfoI</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$cVABxW6X</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$DnpB1UUV</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$Ek7rYGKN</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$fAHIWsr6</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$ji4brMlu</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$NWaDBUHB</td>
+  </tr>
+  <tr>
+    <td class="name">FavoritesListService$MockitoMock$qLhucOte$auxiliary$xGuy4Ucu</td>
+  </tr>
+<tr>
+  <td class="name"><strong>Total</strong></td>
+<td class="coverageStat">
+  <span class="percent">
+    42.9%
+  </span>
+  <span class="absValue">
+    (3/7)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    36.4%
+  </span>
+  <span class="absValue">
+    (4/11)
+  </span>
+</td>
+</tr>
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<code class="sourceCode" id="sourceCode">&nbsp;package com.galvanize.bluestwosmoviereviews.services;
+&nbsp;
+&nbsp;import com.galvanize.bluestwosmoviereviews.data.FavoritesListRepository;
+&nbsp;import com.galvanize.bluestwosmoviereviews.models.FavoritesListModel;
+&nbsp;import org.springframework.beans.factory.annotation.Autowired;
+&nbsp;import org.springframework.http.ResponseEntity;
+&nbsp;import org.springframework.stereotype.Service;
+&nbsp;
+&nbsp;import javax.persistence.EntityManager;
+&nbsp;import javax.persistence.PersistenceContext;
+&nbsp;import javax.transaction.Transactional;
+&nbsp;import java.util.List;
+&nbsp;
+&nbsp;@Service
+&nbsp;public class FavoritesListService {
+&nbsp;
+&nbsp;    @PersistenceContext
+&nbsp;    EntityManager entityManager;
+&nbsp;
+&nbsp;    private final FavoritesListRepository favoritesRepository;
+&nbsp;
+&nbsp;    @Autowired
+<b class="fc">&nbsp;    public FavoritesListService(FavoritesListRepository favoritesRepository) {</b>
+<b class="fc">&nbsp;        this.favoritesRepository = favoritesRepository;</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public List&lt;FavoritesListModel&gt; getFavoritesListByID(Integer userID) {
+<b class="fc">&nbsp;        return favoritesRepository.findByUserID(userID);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public FavoritesListModel getFavs(Integer userId, Integer tmdbId) {
+<b class="nc">&nbsp;        FavoritesListModel favoritesListModel = new FavoritesListModel(userId, tmdbId);</b>
+<b class="nc">&nbsp;        return favoritesRepository.save(favoritesListModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public void deleteByTmbdId(Integer userId, Integer tmdbId) {
+<b class="nc">&nbsp;        FavoritesListModel modelToDelete = favoritesRepository.findByUserIDAndTmdbId(userId, tmdbId);</b>
+<b class="nc">&nbsp;        favoritesRepository.delete(modelToDelete);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public FavoritesListModel addToFavorites(FavoritesListModel favoritesListModel) {
+<b class="fc">&nbsp;        return favoritesRepository.save(favoritesListModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    public FavoritesListModel addNewFavorite(FavoritesListModel favoritesListModel) {
+<b class="nc">&nbsp;        return favoritesRepository.save(favoritesListModel);</b>
+&nbsp;    }
+&nbsp;
+&nbsp;    @Transactional
+&nbsp;    public void deleteAll(Integer userID) {
+<b class="nc">&nbsp;        String query = &quot;DELETE FROM favorites WHERE userID = &quot; + userID + &quot;&quot;;</b>
+<b class="nc">&nbsp;        entityManager.createNativeQuery(query).executeUpdate();</b>
+&nbsp;    }
+&nbsp;}
+</code>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+      hljs.highlightAll()
+      hljs.initLineNumbersOnLoad();
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2023-04-10 19:39</div>
+</div>
+</body>
+</html>
